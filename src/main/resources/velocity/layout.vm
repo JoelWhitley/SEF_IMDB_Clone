@@ -1,0 +1,38 @@
+#macro(mainLayout)
+<html>
+<head>
+    <title>SEF IMBD</title>
+    <link rel="stylesheet" href="/main.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/"><img id="logo" src="/img/logo.png" alt="IMBD"></a>
+
+            <ul id="menu">
+                #if($currentUser)
+                    <li>
+                        <form method="post" action="/logout">
+                            <button id="logout">Log Out</button>
+                        </form>
+                    </li>
+                    <li><a href="/account" id="account">Account</a></li>
+                #else
+                    <li><a href="/login" >Log In</a></li>
+                #end
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div id="content">
+            $bodyContent
+        </div>
+    </main>
+    <footer>
+       Software Engineering Fundamentals Team Project
+    </footer>
+</body>
+</html>
+#end
