@@ -19,7 +19,7 @@ public class DatabaseUtils {
 
 
     public static Connection connectToDatabase() throws Exception {
-        // creates a Connection objecti
+        // creates a Connection object
         Connection connection = null;
 
         try {

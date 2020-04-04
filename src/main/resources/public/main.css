@@ -288,3 +288,18 @@ a .bookCover img {
 .bad.notification {
     background: #bb0000;
 }
+
+#featureContent {
+  display: block;
+}
+
+#featureImage {
+  width: 10px;
+  display: inline-flex;
+}
+
+#featureText {
+  width: 40%;
+  padding: 2%;
+  display: inline-flex;
+}
