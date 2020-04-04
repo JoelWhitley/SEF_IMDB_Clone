@@ -33,7 +33,7 @@ public class AccountDAO {
 
         try {
             // Here you prepare your sql statement
-            String sql = "SELECT username, password FROM account WHERE username ='" + username + "'";
+            String sql = "SELECT username, password FROM account WHERE username ='" + username + "';";
 
             // Execute the query
             Connection connection = DatabaseUtils.connectToDatabase();
