@@ -1,5 +1,21 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
+<div id = "content">
+	<h1>Insert show title here</h1>
+	<label>this is how long it is</label><br>
+	<label>this is it's genre</label>
+</div>
 
-<div>enter html here please<div>
+<div id = "content">
+	<h1>Cast and crew</h1>
+	<label>Cast members</label><br>
+	<label>Crew members</label>
+</div>
+
+<div id = "content">
+	<h1>Reviews</h1>
+	<label>put your reviews here</label>
+</div>
+
+
 #end
