@@ -5,6 +5,7 @@ import app.controller.IndexController;
 import app.controller.LoginController;
 import app.controller.paths.Web;
 import app.controller.utils.ViewUtil;
+import app.model.Account;
 import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
 import static io.javalin.apibuilder.ApiBuilder.*;
@@ -14,7 +15,6 @@ import static io.javalin.apibuilder.ApiBuilder.*;
 
 
 public class Main {
-
 
 
 
