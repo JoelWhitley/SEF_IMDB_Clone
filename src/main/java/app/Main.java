@@ -3,6 +3,7 @@ package app;
 import app.controller.AccountController;
 import app.controller.IndexController;
 import app.controller.LoginController;
+import app.controller.ShowController;
 import app.controller.paths.Web;
 import app.controller.utils.ViewUtil;
 import io.javalin.Javalin;
@@ -30,12 +31,15 @@ public class Main {
             // before(LoginController.ensureLoginBeforeViewing);
 
             get(Web.INDEX, IndexController.serveIndexPage);
+            post(Web.INDEX, IndexController.handleIndexPost);
 
             get(Web.LOGIN, LoginController.serveLoginPage);
             post(Web.LOGIN, LoginController.handleLoginPost);
             post(Web.LOGOUT, LoginController.handleLogoutPost);
 
             get(Web.ACCOUNT, AccountController.serveAccountPage);
+            
+            get(Web.SHOW, ShowController.serveShowPage);
 
             // Add new actions here
             // Seeing pages (get) and sending information in forms (post)

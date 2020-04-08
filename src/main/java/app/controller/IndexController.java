@@ -2,6 +2,7 @@ package app.controller;
 
 import app.controller.paths.Template;
 import app.controller.utils.ViewUtil;
+import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import java.util.Map;
 
@@ -15,6 +16,15 @@ public class IndexController {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         ctx.render(Template.INDEX, model);
     };
+    
+    public static Handler handleIndexPost = ctx -> {
+    	Map<String, Object> model = ViewUtil.baseModel(ctx);
+    	ctx.render(Template.SHOW,model);
+    };
+    
+    public static String getShowQuery(Context ctx) {
+        return ctx.formParam("showTitleSearch");
+    }
 
 
 }

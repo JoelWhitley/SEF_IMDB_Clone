@@ -17,8 +17,17 @@ public class Show {
     private ProductionCompany productionCompany;
 
     private List<CreditsRoll> creditsRolls;
+    
+    public Show(String showTitle) {
+    	
+    }
 
-
+    public Show(int showid,String showTitle,double length,boolean isMovie,boolean isSeries,String genre,int year) {
+    	
+    }
+    
+    
+    
 
 
 }

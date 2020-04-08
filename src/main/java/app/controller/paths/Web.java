@@ -13,4 +13,5 @@ public class Web {
     public static final String LOGIN = "/login";
     public static final String LOGOUT = "/logout";
     public static final String ACCOUNT = "/account";
+    public static final String SHOW = "/show";
 }
