@@ -21,6 +21,7 @@ public class Person {
         fullName = fn;
         role = r;
         birthdate = bd;
+        bio = b;
     }
 
 

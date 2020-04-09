@@ -1,26 +1,34 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
+
+<div id="indexSearchBar">
+	<form id="searchTitleForm" method="post">
+	    <h4><label>Search by Show Title</label></h4>
+	    <input type="text" name="showTitleSearch" placeholder="Show Title" value="" required>
+	    <input type="submit" value="Search">
+	</form>
+</div>
+<div id="indexSearchBar">
+	<br/>
+	<form id="searchActorForm" method="post">
+	    <h4><label>Search by Actor</label></h4>
+	    <input type="text" name="showActorSearch" placeholder="Actor Name" value="" required>
+	    <input type="submit" value="Search">
+	</form>
+</div>
+
+<br/>
+
 <div id="featureContent">
-	<img src="/img/people/11.jpg" id="featureImage">
-	</img>
+	<img src="/img/people/11.jpg" id="featureImage" align="top" />
 	<div id="featureText">
-		blah blah blah blah
+		<h2>Featured Actor</h2>
+		<h4>$actorName</h4>
+		<p>$actorBio</p>
 	</div>
 </div>
 
 
-<h1>Search Movies</h1>
-<form id="searchTitleForm" method="post">
-    <label>Search by Show Title</label>
-    <input type="text" name="showTitleSearch" placeholder="Show Title" value="" required>
-    <input type="submit" value="Search">
-</form>
-
-<form id="searchActorForm" method="post">
-    <label>Search by Actor</label>
-    <input type="text" name="showActorSearch" placeholder="ActorName" value="" required>
-    <input type="submit" value="Search">
-</form>
 
 
 

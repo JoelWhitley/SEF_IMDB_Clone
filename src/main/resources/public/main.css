@@ -291,15 +291,21 @@ a .bookCover img {
 
 #featureContent {
   display: block;
+  height: 35%;
 }
 
 #featureImage {
-  width: 10px;
-  display: inline-flex;
+  width: 30%;
+  float: left;
 }
 
 #featureText {
+  float: left;
+  padding-left: 10px;
+  max-width: 70%;
+}
+
+#indexSearchBar {
   width: 40%;
-  padding: 2%;
-  display: inline-flex;
+  float:left;
 }

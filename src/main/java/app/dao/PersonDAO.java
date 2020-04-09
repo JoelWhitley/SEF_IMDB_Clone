@@ -27,13 +27,13 @@ public class PersonDAO {
      * @return Some of the user data to check on the password. Null if there
      *         no matching user.
      */
-    public static List<Person> getPeopleByName(String actorName) {
+    public static Person getRandomActorInfo() {
         // Fish out the results
         List<Person> people = new ArrayList<>();
 
         try {
             // Here you prepare your sql statement
-            String sql = "SELECT username, password FROM account WHERE username LIKE '%" + actorName + "%'";
+            String sql = "select * from person order by rand() limit 1";
 
             // Execute the query
             Connection connection = DatabaseUtils.connectToDatabase();
@@ -59,10 +59,9 @@ public class PersonDAO {
         catch (Exception e) {
             e.printStackTrace();
         }
-
-
+        
         // If there is a result
-        if(!people.isEmpty()) return people;
+        if(!people.isEmpty()) return people.get(0);
         // If we are here, something bad happened
         return null;
     }
