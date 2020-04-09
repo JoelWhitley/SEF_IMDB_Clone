@@ -13,6 +13,7 @@ public class RequestUtil {
     public static String getSessionCurrentUser(Context ctx) {
         return (String) ctx.sessionAttribute("currentUser");
     }
+    
 
 
 

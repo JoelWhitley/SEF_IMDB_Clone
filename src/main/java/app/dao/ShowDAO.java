@@ -12,13 +12,13 @@ import app.model.Show;
 public class ShowDAO {
 	public static final String SALT = "$2a$10$h.dl5J86rGH7I8bD9bZeZe";
 
-    public static Show getUserByUsername(String username) {
+    public static Show getShowByTitle(String title) {
         // Fish out the results
         List<Show> shows = new ArrayList<>();
 
         try {
             // Here you prepare your sql statement
-            String sql = "INSERT SQL STATEMENT HERE";
+            String sql = "SELECT * FROM `show` WHERE show_title ='" + title + "'";
 
             // Execute the query
             Connection connection = DatabaseUtils.connectToDatabase();
@@ -28,7 +28,8 @@ public class ShowDAO {
             // If you have multiple results, you do a while
             while(result.next()) {
                 shows.add(   
-                  new Show(result.getString("showTitle"))
+                  new Show(result.getInt("showid"),result.getString("show_title"), result.getDouble("length"),
+                		  result.getBoolean("movie"),result.getBoolean("series"),result.getString("genre"),result.getInt("year"))
                   );
             }
 
