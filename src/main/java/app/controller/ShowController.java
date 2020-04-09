@@ -11,6 +11,7 @@ public class ShowController {
 	
 	public static Handler serveShowPage = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
-        ctx.render(Template.SHOW, model);
+        model.put("showTitle", "hello?");
+        
     };
 }
