@@ -1,5 +1,28 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
+	<div id = "content">
+		#if($person)
+		<h1>$person.fullname</h1>
 
-<div>TODO HTML<div>
+		<div class="mugShot">
+            <img src="$person.img" alt="$person.img">
+        </div>
+
+		<label>persons biography</label><br>
+		<label>$person.bio</label>
+
+
+		<div id = "content">
+			<label>filmography</label>
+			<label>Role: $person.role</label>
+			<label>Date: $person.date</label>
+		</div>
+		
+		#else
+		<h1>Person not found</h1>
+	</div>
+	
+	
+		
+
 #end
