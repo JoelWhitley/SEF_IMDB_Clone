@@ -21,16 +21,17 @@ public class IndexController {
     
     public static Handler handleIndexPost = ctx -> {
     	Map<String, Object> model = ViewUtil.baseModel(ctx);
-    	if(getShowQuery(ctx)!=null) {
-        	model.put("show", ShowDAO.getShowByTitle(getShowQuery(ctx)));
-
-        	ctx.render(Template.SHOW,model);
-    	}
-    	else if(getPersonQuery(ctx) != null) {
-        	model.put("person", PersonDAO.getPersonByName(getPersonQuery(ctx)));
+    	if(getPersonQuery(ctx) != null) {
+        	model.put("person", PersonDAO.getPersonByString(getPersonQuery(ctx)));
 
         	ctx.render(Template.PERSON,model);
     	}
+    	else if(getShowQuery(ctx) != null) {
+        	model.put("show", ShowDAO.getShowByString(getShowQuery(ctx)));
+
+        	ctx.render(Template.SHOW,model);
+    	}
+    	
     };
     
     public static String getShowQuery(Context ctx) {

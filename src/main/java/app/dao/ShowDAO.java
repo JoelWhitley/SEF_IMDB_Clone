@@ -13,7 +13,7 @@ import app.model.Show;
 public class ShowDAO {
 	public static final String SALT = "$2a$10$h.dl5J86rGH7I8bD9bZeZe";
 
-    public static Show getShowByTitle(String title) {
+    public static Show getShowByString(String titleSearch) {
         // Fish out the results
         List<Show> shows = new ArrayList<>();
 
@@ -28,10 +28,10 @@ public class ShowDAO {
             		+ "ON `show`.showid = credits_roll.show_id"
             		+ "LEFT JOIN `person`"
             		+ "on credits_roll.person_id = person.person_id"
-            		+ "WHERE ( UPPER(show_title) LIKE UPPER('%" + title + "%')"
-            		+ "OR UPPER(genre) LIKE UPPER('%" + title + "%')"
-            		+ "OR UPPER(person.fullname) LIKE UPPER('%" + title + "%')"
-            		+ "OR UPPER(credits_roll.character_name) LIKE UPPER('%" + title + "%'))"
+            		+ "WHERE ( UPPER(show_title) LIKE UPPER('%" + titleSearch + "%')"
+            		+ "OR UPPER(genre) LIKE UPPER('%" + titleSearch + "%')"
+            		+ "OR UPPER(person.fullname) LIKE UPPER('%" + titleSearch + "%')"
+            		+ "OR UPPER(credits_roll.character_name) LIKE UPPER('%" + titleSearch + "%'))"
             		+ "group by showid;";
 
 
@@ -62,7 +62,7 @@ public class ShowDAO {
         // If we are here, something bad happened
         return null;
     }
-    
+    /*
     public static Show getShowByProducer(String fullName) {
         // Fish out the results
         List<Show> shows = new ArrayList<>();
@@ -116,6 +116,7 @@ public class ShowDAO {
         return null;
     }
     
+    
     public static Show getShowByName(String fullName, String role) {
         // Fish out the results
         List<Show> shows = new ArrayList<>();
@@ -164,5 +165,6 @@ public class ShowDAO {
         // If we are here, something bad happened
         return null;
     }
+    */
     
 }

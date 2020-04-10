@@ -4,6 +4,7 @@ import app.controller.AccountController;
 import app.controller.IndexController;
 import app.controller.LoginController;
 import app.controller.ShowController;
+import app.controller.personController;
 import app.controller.paths.Web;
 import app.controller.utils.ViewUtil;
 import io.javalin.Javalin;
@@ -36,7 +37,7 @@ public class Main {
             get(Web.ACCOUNT, AccountController.serveAccountPage);
             
             get(Web.SHOW, ShowController.serveShowPage);
-
+            get(Web.PERSON, personController.personPage);
             // Add new actions here
             // Seeing pages (get) and sending information in forms (post)
         });

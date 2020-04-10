@@ -16,7 +16,7 @@ public class PersonDAO {
 	
 	
 
-    public static Person getPersonByName(String fullName) {
+    public static Person getPersonByString(String personSearch) {
         // Fish out the results
         List<Person> person = new ArrayList<>();
 
@@ -30,11 +30,11 @@ public class PersonDAO {
                     "ON credits_roll.person_id = person.person_id " +
                     "LEFT JOIN `show` " +
                     "on `show`.showid = credits_roll.show_id " +
-                    "WHERE ( UPPER(show_title) LIKE UPPER('%" + fullName + "%') " +
-                    "OR UPPER(person.`role`) LIKE UPPER('%" + fullName + "%') " +
-                    "OR UPPER(genre) LIKE UPPER('%" + fullName + "%') " +
-                    "OR UPPER(person.fullname) LIKE UPPER('%" + fullName + "%') " +
-                    "OR UPPER(credits_roll.character_name) LIKE UPPER('%" + fullName + "%')) " +
+                    "WHERE ( UPPER(show_title) LIKE UPPER('%" + personSearch + "%') " +
+                    "OR UPPER(person.`role`) LIKE UPPER('%" + personSearch + "%') " +
+                    "OR UPPER(genre) LIKE UPPER('%" + personSearch + "%') " +
+                    "OR UPPER(person.fullname) LIKE UPPER('%" + personSearch + "%') " +
+                    "OR UPPER(credits_roll.character_name) LIKE UPPER('%" + personSearch + "%')) " +
                     "group by person_id;";
 
             //sql script. Show Writer/Based-On & Search-By

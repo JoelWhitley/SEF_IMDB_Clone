@@ -12,7 +12,7 @@ public class personController {
 
     public static Handler personPage = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
-        model.put("person", PersonDAO.getPersonByName(getPersonQuery(ctx)));
+        model.put("person", PersonDAO.getPersonByString(getPersonQuery(ctx)));
         ctx.render(Template.PERSON, model);
         
     };
