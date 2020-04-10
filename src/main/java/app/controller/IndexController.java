@@ -28,7 +28,15 @@ public class IndexController {
         return ctx.formParam("showTitleSearch");
     }
     
+    //wip
+    public static String getActorQuery(Context ctx) {
+        return ctx.formParam("showTitleSearch");
+    }
     
+    //wip
+    public static String getProducerQuery(Context ctx) {
+        return ctx.formParam("showProducerSearch");
+    }
 
 
 }
