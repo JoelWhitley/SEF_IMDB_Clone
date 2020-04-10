@@ -15,6 +15,11 @@ public class RequestUtil {
     }
     
 
+    public static int getParamPersonId(Context ctx) {
+        return Integer.parseInt(ctx.pathParam("person_id"));
+    }
+
+
 
 
 

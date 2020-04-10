@@ -13,9 +13,9 @@ import app.model.Show;
 public class PersonDAO {
 	public static final String SALT = "$2a$10$h.dl5J86rGH7I8bD9bZeZe";
 
-	
-	
 
+
+	
     public static Person getPersonByString(String personSearch) {
         // Fish out the results
         List<Person> person = new ArrayList<>();
@@ -38,7 +38,7 @@ public class PersonDAO {
                     "OR UPPER(credits_roll.character_name) LIKE UPPER('%" + personSearch + "%')) " +
                     "group by person_id;";
                     
-                    */
+                 */   
         	
         	String sql = "SELECT * FROM person;";
             //sql script. Show Writer/Based-On & Search-By
@@ -81,6 +81,44 @@ public class PersonDAO {
     }
     
     
+
+
+	public static Person getPersonByName(String fullname) {
+
+		List<Person> people = new ArrayList<>();
+
+		try {
+			// Here you prepare your sql statement
+			String sql = "SELECT * FROM person WHERE person_id = '" + fullname + "'";
+
+			// Execute the query
+			Connection connection = DatabaseUtils.connectToDatabase();
+			Statement statement = connection.createStatement();
+			ResultSet result = statement.executeQuery(sql);
+
+			// If you have multiple results, you do a while
+        while(result.next()) {
+            // 2) Add it to the list we have prepared
+            people.add(
+              // 1) Create a new account object
+              new Person(result.getInt("person_id"), 
+            		  result.getString("fullname"), 
+            		  result.getString("role"), 
+            		  result.getDate("birthdate"), 
+            		  result.getString("bio"))
+            );
+        }
+
+			// Close it
+			DatabaseUtils.closeConnection(connection);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(!people.isEmpty()) return people.get(0);
+		
+		return null;
+	}
 
 }
 

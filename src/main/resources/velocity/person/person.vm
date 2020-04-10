@@ -4,22 +4,26 @@
 		#if($person)
 		<h1>$person.fullName</h1>
 
-		<div class="mugShot">
-            		<img src="$person.img" alt="$person.img"/> 
-        	</div>
+		<label>Role: $person.role</label><br>
+		<label>Date of Birth: $person.birthdate</label>
+		
+		<img src="$person.profile" id="featureImage" align="top" />
 
-		<label>persons biography</label><br>
+
+		<label>biography</label><br>
 		<label>$person.bio</label>
 
 
 		<div id = "content">
 			<label>filmography</label>
-			<label>Role: $person.role</label>
-			<label>Date: $person.birthdate</label>
+
 		</div>
 		
+	
 		#else
 		<h1>Person not found</h1>
+
 		#end
 	</div>	
 #end
+
