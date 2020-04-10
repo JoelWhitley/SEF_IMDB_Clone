@@ -3,7 +3,7 @@
 <div id = "content">	
 	#if($person) 
 	<h1>Results</h1>
-	<p> <a href="/velocity/person.vm">$person.fullName</a> - $person.bio</p>
+	<label> <a href="/velocity/person.vm">$person.fullName</a> - $person.bio</label>
 	
 	#else
 	<h1>not found</h1>

@@ -17,5 +17,5 @@ public class Web {
     public static final String SHOW = "/show";
 
     public static final String PERSON = "/person";
-
+    public static final String RESULT = "/result";
 }
