@@ -18,20 +18,11 @@ public class ShowDAO {
 
         try {
             // Here you prepare your sql statement
-        	String firstname = null;
-        	String name = null;
+        
+        	
 
             String sql = "SELECT * FROM `show` WHERE show_title ='" + title + "'";
 
-
-            //sql script. Show show title by searching first name of actor
-            String sql2 = "SELECT show_title FROM credits_roll,`show`, person WHERE credits_roll.show_id = `show`.showid AND person.person_id = credits_roll.person_id AND UPPER(fullname) LIKE '%" + firstname + "%';";
-
-            //sql script. search actor by first name
-
-            String sql3 = "SELECT * FROM person WHERE fullname LIKE '%" + name + "%';";
-
-            //sql script. Show Writer/Based-On & Search-By
 
 
             // Execute the query
