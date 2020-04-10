@@ -21,6 +21,7 @@ public class IndexController {
     
     public static Handler handleIndexPost = ctx -> {
     	Map<String, Object> model = ViewUtil.baseModel(ctx);
+    	
     	if(getPersonQuery(ctx) != null) {
         	model.put("person", PersonDAO.getPersonByString(getPersonQuery(ctx)));
 

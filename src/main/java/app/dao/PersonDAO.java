@@ -24,6 +24,7 @@ public class PersonDAO {
        
 
             //sql script. Show show title by searching first name of actor
+        	/*
         	String sql = "SELECT `person`.person_id, `person`.fullname, `person`.`role`, `person`.birthdate, `person`.bio " +
                     "FROM `person` " +
                     "LEFT JOIN `credits_roll` " +
@@ -36,7 +37,10 @@ public class PersonDAO {
                     "OR UPPER(person.fullname) LIKE UPPER('%" + personSearch + "%') " +
                     "OR UPPER(credits_roll.character_name) LIKE UPPER('%" + personSearch + "%')) " +
                     "group by person_id;";
-
+                    
+                    */
+        	
+        	String sql = "SELECT * FROM person;";
             //sql script. Show Writer/Based-On & Search-By
 
 
@@ -57,7 +61,7 @@ public class PersonDAO {
             // If you have multiple results, you do a while
             while(result.next()) {
                 person.add(   
-                  new Person(result.getInt("personId"),result.getString("fullName"), result.getString("role"),result.getDate("birthdate"),
+                  new Person(result.getInt("person_id"),result.getString("fullname"), result.getString("role"),result.getDate("birthdate"),
                 		  result.getString("bio"))
                   );
             }
