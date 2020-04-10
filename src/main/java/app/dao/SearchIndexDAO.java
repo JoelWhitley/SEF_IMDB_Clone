@@ -15,13 +15,20 @@ public class SearchIndexDAO {
     public static List<Show> getShowsByTitle(String search) {
         // Fish out the results
         List<Show> shows = new ArrayList<>();
-
+        	//%" + search + "%
         try {
             // Here you prepare your sql statement
-            String sql = "SELECT * " + 
+            String sql = "SELECT `show`.showid, `show`.show_title, `show`.genre, `show`.length, `show`.movie, `show`.series, `show`.proco_id, `show`.`year` " + 
             		"FROM `show` " + 
-            		"WHERE UPPER(show_title) LIKE UPPER('%" + search + "%') " + 
-            		"OR UPPER(genre) LIKE UPPER('%" + search + "%');";
+            		"LEFT JOIN `credits_roll` " + 
+            		"ON `show`.showid = credits_roll.show_id " + 
+            		"LEFT JOIN `person` " + 
+            		"on credits_roll.person_id = person.person_id " + 
+            		"WHERE ( UPPER(show_title) LIKE UPPER('%" + search + "%') " + 
+            		"OR UPPER(genre) LIKE UPPER('%" + search + "%') " + 
+            		"OR UPPER(person.fullname) LIKE UPPER('%" + search + "%') " + 
+            		"OR UPPER(credits_roll.character_name) LIKE UPPER('%" + search + "%')) " + 
+            		"group by showid;";
 
 
             //sql script. Show show title by searching first name of actor
