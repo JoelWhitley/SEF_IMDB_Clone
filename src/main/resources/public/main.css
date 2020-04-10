@@ -297,6 +297,8 @@ a .bookCover img {
 #featureImage {
   width: 30%;
   float: left;
+  height: 100%;
+  max-height: 75%;
   object-fit: cover;
   object-position: 50% top;
 }
@@ -305,7 +307,7 @@ a .bookCover img {
   float: left;
   padding-left: 10px;
   max-width: 70%;
-  height: 100%;
+  height: 70%;
 }
 
 #indexSearchBar {

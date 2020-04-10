@@ -3,6 +3,7 @@ package app.controller;
 import app.controller.paths.Template;
 import app.controller.utils.ViewUtil;
 import app.dao.PersonDAO;
+import app.model.Image;
 import app.model.Person;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
@@ -17,9 +18,10 @@ public class IndexController {
     public static Handler serveIndexPage = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         Person actorInfo = PersonDAO.getRandomActorInfo();
+        Image actorImage = new Image(actorInfo.getPersonId(), true);
         model.put("actorBio", actorInfo.getBio());
         model.put("actorName", actorInfo.getFullName());
-        
+        model.put("actorImagePath", actorImage.getImagePath());
         ctx.render(Template.INDEX, model);
     };
     

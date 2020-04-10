@@ -20,20 +20,16 @@
 	</form>
 </div>
 
-<br/>
-<br/>
+
 
 <div id="featureContent">
-	<img src="/img/people/11.jpg" id="featureImage" align="top" />
+<hr></hr>
+<br>
+	<img src="$actorImagePath" id="featureImage" />
 	<div id="featureText">
 		<h2>Featured Actor</h2>
 		<h4>$actorName</h4>
 		<p>$actorBio</p>
 	</div>
 </div>
-
-
-
-
-
 #end
