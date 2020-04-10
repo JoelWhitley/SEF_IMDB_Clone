@@ -13,6 +13,10 @@ public class RequestUtil {
     public static String getSessionCurrentUser(Context ctx) {
         return (String) ctx.sessionAttribute("currentUser");
     }
+    
+    public static int getParamPersonId(Context ctx) {
+        return Integer.parseInt(ctx.pathParam("person_id"));
+    }
 
 
 

@@ -3,10 +3,10 @@
 	<div id = "content">
 		#if($person)
 		<h1>$person.fullName</h1>
-		<label>Role: $person.role</label>
-		<label>Date: $person.birthdate</label>
+		<label>Role: $person.role</label><br>
+		<label>Date of Birth: $person.birthdate</label>
 		
-		<img src="/img/people/11.jpg" id="featureImage" align="top" />
+		<img src="$person.profile" id="featureImage" align="top" />
 
 		<label>biography</label><br>
 		<label>$person.bio</label>
@@ -25,3 +25,4 @@
 	</div>
 	
 #end
+

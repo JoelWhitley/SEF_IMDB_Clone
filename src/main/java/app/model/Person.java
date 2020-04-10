@@ -25,6 +25,10 @@ public class Person {
     }
 
 
+    public String getProfile() {
+    	//return "/img/people/" + this.personId + ".jpg";
+    	return "/img/people/" + this.personId + ".jpg";
+    }
 
     public String getRole() {
         return role;
