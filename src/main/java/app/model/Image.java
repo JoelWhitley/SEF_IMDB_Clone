@@ -12,5 +12,10 @@ public class Image {
         folder = (person) ? "/img/people/" : "/img/shows";
         name = id + ".jpg";
     }
-
+    
+    
+    public String getImagePath() {
+    	String path = folder + name;
+		return path;
+    }
 }

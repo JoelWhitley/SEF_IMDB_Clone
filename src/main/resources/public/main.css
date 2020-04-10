@@ -290,22 +290,30 @@ a .bookCover img {
 }
 
 #featureContent {
-  display: block;
+  display: inline-block;
   height: 35%;
 }
 
 #featureImage {
   width: 30%;
   float: left;
+  object-fit: cover;
+  object-position: 50% top;
 }
 
 #featureText {
   float: left;
   padding-left: 10px;
   max-width: 70%;
+  height: 100%;
 }
 
 #indexSearchBar {
   width: 40%;
   float:left;
+}
+
+#userReturning {
+  width: 100%;
+  background-color: yellow;
 }

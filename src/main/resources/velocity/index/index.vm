@@ -1,6 +1,10 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
-
+#if($currentUser)
+<div id="userReturning">
+	Welcome back, $currentUser!
+</div>
+#end
 <div id="indexSearchBar">
 	<form id="searchTitleForm" method="post">
 	    <h4><label>Search by Show Title</label></h4>
@@ -9,7 +13,6 @@
 	</form>
 </div>
 <div id="indexSearchBar">
-	<br/>
 	<form id="searchActorForm" method="post">
 	    <h4><label>Search by Actor</label></h4>
 	    <input type="text" name="showActorSearch" placeholder="Actor Name" value="" required>
@@ -17,6 +20,7 @@
 	</form>
 </div>
 
+<br/>
 <br/>
 
 <div id="featureContent">
