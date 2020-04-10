@@ -10,16 +10,13 @@
 </form>
 
 
-<form id="searchActorForm" method="post">
-    <label>Search by Actor</label>
-    <input type="text" name="showActorSearch" placeholder="Actor Name" value="" required>
-    <input type="submit" value="Search">
+<form id="searchPersonForm" method="post">
+    <label>Search by Person</label>
+    <input type="text" name="showPersonSearch" placeholder="Person Name" value="" required>
+    
+	<input type="submit" value="Search">
 </form>
 
-<form id="searchProducerForm" method="post">
-    <label>Search by Producer</label>
-    <input type="text" name="showProducerSearch" placeholder="Producer Name" value="" required>
-    <input type="submit" value="Search">
-</form>
+
 
 #end

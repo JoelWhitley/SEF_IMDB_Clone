@@ -2,6 +2,7 @@ package app.controller;
 
 import app.controller.paths.Template;
 import app.controller.utils.ViewUtil;
+import app.dao.PersonDAO;
 import app.dao.ShowDAO;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
@@ -20,24 +21,27 @@ public class IndexController {
     
     public static Handler handleIndexPost = ctx -> {
     	Map<String, Object> model = ViewUtil.baseModel(ctx);
-    	
-    	model.put("show", ShowDAO.getShowByTitle(getShowQuery(ctx)));
-    	ctx.render(Template.SHOW,model);
+    	if(getShowQuery(ctx)!=null) {
+        	model.put("show", ShowDAO.getShowByTitle(getShowQuery(ctx)));
+
+        	ctx.render(Template.SHOW,model);
+    	}
+    	else if(getPersonQuery(ctx) != null) {
+        	model.put("person", PersonDAO.getPersonByName(getPersonQuery(ctx)));
+
+        	ctx.render(Template.PERSON,model);
+    	}
     };
     
     public static String getShowQuery(Context ctx) {
         return ctx.formParam("showTitleSearch");
     }
     
-    //wip
-    public static String getActorQuery(Context ctx) {
-        return ctx.formParam("showTitleSearch");
-    }
     
-    //wip
-    public static String getProducerQuery(Context ctx) {
-        return ctx.formParam("showProducerSearch");
+    public static String getPersonQuery(Context ctx) {
+        return ctx.formParam("showPersonSearch");
     }
+
 
 
 }
