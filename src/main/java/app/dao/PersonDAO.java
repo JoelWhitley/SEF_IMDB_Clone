@@ -24,13 +24,12 @@ public class PersonDAO {
        
 
             //sql script. Show show title by searching first name of actor
-            String sql2 = "SELECT fullname,person.role,birthdate,bio,character_name,show_title,start_year,genre,length\n" + 
+            String sql2 = "SELECT fullname,person.role,birthdate,bio,character_name,showid,show_title,movie,series,start_year,genre,length\n" + 
             		"FROM credits_roll,`show`,person\n" + 
             		"WHERE credits_roll.show_id = `show`.showid "
             		+ "AND person.person_id = credits_roll.person_id "
-            		+ "AND UPPER(person.role) LIKE '%ACTOR%'"
-            		+ "AND UPPER(fullname) LIKE '%" + fullName + "%'"
-            				+ "GROUP BY fullname;";
+            		+ "AND UPPER(person.role) LIKE '%Producer%'"
+            		+ "AND UPPER(fullname) LIKE '%" + fullName + "%';";
            
 
 
@@ -71,13 +70,12 @@ public class PersonDAO {
        
 
             //sql script. Show show title by searching first name of actor
-            String sql2 = "SELECT fullname,person.role,birthdate,bio,character_name,show_title,start_year,genre,length\n" + 
+            String sql2 = "SELECT fullname,person.role,birthdate,bio,character_name,showid,show_title,movie,series,start_year,genre,length\n" + 
             		"FROM credits_roll,`show`,person\n" + 
             		"WHERE credits_roll.show_id = `show`.showid "
             		+ "AND person.person_id = credits_roll.person_id "
-            		+ "AND UPPER(person.role) LIKE '%ACTOR%'"
-            		+ "AND UPPER(fullname) LIKE '%" + fullName + "%'"
-            				+ "GROUP BY fullname;";
+            		+ "AND UPPER(person.role) LIKE '%Producer%'"
+            		+ "AND UPPER(fullname) LIKE '%" + fullName + "%';";
            
 
             //sql script. Show Writer/Based-On & Search-By
@@ -119,61 +117,7 @@ public class PersonDAO {
         return null;
     }
     
-    public static Person getProducerByName(String fullName) {
-        // Fish out the results
-        List<Person> people = new ArrayList<>();
-
-        try {
-       
-
-            //sql script. Show show title by searching first name of actor
-            String sql2 = "SELECT fullname,person.role,birthdate,bio,character_name,show_title,start_year,genre,length\n" + 
-            		"FROM credits_roll,`show`,person\n" + 
-            		"WHERE credits_roll.show_id = `show`.showid "
-            		+ "AND person.person_id = credits_roll.person_id "
-            		+ "AND UPPER(person.role) LIKE '%Producer%'"
-            		+ "AND UPPER(fullname) LIKE '%" + fullName + "%'"
-            				+ "GROUP BY fullname;";
-           
-
-            //sql script. Show Writer/Based-On & Search-By
-
-
-            // Execute the query
-            Connection connection = DatabaseUtils.connectToDatabase();
-            Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(sql2);
-
-            
-            /*
-        	 * private int personId;
-            private String fullName;
-            private String role;
-            private String bio;
-            private Date birthdate;
-            */
-            
-            // If you have multiple results, you do a while
-            while(result.next()) {
-                people.add(   
-                  new Person(result.getInt("personId"),result.getString("fullName"), result.getString("role"),result.getDate("birthdate"),
-                		  result.getString("bio"))
-                  );
-            }
-
-            // Close it
-            DatabaseUtils.closeConnection(connection);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-        // If there is a result
-        if(!people.isEmpty()) return people.get(0);
-        // If we are here, something bad happened
-        return null;
-    }
+    
 
 }
 
