@@ -10,6 +10,7 @@ import java.util.Map;
 public class personController {
 
 
+	
     public static Handler personPage = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         model.put("person", PersonDAO.getPersonByString(getPersonQuery(ctx)));
@@ -21,5 +22,5 @@ public class personController {
     	return ctx.formParam("personSearch");
     }
 
-
+    
 }
