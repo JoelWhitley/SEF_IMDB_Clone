@@ -18,8 +18,10 @@ public class SearchIndexDAO {
 
         try {
             // Here you prepare your sql statement
-
-            String sql = "SELECT * FROM `show` WHERE upper(show_title) LIKE upper('%" + search + "%') or upper(genre) LIKE upper('%" + search + "%')";
+            String sql = "SELECT * " + 
+            		"FROM `show` " + 
+            		"WHERE UPPER(show_title) LIKE UPPER('%" + search + "%') " + 
+            		"OR UPPER(genre) LIKE UPPER('%" + search + "%');";
 
 
             //sql script. Show show title by searching first name of actor
