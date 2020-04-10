@@ -1,28 +1,30 @@
-package app.dao;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import app.dao.utils.DatabaseUtils;
-import app.model.Show;
+import app.model.Person;
 
-public class ShowDAO {
+public class PersonDAO {
 	public static final String SALT = "$2a$10$h.dl5J86rGH7I8bD9bZeZe";
 
-    public static Show getShowByTitle(String title) {
+	/*
+	 * private int personId;
+    private String fullName;
+    private String role;
+    private String bio;
+    private Date birthdate;
+    */
+	 
+    public static Person getActorByName(String fullName) {
         // Fish out the results
-        List<Show> shows = new ArrayList<>();
+        List<Person> people = new ArrayList<>();
 
         try {
-            // Here you prepare your sql statement
-        	String firstname = null;
-        	String name = null;
-
-            String sql = "SELECT * FROM `show` WHERE show_title ='" + title + "'";
-
+       
 
             //sql script. Show show title by searching first name of actor
             String sql2 = "SELECT show_title FROM credits_roll,`show`, person WHERE credits_roll.show_id = `show`.showid AND person.person_id = credits_roll.person_id AND UPPER(fullname) LIKE '%" + firstname + "%';";
