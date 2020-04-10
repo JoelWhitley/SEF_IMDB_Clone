@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import app.dao.utils.DatabaseUtils;
@@ -21,14 +20,12 @@ public class PersonDAO {
         List<Show> shows = new ArrayList<>();
 
         try {
-       
-
             //sql script. Show show title by searching first name of actor
             String sql2 = "SELECT fullname,person.role,birthdate,bio,character_name,showid,show_title,movie,series,start_year,genre,length\n" + 
             		"FROM credits_roll,`show`,person\n" + 
             		"WHERE credits_roll.show_id = `show`.showid "
             		+ "AND person.person_id = credits_roll.person_id "
-            		+ "AND UPPER(person.role) LIKE '%Producer%'"
+            		+ "AND UPPER(person.role) LIKE '%ACTOR%'"
             		+ "AND UPPER(fullname) LIKE '%" + fullName + "%';";
            
 
@@ -74,7 +71,7 @@ public class PersonDAO {
             		"FROM credits_roll,`show`,person\n" + 
             		"WHERE credits_roll.show_id = `show`.showid "
             		+ "AND person.person_id = credits_roll.person_id "
-            		+ "AND UPPER(person.role) LIKE '%Producer%'"
+            		+ "AND UPPER(person.role) LIKE '%PRODUCER%'"
             		+ "AND UPPER(fullname) LIKE '%" + fullName + "%';";
            
 

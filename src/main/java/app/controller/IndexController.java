@@ -20,6 +20,7 @@ public class IndexController {
     
     public static Handler handleIndexPost = ctx -> {
     	Map<String, Object> model = ViewUtil.baseModel(ctx);
+    	
     	model.put("show", ShowDAO.getShowByTitle(getShowQuery(ctx)));
     	ctx.render(Template.SHOW,model);
     };
