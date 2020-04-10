@@ -32,7 +32,7 @@ public class PersonDAO {
               new Person(result.getInt("person_id"), 
             		  result.getString("fullname"), 
             		  result.getString("role"), 
-            		  result.getDate("date"), 
+            		  result.getDate("birthdate"), 
             		  result.getString("bio"))
             );
         }
