@@ -2,6 +2,7 @@ package app;
 
 import app.controller.AccountController;
 import app.controller.IndexController;
+import app.controller.IndexSearchController;
 import app.controller.LoginController;
 import app.controller.ShowController;
 import app.controller.paths.Web;
@@ -39,7 +40,9 @@ public class Main {
 
             get(Web.ACCOUNT, AccountController.serveAccountPage);
             
-            get(Web.SHOW, ShowController.serveShowPage);
+            get(Web.SHOW, IndexSearchController.fetchShow);
+            
+           // get(Web.SEARCHINDEX, IndexSearchController.fetchShow);
 
             // Add new actions here
             // Seeing pages (get) and sending information in forms (post)

@@ -9,18 +9,17 @@ import java.util.List;
 import app.dao.utils.DatabaseUtils;
 import app.model.Show;
 
-public class ShowDAO {
-
+public class SearchIndexDAO {
 	public static final String SALT = "$2a$10$h.dl5J86rGH7I8bD9bZeZe";
 
-    public static Show getShowById(int id) {
+    public static List<Show> getShowsByTitle(String title) {
         // Fish out the results
         List<Show> shows = new ArrayList<>();
 
         try {
             // Here you prepare your sql statement
 
-            String sql = "SELECT * FROM `show` WHERE showid ='" + id + "'";
+            String sql = "SELECT * FROM `show` WHERE show_title ='" + title + "'";
 
 
             //sql script. Show show title by searching first name of actor
@@ -59,9 +58,10 @@ public class ShowDAO {
 
 
         // If there is a result
-        if(!shows.isEmpty()) return shows.get(0);
+        if(!shows.isEmpty()) return shows;
         // If we are here, something bad happened
         return null;
     }
+
 
 }
