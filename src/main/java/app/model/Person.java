@@ -17,11 +17,13 @@ public class Person {
 
 
     public Person(int id, String fn, String r, Date bd, String b) {
-        personId = id;
-        fullName = fn;
-        role = r;
-        birthdate = bd;
-        bio = b;
+
+    	this.personId = id;
+        this.fullName = fn;
+        this.role = r;
+        this.birthdate = bd;
+        this.bio = b;
+
     }
 
 
