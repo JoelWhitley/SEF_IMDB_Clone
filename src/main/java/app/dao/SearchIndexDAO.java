@@ -12,14 +12,14 @@ import app.model.Show;
 public class SearchIndexDAO {
 	public static final String SALT = "$2a$10$h.dl5J86rGH7I8bD9bZeZe";
 
-    public static List<Show> getShowsByTitle(String title) {
+    public static List<Show> getShowsByTitle(String search) {
         // Fish out the results
         List<Show> shows = new ArrayList<>();
 
         try {
             // Here you prepare your sql statement
 
-            String sql = "SELECT * FROM `show` WHERE show_title ='" + title + "'";
+            String sql = "SELECT * FROM `show` WHERE upper(show_title) LIKE upper('%" + search + "%') or upper(genre) LIKE upper('%" + search + "%')";
 
 
             //sql script. Show show title by searching first name of actor
