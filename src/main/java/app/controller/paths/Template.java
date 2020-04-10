@@ -13,6 +13,5 @@ public class Template {
     public static final String SHOW = "/velocity/show/show.vm";
 
     public static final String PERSON = "/velocity/person/person.vm";
-
-
+    public static final String RESULT = "/velocity/result/result.vm";
 }

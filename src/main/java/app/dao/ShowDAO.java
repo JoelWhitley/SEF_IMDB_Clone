@@ -15,13 +15,13 @@ public class ShowDAO {
 
     public static Show getShowByString(String titleSearch) {
         // Fish out the results
-        List<Show> shows = new ArrayList<>();
+        List<Show> show = new ArrayList<>();
 
         try {
             // Here you prepare your sql statement
         
         	
-
+/*
             String sql = "SELECT `show`.showid, `show`.show_title, `show`.genre, `show`.length, `show`.movie, `show`.series, `show`.proco_id, `show`.`year`"
             		+ "FROM `show`"
             		+ "LEFT JOIN `credits_roll`"
@@ -33,7 +33,8 @@ public class ShowDAO {
             		+ "OR UPPER(person.fullname) LIKE UPPER('%" + titleSearch + "%')"
             		+ "OR UPPER(credits_roll.character_name) LIKE UPPER('%" + titleSearch + "%'))"
             		+ "group by showid;";
-
+*/
+        	String sql = "SELECT * FROM `show`;";
 
 
             // Execute the query
@@ -43,7 +44,7 @@ public class ShowDAO {
 
             // If you have multiple results, you do a while
             while(result.next()) {
-                shows.add(   
+                show.add(   
                   new Show(result.getInt("showid"),result.getString("show_title"), result.getDouble("length"),
                 		  result.getBoolean("movie"),result.getBoolean("series"),result.getString("genre"),result.getInt("year"))
                   );
@@ -58,7 +59,7 @@ public class ShowDAO {
 
 
         // If there is a result
-        if(!shows.isEmpty()) return shows.get(0);
+        if(!show.isEmpty()) return show.get(0);
         // If we are here, something bad happened
         return null;
     }

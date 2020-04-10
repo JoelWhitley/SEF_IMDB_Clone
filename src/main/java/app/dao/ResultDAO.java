@@ -10,13 +10,13 @@ import app.dao.utils.DatabaseUtils;
 import app.model.Person;
 import app.model.Show;
 
-public class PersonDAO {
+public class ResultDAO {
 	public static final String SALT = "$2a$10$h.dl5J86rGH7I8bD9bZeZe";
 
 
 
 	
-    public static Person getPersonByString(String personSearch) {
+    public static Person getResultsByString(String search) {
         // Fish out the results
         List<Person> person = new ArrayList<>();
 
@@ -31,11 +31,11 @@ public class PersonDAO {
                     "ON credits_roll.person_id = person.person_id " +
                     "LEFT JOIN `show` " +
                     "on `show`.showid = credits_roll.show_id " +
-                    "WHERE ( UPPER(show_title) LIKE UPPER('%" + personSearch + "%') " +
-                    "OR UPPER(person.`role`) LIKE UPPER('%" + personSearch + "%') " +
-                    "OR UPPER(genre) LIKE UPPER('%" + personSearch + "%') " +
-                    "OR UPPER(person.fullname) LIKE UPPER('%" + personSearch + "%') " +
-                    "OR UPPER(credits_roll.character_name) LIKE UPPER('%" + personSearch + "%')) " +
+                    "WHERE ( UPPER(show_title) LIKE UPPER('%" + search + "%') " +
+                    "OR UPPER(person.`role`) LIKE UPPER('%" + search + "%') " +
+                    "OR UPPER(genre) LIKE UPPER('%" + search + "%') " +
+                    "OR UPPER(person.fullname) LIKE UPPER('%" + search + "%') " +
+                    "OR UPPER(credits_roll.character_name) LIKE UPPER('%" + search + "%')) " +
                     "group by person_id;";
                     
             //sql script. Show Writer/Based-On & Search-By

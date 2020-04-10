@@ -24,8 +24,8 @@ public class IndexController {
     	
     	if(getPersonQuery(ctx) != null) {
         	model.put("person", PersonDAO.getPersonByString(getPersonQuery(ctx)));
-
-        	ctx.render(Template.PERSON,model);
+        	ctx.render(Template.RESULT,model);
+        	//ctx.render(Template.PERSON,model);
     	}
     	else if(getShowQuery(ctx) != null) {
         	model.put("show", ShowDAO.getShowByString(getShowQuery(ctx)));

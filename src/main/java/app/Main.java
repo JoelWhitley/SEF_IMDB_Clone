@@ -29,7 +29,7 @@ public class Main {
 
             get(Web.INDEX, IndexController.serveIndexPage);
             post(Web.INDEX, IndexController.handleIndexPost);
-
+            
             get(Web.LOGIN, LoginController.serveLoginPage);
             post(Web.LOGIN, LoginController.handleLoginPost);
             post(Web.LOGOUT, LoginController.handleLogoutPost);

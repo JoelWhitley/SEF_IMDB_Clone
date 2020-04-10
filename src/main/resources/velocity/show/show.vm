@@ -2,7 +2,7 @@
 #@mainLayout()
 <div id = "content">	
 	#if($show) 
-	<h1>$show.showTitle</h1>
+	<h1>$show.show_title</h1>
 	<label>length: $show.length</label><br>
 	<label>Genre: $show.genre</label><br>
 	#else
