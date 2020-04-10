@@ -1,3 +1,5 @@
+package app.dao;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -11,13 +13,7 @@ import app.model.Person;
 public class PersonDAO {
 	public static final String SALT = "$2a$10$h.dl5J86rGH7I8bD9bZeZe";
 
-	/*
-	 * private int personId;
-    private String fullName;
-    private String role;
-    private String bio;
-    private Date birthdate;
-    */
+	
 	 
     public static Person getActorByName(String fullName) {
         // Fish out the results
@@ -27,11 +23,15 @@ public class PersonDAO {
        
 
             //sql script. Show show title by searching first name of actor
-            String sql2 = "SELECT show_title FROM credits_roll,`show`, person WHERE credits_roll.show_id = `show`.showid AND person.person_id = credits_roll.person_id AND UPPER(fullname) LIKE '%" + firstname + "%';";
-
+            String sql2 = "SELECT fullname,person.role,birthdate,bio,character_name,show_title,start_year,genre,length\n" + 
+            		"FROM credits_roll,`show`,person\n" + 
+            		"WHERE credits_roll.show_id = `show`.showid "
+            		+ "AND person.person_id = credits_roll.person_id "
+            		+ "AND UPPER(fullname) LIKE '%" + fullName + "%';";
+           
             //sql script. search actor by first name
 
-            String sql3 = "SELECT * FROM person WHERE fullname LIKE '%" + name + "%';";
+            //String sql3 = "SELECT * FROM person WHERE fullname LIKE '%" + name + "%';";
 
             //sql script. Show Writer/Based-On & Search-By
 
@@ -39,13 +39,22 @@ public class PersonDAO {
             // Execute the query
             Connection connection = DatabaseUtils.connectToDatabase();
             Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(sql);
+            ResultSet result = statement.executeQuery(sql2);
 
+            
+            /*
+        	 * private int personId;
+            private String fullName;
+            private String role;
+            private String bio;
+            private Date birthdate;
+            */
+            
             // If you have multiple results, you do a while
             while(result.next()) {
-                shows.add(   
-                  new Show(result.getInt("showid"),result.getString("show_title"), result.getDouble("length"),
-                		  result.getBoolean("movie"),result.getBoolean("series"),result.getString("genre"),result.getInt("year"))
+                people.add(   
+                  new Person(result.getInt("personId"),result.getString("fullName"), result.getString("role"),result.getDate("birthdate"),
+                		  result.getString("bio"))
                   );
             }
 
@@ -58,7 +67,7 @@ public class PersonDAO {
 
 
         // If there is a result
-        if(!shows.isEmpty()) return shows.get(0);
+        if(!people.isEmpty()) return people.get(0);
         // If we are here, something bad happened
         return null;
     }
