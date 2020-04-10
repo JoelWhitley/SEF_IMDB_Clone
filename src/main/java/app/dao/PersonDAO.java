@@ -17,7 +17,7 @@ public class PersonDAO {
 
 		try {
 			// Here you prepare your sql statement
-			String sql = "SELECT * FROM person WHERE fullname = '" + fullname + "'";
+			String sql = "SELECT * FROM person WHERE person_id = '" + person_id + "'";
 
 			// Execute the query
 			Connection connection = DatabaseUtils.connectToDatabase();
@@ -44,7 +44,7 @@ public class PersonDAO {
 		}
 		
 		if(!people.isEmpty()) return people.get(0);
-
+		
 		return null;
 	}
 }
