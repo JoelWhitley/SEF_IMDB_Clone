@@ -1,8 +1,12 @@
+CREATE PROCEDURE `new_procedure` ()
+BEGIN
 -- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
 --
 -- Host: localhost    Database: imbd
 -- ------------------------------------------------------
 -- Server version	8.0.16
+
+SET time_zone = '+11:00';
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,7 +30,6 @@ CREATE TABLE `account` (
   `username` varchar(45) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(45) NOT NULL,
-  `address` varchar(45) NOT NULL,
   `country` varchar(45) NOT NULL,
   `gender` varchar(10) NOT NULL,
   `first_name` varchar(45) NOT NULL,
@@ -42,7 +45,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES ('caramel6','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','caramelwilson@gmail.com', '123 Fake Street, Fake City', 'Australia','Female','Cara','Wilson');
+INSERT INTO `account` VALUES ('caramel6','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','caramelwilson@gmail.com','Australia','Female','Cara','Wilson');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,3 +204,5 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2020-02-17 11:53:45
+
+END

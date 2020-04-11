@@ -1,0 +1,27 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<div id = "content">	
+	#if($show) 
+	<h1>$show.showTitle</h1>
+	<label>length: $show.length</label><br>
+	<label>Genre: $show.genre</label><br>
+	#else
+	<h1>not found</h1>
+	#end
+		
+	
+</div>
+
+<div id = "content">
+	<h1>Cast and crew</h1>
+	<label>Cast members</label><br>
+	<label>Crew members</label>
+</div>
+
+<div id = "content">
+	<h1>Reviews</h1>
+	<label>put your reviews here</label>
+</div>
+
+
+#end

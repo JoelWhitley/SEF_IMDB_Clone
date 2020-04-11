@@ -25,7 +25,7 @@ public class Account {
     }
 
 
-    public Account(String fn, String ln, String a, String c, String g, String email) {
+    public Account(String username, String password, String fn, String ln, String a, String c, String g, String email) {
         // TODO fill in here
         /* You should use this constructor when you are showing the account page,
         hence, the user is already logged in. Therefore, the username Should be used
@@ -34,6 +34,15 @@ public class Account {
         You should NEVER show the current password in the form. NEVER!
         And if you want to change the password, you need to ask for current password as well.
          */
+    	this(username, password);
+    	this.firstName = fn;
+    	this.lastName = ln;
+    	this.address = a;
+    	this.country = c;
+    	this.gender = g;
+    	this.email= email;
+    	
+    	
     }
 
 
@@ -42,8 +51,30 @@ public class Account {
     public void updateDetails() {
         // TODO
     }
+    
+    public String getFirstName() {
+    	return firstName;
+    }
 
+    public String getLastName() {
+    	return lastName;
+    }
+    
+    public String getAddress() {
+    	return address;
+    }
+    
+    public String getCountry() {
+    	return country;
+    }
 
+    public String getGender() {
+    	return gender;
+    }
+    
+    public String getEmail() {
+    	return email;
+    }
 
     public String getUsername() {
         return username;

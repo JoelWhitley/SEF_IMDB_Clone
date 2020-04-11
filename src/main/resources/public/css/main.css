@@ -288,11 +288,12 @@ a .bookCover img {
 .bad.notification {
     background: #bb0000;
 }
-
 #featureContent {
   display: inline-block;
   height: 35%;
 }
+
+ 
 
 #featureImage {
   width: 30%;
@@ -303,6 +304,8 @@ a .bookCover img {
   object-position: 50% top;
 }
 
+ 
+
 #featureText {
   float: left;
   padding-left: 10px;
@@ -310,10 +313,14 @@ a .bookCover img {
   height: 70%;
 }
 
+ 
+
 #indexSearchBar {
   width: 40%;
   float:left;
 }
+
+ 
 
 #userReturning {
   width: 100%;

@@ -1,8 +1,10 @@
 -- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
 --
 -- Host: localhost    Database: imbd
--- ------------------------------------------------------
+-- -----------------------------------------accountperson-------------
 -- Server version	8.0.16
+
+SET time_zone = '+11:00';
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -42,7 +44,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES ('caramel6','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','caramelwilson@gmail.com', '123 Fake Street, Fake City', 'Australia','Female','Cara','Wilson');
+INSERT INTO `account` VALUES ('caramel6','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','caramelwilson@gmail.com','123 Fake Street, Fakesville','Australia','Female','Cara','Wilson'),('chocolate7','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','garychoco@gmail.com','123 Fake Street, Fakesville','Australia','Male','Gary','Chocobo'),('vanilla8','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','vanillaice@gmail.com','123 Fake Street, Fakesville','Australia','Male','Vanilla','Ice'),('strawberry9','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','samanthastrawberry@gmail.com','123 Fake Street, Fakesville','Australia','Female','Samantha','Strawberry'),('banana10','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','bartnanny@gmail.com','123 Fake Street, Fakesville','Australia','Female','Bart','Nanny');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -156,7 +158,7 @@ CREATE TABLE `show` (
 
 LOCK TABLES `show` WRITE;
 /*!40000 ALTER TABLE `show` DISABLE KEYS */;
-INSERT INTO `show` VALUES (1,'Star Wars: Episode IX - The Rise of Skywalker','Action',2.22,1,0,9,2019);
+INSERT INTO `show` VALUES (1,'Star Wars: Episode IX - The Rise of Skywalker','Action',2.22,1,0,9,2019),(2,'The Wire','Drama',1.00,0,1,3,2002),(3,'How to Train Your Dragon','Comedy/Family',1.63,1,0,5,2010),(4,'Blade Runner','Sci-fi/Thriller',1.90,1,0,4,1982),(5,'Stranger Things','Horror',1.05,0,1,7,2016);
 /*!40000 ALTER TABLE `show` ENABLE KEYS */;
 UNLOCK TABLES;
 

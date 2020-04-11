@@ -1,0 +1,23 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+	<div id = "featureContent">
+		#if($person)
+		<h1>$person.fullName</h1>
+	
+			
+			<img src="$person.profile" id="featureImage" align="top">
+			<h2>Details</h2>
+			<label>Role: $person.role</label><br>
+			<label>Date of Birth: $person.birthdate</label>
+			<h2>Biography</h2><br>
+			<label>$person.bio</label>
+			<h2>Filmography</h2>
+		
+	
+		#else
+		<h1>Person not found</h1>
+
+		#end
+	</div>	
+#end
+

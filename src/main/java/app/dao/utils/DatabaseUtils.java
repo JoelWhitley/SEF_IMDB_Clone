@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 /**
  * This class connects you to the database.
- * When you import the database, you should create it under the name "imbd",
+ * When you import the database, you should create it under the name "imdb",
  * with user "root" and database password "root1".
  *
  * If you know about DB password encryption and want to secure this a little bit
@@ -19,7 +19,7 @@ public class DatabaseUtils {
 
 
     public static Connection connectToDatabase() throws Exception {
-        // creates a Connection objecti
+        // creates a Connection object
         Connection connection = null;
 
         try {

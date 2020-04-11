@@ -8,13 +8,13 @@ public class Image {
     private String name;
 
 
-
-    private Image(int id, boolean person) {
+    public Image(int id, boolean person) {
         folder = (person) ? "/img/people/" : "/img/shows";
         name = id + ".jpg";
     }
-
-
-
-
+    
+    public String getImagePath() {
+    	String path = folder + name;
+		return path;
+    }
 }

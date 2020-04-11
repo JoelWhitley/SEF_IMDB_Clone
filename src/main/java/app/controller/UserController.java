@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.Main;
 import app.dao.AccountDAO;
 import app.model.Account;
 import org.mindrot.jbcrypt.BCrypt;
@@ -22,13 +23,25 @@ public class UserController {
         if (user == null) {
             return false;
         }
-
         /**
          * What is the "salt"? You can read more in here:
          * https://www.baeldung.com/java-password-hashing
          */
         String hashedPassword = BCrypt.hashpw(password, AccountDAO.SALT);
         return hashedPassword.equals(user.getPassword());
+    }
+    
+    public static Account getUserInfo(String username) {
+        if (username == null) {
+            return null;
+        }
+        try {
+        	return AccountDAO.getUserDetails(username);
+        }
+        catch(Exception e) {
+        	return null;
+        }
+        
     }
 
 

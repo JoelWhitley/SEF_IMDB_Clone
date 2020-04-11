@@ -17,13 +17,20 @@ public class Person {
 
 
     public Person(int id, String fn, String r, Date bd, String b) {
-        personId = id;
-        fullName = fn;
-        role = r;
-        birthdate = bd;
+
+    	this.personId = id;
+        this.fullName = fn;
+        this.role = r;
+        this.birthdate = bd;
+        this.bio = b;
+
     }
 
 
+    public String getProfile() {
+    	//return "/img/people/" + this.personId + ".jpg";
+    	return "/img/people/" + this.personId + ".jpg";
+    }
 
     public String getRole() {
         return role;
