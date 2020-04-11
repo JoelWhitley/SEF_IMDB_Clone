@@ -22,9 +22,20 @@ public class Person {
         role = r;
         birthdate = bd;
         bio = b;
+
+    	this.personId = id;
+        this.fullName = fn;
+        this.role = r;
+        this.birthdate = bd;
+        this.bio = b;
+
     }
 
 
+    public String getProfile() {
+    	//return "/img/people/" + this.personId + ".jpg";
+    	return "/img/people/" + this.personId + ".jpg";
+    }
 
     public String getRole() {
         return role;
