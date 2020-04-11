@@ -1,5 +1,6 @@
 package app.dao;
 
+import app.Main;
 import app.dao.utils.DatabaseUtils;
 import app.model.Account;
 import org.eclipse.collections.impl.list.mutable.FastList;
@@ -62,6 +63,36 @@ public class AccountDAO {
         if(!accounts.isEmpty()) return accounts.get(0);
         // If we are here, something bad happened
         return null;
+    }
+    
+    public static Account getUserDetails(String username) {
+    	Account user = null;
+    		try {
+                // Here you prepare your sql statement
+                String sql = "SELECT * FROM account WHERE username ='" + username + "'";
+
+                // Execute the query
+                Connection connection = DatabaseUtils.connectToDatabase();
+                Statement statement = connection.createStatement();
+                ResultSet result = statement.executeQuery(sql);
+
+                // If you have multiple results, you do a while
+                while(result.next()) {
+                    // 2) Add it to the list we have prepared
+                    user = new Account(result.getString("username"),
+                            result.getString("password"), result.getString("first_name"),
+                              result.getString("last_name"), result.getString("address"), 
+                              result.getString("country"), result.getString("gender"), result.getString("email") );
+                }
+
+                // Close it
+                DatabaseUtils.closeConnection(connection);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+    	return user;
+    	
     }
 
 

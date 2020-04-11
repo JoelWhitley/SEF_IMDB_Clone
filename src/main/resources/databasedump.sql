@@ -26,6 +26,7 @@ CREATE TABLE `account` (
   `username` varchar(45) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(45) NOT NULL,
+  `address` varchar(45) NOT NULL,
   `country` varchar(45) NOT NULL,
   `gender` varchar(10) NOT NULL,
   `first_name` varchar(45) NOT NULL,
@@ -41,7 +42,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES ('caramel6','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','caramelwilson@gmail.com','Australia','Female','Cara','Wilson');
+INSERT INTO `account` VALUES ('caramel6','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','caramelwilson@gmail.com', '123 Fake Street, Fake City', 'Australia','Female','Cara','Wilson');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 

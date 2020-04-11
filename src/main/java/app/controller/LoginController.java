@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.Main;
 import app.controller.paths.Template;
 import app.controller.paths.Web;
 import app.controller.utils.RequestUtil;
