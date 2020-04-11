@@ -25,6 +25,7 @@
 
 
 
+
 <div id="featureContent">
 <hr></hr>
 <br>
@@ -35,5 +36,9 @@
 		<p>$actorBio</p>
 	</div>
 </div>
+
+
+
+
 
 #end

@@ -19,8 +19,9 @@ public class RequestUtil {
         return Integer.parseInt(ctx.pathParam("showid"));
     }
 
+
     public static int getParamPersonId(Context ctx) {
-        return Integer.parseInt(ctx.pathParam("person_id"));
+        return Integer.parseInt(ctx.pathParam("personId"));
     }
 
 

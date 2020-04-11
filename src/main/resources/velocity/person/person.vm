@@ -3,10 +3,12 @@
 	<div id = "content">
 		#if($person)
 		<h1>$person.fullName</h1>
+
 		<label>Role: $person.role</label><br>
 		<label>Date of Birth: $person.birthdate</label>
 		
 		<img src="$person.profile" id="featureImage" align="top" />
+
 
 		<label>biography</label><br>
 		<label>$person.bio</label>
@@ -14,15 +16,14 @@
 
 		<div id = "content">
 			<label>filmography</label>
-			
+
 		</div>
 		
 	
 		#else
 		<h1>Person not found</h1>
-		
+
 		#end
-	</div>
-	
+	</div>	
 #end
 

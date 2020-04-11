@@ -29,22 +29,27 @@ public class IndexController {
 
     public static Handler handleIndexPost = ctx -> {
     	Map<String, Object> model = ViewUtil.baseModel(ctx);
-    	model.put("shows", SearchIndexDAO.getShowsByTitle(getShowQuery(ctx)));
-    	ctx.render(Template.INDEXSEARCH,model);
+    	
+    	
+    	if(getQueryNameSearch(ctx) != null) {
+        	model.put("persons", PersonDAO.getPersonByString(getQueryNameSearch(ctx)));
+        	ctx.render(Template.RESULT,model);
+        	//ctx.render(Template.PERSON,model);
+    	}
+    	else if(getShowQuery(ctx) != null) {
+        	model.put("shows", SearchIndexDAO.getShowsByTitle(getShowQuery(ctx)));
+        	ctx.render(Template.INDEXSEARCH,model);
+    	}
+
     };
     
     public static String getShowQuery(Context ctx) {
         return ctx.formParam("showTitleSearch");
     }
     
-    
-    
     public static String getQueryNameSearch(Context ctx) {
         return ctx.formParam("showActorSearch");
     }
-    
-    public static String getShowSearch(Context ctx) {
-        return ctx.formParam("showTitleSearch");
-    }
+
 
 }

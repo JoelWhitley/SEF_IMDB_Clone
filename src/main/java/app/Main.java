@@ -5,6 +5,7 @@ import app.controller.IndexController;
 import app.controller.IndexSearchController;
 import app.controller.LoginController;
 import app.controller.ShowController;
+import app.controller.personController;
 import app.controller.paths.Web;
 import app.controller.utils.ViewUtil;
 import io.javalin.Javalin;
@@ -16,10 +17,6 @@ import static io.javalin.apibuilder.ApiBuilder.*;
 
 
 public class Main {
-
-
-
-
 
     public static void main(String[] args) {
         Javalin app = Javalin.create(config -> {
@@ -33,16 +30,20 @@ public class Main {
 
             get(Web.INDEX, IndexController.serveIndexPage);
             post(Web.INDEX, IndexController.handleIndexPost);
-
+            
             get(Web.LOGIN, LoginController.serveLoginPage);
             post(Web.LOGIN, LoginController.handleLoginPost);
             post(Web.LOGOUT, LoginController.handleLogoutPost);
 
             get(Web.ACCOUNT, AccountController.serveAccountPage);
             
+
             get(Web.SHOW, IndexSearchController.fetchShow);
             
            // get(Web.SEARCHINDEX, IndexSearchController.fetchShow);
+
+
+            get(Web.PERSON, personController.personPage);
 
             // Add new actions here
             // Seeing pages (get) and sending information in forms (post)
