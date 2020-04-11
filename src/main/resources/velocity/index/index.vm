@@ -1,18 +1,39 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
+#if($currentUser)
+<div id="userReturning">
+	Welcome back, $currentUser!
+</div>
+#end
+<div id="indexSearchBar">
+	<form id="searchTitleForm" method="post">
+	    <h4><label>Search by Show Title</label></h4>
+	    <input type="text" name="showTitleSearch" placeholder="Show Title" value="" required>
+	    <input type="submit" value="Search">
+	</form>
+</div>
+<div id="indexSearchBar">
+	<form id="searchActorForm" method="post">
+	    <h4><label>Search by Actor</label></h4>
+	    <input type="text" name="showActorSearch" placeholder="Actor Name" value="" required>
+	    <input type="submit" value="Search">
+	</form>
+</div>
 
-<h1>Search Movies</h1>
-<form id="searchTitleForm" method="post">
-
-    <label>Search by Show Title</label>
-    <input type="text" name="showTitleSearch" placeholder="Show Title" value="" required>
-    <input type="submit" value="Search">
-</form>
 
 
-<form id="searchActorForm" method="post">
-    <label>Search by Actor</label>
-    <input type="text" name="showActorSearch" placeholder="Actor Name" value="" required>
-    <input type="submit" value="Search">
-</form>
+
+
+
+<div id="featureContent">
+<hr></hr>
+<br>
+	<img src="$actorImagePath" id="featureImage" />
+	<div id="featureText">
+		<h2>Featured Actor</h2>
+		<h4>$actorName</h4>
+		<p>$actorBio</p>
+	</div>
+</div>
+
 #end
