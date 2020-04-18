@@ -18,36 +18,41 @@ public class UserReview {
     private int reviewID;
     private String username;
     private String review;
-    private int rating;
+    private int showID;
+    
+
+	private int rating;
     private Date date;
 
 
 
     //Used when creating a star rating for the first time
-    public UserReview(int reviewID, String username, int rating) {
+    public UserReview(int reviewID, String username, int showID, int rating) {
     	this.reviewID = reviewID;
     	this.username = username;
+    	this.showID = showID;
     	this.rating = rating;
     	this.date = new Date();
     }
     
     //Used when getting a star rating from the database.
-    public UserReview(int reviewID, String username, int rating,  Date date) {
+    public UserReview(int reviewID, String username, int showID, int rating,  Date date) {
     	this.reviewID = reviewID;
     	this.username = username;
+    	this.showID = showID;
     	this.rating = rating;
     	this.date = date;
     }
 
     //Used when creating a written review for the first time.
-    public UserReview(int reviewID, String username, int rating, String review) {
-    	this(reviewID, username, rating);
+    public UserReview(int reviewID, String username, int showID, int rating, String review) {
+    	this(reviewID, username, showID, rating);
         this.review = review;
     }
     
     //Used when getting a written review from the database.
-    public UserReview(int reviewID, String username, String review, int rating, Date date) {
-    	this(reviewID, username, rating, date);
+    public UserReview(int reviewID, String username, int showID, int rating, String review, Date date) {
+    	this(reviewID, username, showID, rating, date);
         this.review = review;
     }
     
@@ -60,7 +65,10 @@ public class UserReview {
 	public String getUsername() {
 		return username;
 	}
-
+	
+	public int getShowID() {
+		return showID;
+	}
 
 	public String getReview() {
         return review;
