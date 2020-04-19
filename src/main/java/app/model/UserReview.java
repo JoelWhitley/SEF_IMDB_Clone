@@ -1,5 +1,6 @@
 package app.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -86,7 +87,8 @@ public class UserReview {
         this.rating = rating;
     }
 
-    public Date getDate() {
-        return date;
+	public String getDate() {
+    	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        return format.format(date);
     }
 }

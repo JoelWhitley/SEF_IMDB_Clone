@@ -35,6 +35,13 @@
         #end
         #if($currentUser)
         	<form id="userReviewForm" method="post">
+        	<select name="Rating" size="5" required>
+  					<option value="1">1</option>
+  					<option value="2">2</option>
+  					<option value="3">3</option>
+  					<option value="4">4</option>
+  					<option value="5">5</option>
+				</select>
 	    		<h4><label>Leave a review here</label></h4>
 	    		<textarea name="review" rows="10" cols="60"placeholder="Type your review here" value="">
 	    		</textarea>
