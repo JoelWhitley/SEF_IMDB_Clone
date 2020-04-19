@@ -174,7 +174,7 @@ CREATE TABLE `user_review` (
   `show_id` int(11) NOT NULL,
   `user_id` varchar(45) NOT NULL,
   `rating` int(1) NOT NULL DEFAULT '3',
-  `review` varchar(255) NOT NULL,
+  `review` varchar(1000) NOT NULL,
   `date` datetime NOT NULL,
   PRIMARY KEY (`reviewId`),
   KEY `fk_showid_idx` (`show_id`),
@@ -190,6 +190,7 @@ CREATE TABLE `user_review` (
 
 LOCK TABLES `user_review` WRITE;
 /*!40000 ALTER TABLE `user_review` DISABLE KEYS */;
+INSERT INTO `user_review` VALUES (1, 1, 'banana10', 1, 'Episode 9 fails on almost every level to tie up the sequel trilogy in a satisfying manner. In a fumbling rush, it tries to completely redirect the series, but hopes nostalgia will serve in place of establishing its own pathos. In doing so, it fails to do justice to its characters or established conflicts.', '20200418 10:34:09 AM');
 /*!40000 ALTER TABLE `user_review` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
