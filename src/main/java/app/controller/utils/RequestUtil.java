@@ -14,6 +14,14 @@ public class RequestUtil {
         return (String) ctx.sessionAttribute("currentUser");
     }
     
+    public static String getSessionShowSearch(Context ctx) {
+        return (String) ctx.sessionAttribute("showSearch");
+    }
+    
+    public static String getSessionPersonSearch(Context ctx) {
+        return (String) ctx.sessionAttribute("personSearch");
+    }
+    
 
     public static int getParamShowId(Context ctx) {
         return Integer.parseInt(ctx.pathParam("showid"));

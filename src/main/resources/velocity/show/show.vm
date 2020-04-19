@@ -20,7 +20,27 @@
 
 <div id = "content">
 	<h1>Reviews</h1>
-	<label>put your reviews here</label>
+	#if($reviews)
+	#foreach($review in $reviews)
+	<div id = "content">
+            <h2>$review.rating / 5 </h2>
+            #if($review.review)
+            	<p> $review.review </p>	
+           	#end
+           	<h3>$review.username </h3>
+        </div>
+        #end
+        #else
+        <label> There aren't any user reviews for $show.showTitle yet. </label>
+        #end
+        #if($currentUser)
+        	<form id="userReviewForm" method="post">
+	    		<h4><label>Leave a review here</label></h4>
+	    		<textarea name="review" rows="10" cols="60"placeholder="Type your review here" value="">
+	    		</textarea>
+	    		<input type="submit" value="Submit">
+			</form>
+		#end
 </div>
 
 

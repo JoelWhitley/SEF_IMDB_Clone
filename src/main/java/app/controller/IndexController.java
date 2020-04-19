@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.controller.paths.Template;
+import app.controller.paths.Web;
 import app.controller.utils.ViewUtil;
 import app.dao.PersonDAO;
 import app.dao.SearchIndexDAO;
@@ -32,13 +33,12 @@ public class IndexController {
     	
     	
     	if(getQueryNameSearch(ctx) != null) {
-        	model.put("persons", PersonDAO.getPersonByString(getQueryNameSearch(ctx)));
-        	ctx.render(Template.RESULT,model);
-        	//ctx.render(Template.PERSON,model);
+    		ctx.sessionAttribute("personSearch", getQueryNameSearch(ctx));
+    		ctx.redirect(Web.RESULT);
     	}
     	else if(getShowQuery(ctx) != null) {
-        	model.put("shows", SearchIndexDAO.getShowsByTitle(getShowQuery(ctx)));
-        	ctx.render(Template.INDEXSEARCH,model);
+    		 ctx.sessionAttribute("showSearch", getShowQuery(ctx));
+    		ctx.redirect(Web.SEARCHINDEX);
     	}
 
     };

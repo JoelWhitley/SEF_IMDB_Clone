@@ -2,9 +2,10 @@ package app;
 
 import app.controller.AccountController;
 import app.controller.IndexController;
-import app.controller.IndexSearchController;
+import app.controller.ShowSearchController;
 import app.controller.LoginController;
-
+import app.controller.PersonSearchController;
+import app.controller.ShowController;
 import app.controller.personController;
 import app.controller.paths.Web;
 import app.controller.utils.ViewUtil;
@@ -38,10 +39,16 @@ public class Main {
 
             get(Web.ACCOUNT, AccountController.serveAccountPage);
             
-
-            get(Web.SHOW, IndexSearchController.fetchShow);
             
-           // get(Web.SEARCHINDEX, IndexSearchController.fetchShow);
+           get(Web.RESULT, PersonSearchController.servePersonResults);
+           
+           get(Web.SEARCHINDEX, ShowSearchController.serveShowResults);
+            
+            
+            get(Web.SHOW, ShowController.serveShowPage);
+            post(Web.SHOW, ShowController.handleUserReview);
+            
+           
 
 
             get(Web.PERSON, personController.personPage);

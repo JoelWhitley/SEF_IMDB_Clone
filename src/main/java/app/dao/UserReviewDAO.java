@@ -15,7 +15,7 @@ public class UserReviewDAO {
 	//Used when constructing a Review to display.
 	public static UserReview getReviewById(int id) {
 		List<UserReview> reviews =  new ArrayList<>();
-		String sql = "SELECT * FROM `user_review` WHERE reviewId ='" + id + "'";
+		String sql = "SELECT * FROM `user_review` WHERE reviewId ='" + id + "';";
 		
         try {
         	Connection connection = DatabaseUtils.connectToDatabase();
@@ -46,7 +46,7 @@ public class UserReviewDAO {
 	//Used when grabbing all of a show's reviews.
 	public static List<UserReview> searchReviewByShowID(int showID) {
 		List<UserReview> reviews =  new ArrayList<>();
-		String sql = "SELECT * FROM `user_review` WHERE show_id ='" + showID + "'";
+		String sql = "SELECT * FROM `user_review` WHERE show_id ='" + showID + "';";
 		
         try {
         	Connection connection = DatabaseUtils.connectToDatabase();
@@ -56,7 +56,7 @@ public class UserReviewDAO {
 	        while(result.next()) {
 	            reviews.add(  
 	              new UserReview(result.getInt("reviewId"), result.getString("user_id"), result.getInt("show_id"),
-	            		  result.getInt("rating"), result.getString("review"), result.getDate("date"))
+	            		  result.getInt("rating"), result.getString("review"), /*result.getDate("date")*/new Date())
 	              );
 	        }
 	
@@ -77,7 +77,7 @@ public class UserReviewDAO {
 	//Used when displaying a user's review-list.
 	public static List<UserReview> searchReviewByUsername(int username) {
 		List<UserReview> reviews =  new ArrayList<>();
-		String sql = "SELECT * FROM `user_review` WHERE user_id ='" + username + "'";
+		String sql = "SELECT * FROM `user_review` WHERE user_id ='" + username + "';";
 		
         try {
         	Connection connection = DatabaseUtils.connectToDatabase();
