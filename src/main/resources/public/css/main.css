@@ -22,8 +22,15 @@ h1, h2, h3, h4 {
     color: #444;
 }
 
+h1 {
+colour: black;
+background-color: #F5C518;
+padding: 4px;
+border-radius: 10px;
+	}
+
 small {
-    color: #555;
+    color: #919191;
 }
 
 header {
@@ -46,6 +53,11 @@ nav #menu {
 }
 
 a {
+    text-decoration: none;
+    color: #008ab4;
+}
+
+a > h2, a > h3 {
     text-decoration: none;
     color: #008ab4;
 }
@@ -324,5 +336,5 @@ a .bookCover img {
 
 #userReturning {
   width: 100%;
-  background-color: yellow;
+  background-color: #F5C518;
 }

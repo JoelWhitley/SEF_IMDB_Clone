@@ -76,7 +76,7 @@ public class UserReviewDAO {
 	}
 	
 	//Used when displaying a user's review-list.
-	public static List<UserReview> searchReviewByUsername(int username) {
+	public static List<UserReview> searchReviewByUsername(String username) {
 		List<UserReview> reviews =  new ArrayList<>();
 		String sql = "SELECT * FROM `user_review` WHERE user_id ='" + username + "';";
 		

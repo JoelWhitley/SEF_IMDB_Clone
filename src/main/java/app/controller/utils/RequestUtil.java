@@ -31,6 +31,10 @@ public class RequestUtil {
     public static int getParamPersonId(Context ctx) {
         return Integer.parseInt(ctx.pathParam("personId"));
     }
+    
+    public static String getParamUsername(Context ctx) {
+    	return ctx.pathParam("username");
+    }
 
 
 

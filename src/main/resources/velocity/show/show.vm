@@ -13,21 +13,23 @@
 </div>
 
 <div id = "content">
-	<h1>Cast and crew</h1>
+	<h2>Cast and crew</h2>
 	<label>Cast members</label><br>
 	<label>Crew members</label>
 </div>
 
 <div id = "content">
-	<h1>Reviews</h1>
+	<h2>Reviews</h2>
 	#if($reviews)
 	#foreach($review in $reviews)
 	<div id = "content">
             <h2>$review.rating / 5 </h2>
             #if($review.review)
             	<p> $review.review </p>	
-           	#end
+            	<a class="user" href="/user/$review.username"> 
            	<h3>$review.username </h3>
+           	</a>
+           	#end
         </div>
         #end
         #else

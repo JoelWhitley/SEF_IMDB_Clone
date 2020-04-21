@@ -3,6 +3,7 @@ package app;
 import app.controller.AccountController;
 import app.controller.IndexController;
 import app.controller.ShowSearchController;
+import app.controller.UserPreviewController;
 import app.controller.LoginController;
 import app.controller.PersonSearchController;
 import app.controller.ShowController;
@@ -38,6 +39,8 @@ public class Main {
             post(Web.LOGOUT, LoginController.handleLogoutPost);
 
             get(Web.ACCOUNT, AccountController.serveAccountPage);
+            
+            get(Web.USER, UserPreviewController.serveUserPage);
             
             
            get(Web.RESULT, PersonSearchController.servePersonResults);

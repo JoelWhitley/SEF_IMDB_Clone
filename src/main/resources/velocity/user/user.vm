@@ -1,0 +1,27 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+	<div>
+		<h1> $username </h1>
+		<p>    Country: $country
+		<br>     Gender: $gender
+		</p>
+	</div>
+		#if($reviews)
+		<h2>User's Reviews </h2>
+		#foreach($review in $reviews)
+		</div>
+			<div id = "content">
+			#foreach($show in $shows)
+			#if($show.showid == $review.showID)
+				<a class="shows" href="/shows/$show.showid">   
+				<h2>$show.showTitle</h2>
+				</a>
+				#end
+				#end
+				<h3>$review.rating / 5 </h3>
+				<p> $review.review </p>
+				</div>
+				#end
+				#end
+	</div>
+#end
