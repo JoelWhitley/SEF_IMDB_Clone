@@ -23,12 +23,12 @@
 	#if($reviews)
 	#foreach($review in $reviews)
 	<div id = "content">
+	<a class="user" href="/user/$review.username"> 
+		<h3>$review.username </h3>
+			</a>
             <h2>$review.rating / 5 </h2>
             #if($review.review)
             	<p> $review.review </p>	
-            	<a class="user" href="/user/$review.username"> 
-           	<h3>$review.username </h3>
-           	</a>
            	#end
         </div>
         #end
@@ -45,10 +45,11 @@
   					<option value="5">5</option>
 				</select>
 	    		<h4><label>Leave a review here</label></h4>
-	    		<textarea name="review" rows="10" cols="60"placeholder="Type your review here" value="">
-	    		</textarea>
+	    		<textarea name="review" rows="10" cols="60"placeholder="Type your review here" value=""></textarea>
 	    		<input type="submit" value="Submit">
 			</form>
+		#else
+			<h2> You must be logged in to leave a review </h2>
 		#end
 </div>
 
