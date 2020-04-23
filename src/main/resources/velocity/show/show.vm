@@ -3,7 +3,7 @@
 <div id = "content">	
 	#if($show) 
 	<h1>$show.showTitle</h1>
-	<label>length: $show.length</label><br>
+	<label>length: $show.length hrs</label><br>
 	<label>Genre: $show.genre</label><br>
 	#else
 	<h1>not found</h1>
@@ -19,6 +19,18 @@
 </div>
 
 <div id = "content">
+
+	<h2>User Ratings</h2>
+	#if($reviews)
+	<label>5-Star ***** : $fiveRating</label><br>
+	<label>4-Star **** : $fourRating</label><br>
+	<label>3-Star *** : $threeRating</label><br>
+	<label>2-Star ** : $twoRating</label><br>
+	<label>1-Star * : $oneRating</label><br>
+	#else
+	<label>No User Ratings Yet</label><br>
+	#end 
+
 	<h2>Reviews</h2>
 	#if($reviews)
 	#foreach($review in $reviews)

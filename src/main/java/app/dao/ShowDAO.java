@@ -44,6 +44,31 @@ public class ShowDAO {
 	    // If we are here, something bad happened
 	    return null;
 	}
+	
+	
+	public static int getStarRating(int id, int star) {
+		int totalReviews = 0;
+		String sql = "SELECT * FROM `user_review` WHERE show_id = " + id + " AND rating = '" + star + "';";
+		
+        try {
+        	Connection connection = DatabaseUtils.connectToDatabase();
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            // If you have multiple results, you do a while
+	        while(result.next()) {
+	        	totalReviews += 1;
+	        }
+	
+	        // Close it
+	        DatabaseUtils.closeConnection(connection);
+		    }
+	    catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	
+	
+	    return totalReviews;
+	}
 
 	}
 

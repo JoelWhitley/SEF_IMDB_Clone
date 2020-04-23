@@ -21,6 +21,12 @@ public class ShowController {
 		Map<String, Object> model = ViewUtil.baseModel(ctx);
         model.put("show", ShowDAO.getShowById(getParamShowId(ctx)));
         model.put("reviews", UserReviewDAO.searchReviewByShowID(getParamShowId(ctx)));
+        //simple impl
+        model.put("fiveRating", ShowDAO.getStarRating(getParamShowId(ctx), 5));
+        model.put("fourRating", ShowDAO.getStarRating(getParamShowId(ctx), 4));
+        model.put("threeRating", ShowDAO.getStarRating(getParamShowId(ctx), 3));
+        model.put("twoRating", ShowDAO.getStarRating(getParamShowId(ctx), 2));
+        model.put("oneRating", ShowDAO.getStarRating(getParamShowId(ctx), 1));
         ctx.render(Template.SHOW, model);
         
         
