@@ -108,12 +108,13 @@ public class UserReviewDAO {
 	
 	public static void insertReviewIntoDataBase(UserReview review) {
 		
-		String countReviewsQuery = "Select COUNT(reviewId) from `user_review`;";
+		//String countReviewsQuery = "Select COUNT(reviewId) from `user_review`;";
+		String maxQuery = "SELECT MAX(reviewId) FROM user_review";
 		
 		try {
         	Connection connection = DatabaseUtils.connectToDatabase();
             Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(countReviewsQuery);
+            ResultSet result = statement.executeQuery(maxQuery);
             result.next();
             
             String insertQuery = String.format("INSERT INTO `user_review` VALUES ('%s', '%s', '%s', '%s', '%s', '%s')", 

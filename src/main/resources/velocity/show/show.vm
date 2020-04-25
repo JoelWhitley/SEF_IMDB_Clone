@@ -22,11 +22,11 @@
 
 	<h2>User Ratings</h2>
 	#if($reviews)
-	<label>5-Star ***** : $fiveRating</label><br>
-	<label>4-Star **** : $fourRating</label><br>
-	<label>3-Star *** : $threeRating</label><br>
-	<label>2-Star ** : $twoRating</label><br>
-	<label>1-Star * : $oneRating</label><br>
+	<label>5-Star ***** : $fiveRating, $fivePercent %</label><br>
+	<label>4-Star **** : $fourRating, $fourPercent %</label><br>
+	<label>3-Star *** : $threeRating, $threePercent %</label><br>
+	<label>2-Star ** : $twoRating, $twoPercent %</label><br>
+	<label>1-Star * : $oneRating, $onePercent %</label><br>
 	#else
 	<label>No User Ratings Yet</label><br>
 	#end 
@@ -57,8 +57,7 @@
   					<option value="5">5</option>
 				</select>
 	    		<h4><label>Leave a review here</label></h4>
-	    		<textarea name="review" rows="10" cols="60"placeholder="Type your review here" value="">
-	    		</textarea>
+	    		<textarea name="review" rows="10" cols="60"placeholder="Type your review here" value=""></textarea>
 	    		<input type="submit" value="Submit">
 			</form>
 		#end

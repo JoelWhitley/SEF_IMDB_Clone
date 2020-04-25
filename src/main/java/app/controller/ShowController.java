@@ -27,6 +27,12 @@ public class ShowController {
         model.put("threeRating", ShowDAO.getStarRating(getParamShowId(ctx), 3));
         model.put("twoRating", ShowDAO.getStarRating(getParamShowId(ctx), 2));
         model.put("oneRating", ShowDAO.getStarRating(getParamShowId(ctx), 1));
+        
+        model.put("fivePercent", ShowDAO.getStarPercent(getParamShowId(ctx), 5));
+        model.put("fourPercent", ShowDAO.getStarPercent(getParamShowId(ctx), 4));
+        model.put("threePercent", ShowDAO.getStarPercent(getParamShowId(ctx), 3));
+        model.put("twoPercent", ShowDAO.getStarPercent(getParamShowId(ctx), 2));
+        model.put("onePercent", ShowDAO.getStarPercent(getParamShowId(ctx), 1));
         ctx.render(Template.SHOW, model);
         
         
