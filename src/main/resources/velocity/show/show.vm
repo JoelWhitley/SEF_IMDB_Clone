@@ -28,7 +28,7 @@
 			</a>
             <h2>$review.rating / 5 </h2>
             #if($review.review)
-            	<p> $review.review </p>	
+            	<div style="width:600px;height:150px;overflow:auto;padding:5px;"> $review.review </div>	
            	#end
         </div>
         #end
