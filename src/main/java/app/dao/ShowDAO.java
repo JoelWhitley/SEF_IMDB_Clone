@@ -84,7 +84,6 @@ public class ShowDAO {
 		double starReviews = 0;
 		double allReviews = 0;
 		//String sql = "SELECT * FROM `user_review` WHERE show_id = " + id + " AND rating = '" + star + "';";
-		
 		String sql = "SELECT COUNT(*) FROM `user_review` WHERE show_id = " + id + ";";
 		
 		 try {

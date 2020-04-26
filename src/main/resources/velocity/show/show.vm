@@ -60,6 +60,14 @@
 	    		<textarea name="review" rows="10" cols="60"placeholder="Type your review here" value=""></textarea>
 	    		<input type="submit" value="Submit">
 			</form>
+			
+			<form id="deleteReviewForm" method="post">
+	    		<h4><label>Press to delete previous review</label></h4>
+	    		<select name="Check" size="1" required>
+	    			<option value="Yes">Yes</option>
+	    		</select>
+	    		<input type="submit" value="Delete">
+			</form>
 		#end
 </div>
 

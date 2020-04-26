@@ -37,19 +37,27 @@ public class ShowController {
         
         
     };
-    
     public static Handler handleUserReview = ctx -> {
+    	System.out.println("handler called & " + ctx.attributeMap());
+
     	UserReview review = null;
     	 if(getReviewPost(ctx) != null) {
+    		 System.out.println("getReviewPost");
     	review = new UserReview(-1, getSessionCurrentUser(ctx), getParamShowId(ctx), getRatingPost(ctx), getReviewPost(ctx));
     	UserReviewDAO.insertReviewIntoDataBase(review);
     	 }
     	 else if (getRatingPost(ctx) != -1) {
+    		 System.out.println("getRatingPost");
     		 review = new UserReview(-1, getSessionCurrentUser(ctx), getParamShowId(ctx), getRatingPost(ctx));
     		 UserReviewDAO.insertReviewIntoDataBase(review);
     	 }
-    	 
-    	 
+    	 //if delete button = pressed then execute sql delete query for current logged user with current showid
+    	 else if(getDelete(ctx)) {
+    		System.out.println("button is pressed");
+    		//UserReviewDAO.deleteReviewInDataBase((String) ctx.sessionAttribute("currentUser"), Integer.parseInt(ctx.pathParam("showid")));
+    		UserReviewDAO.deleteReviewInDataBase(getSessionCurrentUser(ctx), getParamShowId(ctx));
+    		System.out.println("statement executed");
+    	 }
     	 
     	 Map<String, Object> model = ViewUtil.baseModel(ctx);
          model.put("show", ShowDAO.getShowById(getParamShowId(ctx)));
@@ -80,11 +88,10 @@ public class ShowController {
     	}
     	else {
     		return -1;
-    	}
-    	
+    	}	
     }
     
-//    public static boolean getdelete(Context ctx) {
-//    	
-//    }
+    public static boolean getDelete(Context ctx) {
+    	return ctx.formParam("Check") != null;
+    	}
 }

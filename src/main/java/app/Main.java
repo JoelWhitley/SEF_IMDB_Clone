@@ -40,8 +40,7 @@ public class Main {
 
             get(Web.ACCOUNT, AccountController.serveAccountPage);
             
-            get(Web.USER, UserPreviewController.serveUserPage);
-            
+           get(Web.USER, UserPreviewController.serveUserPage);
             
            get(Web.RESULT, PersonSearchController.servePersonResults);
            
@@ -50,6 +49,7 @@ public class Main {
             
             get(Web.SHOW, ShowController.serveShowPage);
             post(Web.SHOW, ShowController.handleUserReview);
+            
             
            
 
