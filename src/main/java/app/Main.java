@@ -50,8 +50,6 @@ public class Main {
             
             get(Web.SHOW, ShowController.serveShowPage);
             post(Web.SHOW, ShowController.handleUserReview);
-            
-           
 
 
             get(Web.PERSON, personController.personPage);
