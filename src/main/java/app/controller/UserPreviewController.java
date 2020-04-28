@@ -15,6 +15,7 @@ import app.model.Show;
 import app.model.UserReview;
 import io.javalin.http.Handler;
 
+//Displays a user linked by reviews. Can also access by manually setting url path. NOT logged-in user.
 public class UserPreviewController {
 	public static Handler serveUserPage = ctx -> {
 		Map<String, Object> model = ViewUtil.baseModel(ctx);

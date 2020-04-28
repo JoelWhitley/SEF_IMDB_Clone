@@ -106,6 +106,7 @@ public class UserReviewDAO {
 	    return null;
 	}
 	
+	//Need to fix review-id check. Because deleted reviews will subsequently cause duplicate id numbers.
 	public static void insertReviewIntoDataBase(UserReview review) {
 		
 		//String countReviewsQuery = "Select COUNT(reviewId) from `user_review`;";
@@ -117,6 +118,7 @@ public class UserReviewDAO {
             ResultSet result = statement.executeQuery(maxQuery);
             result.next();
             
+            //Insert query.
             String insertQuery = String.format("INSERT INTO `user_review` VALUES ('%s', '%s', '%s', '%s', '%s', '%s')", 
             		result.getInt(1) +1, review.getShowID(), review.getUsername(), 
             		review.getRating(), review.getReview(), review.getDate());
