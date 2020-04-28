@@ -109,13 +109,13 @@ public class UserReviewDAO {
 	//Need to fix review-id check. Because deleted reviews will subsequently cause duplicate id numbers.
 	public static void insertReviewIntoDataBase(UserReview review) {
 		
-		//Getting number of reviews for the new reviewID
-		String countReviewsQuery = "Select COUNT(reviewId) from `user_review`;";
+		//String countReviewsQuery = "Select COUNT(reviewId) from `user_review`;";
+		String maxQuery = "SELECT MAX(reviewId) FROM user_review";
 		
 		try {
         	Connection connection = DatabaseUtils.connectToDatabase();
             Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(countReviewsQuery);
+            ResultSet result = statement.executeQuery(maxQuery);
             result.next();
             
             //Insert query.
@@ -131,6 +131,25 @@ public class UserReviewDAO {
     	        e.printStackTrace();
     	    }
             
+            DatabaseUtils.closeConnection(connection);
+		}
+		catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	}
+	
+public static void deleteReviewInDataBase(String username, int showId) {
+	
+		String deleteQuery = "DELETE FROM user_review WHERE user_id = '" + username 
+		+ "' AND show_id = " + showId + ";";
+		System.out.println(deleteQuery);
+		
+		try {
+        	Connection connection = DatabaseUtils.connectToDatabase();
+            PreparedStatement insertStatement = connection.prepareStatement(deleteQuery);
+         	insertStatement.execute();
+                       
             DatabaseUtils.closeConnection(connection);
 		}
 		catch (Exception e) {
