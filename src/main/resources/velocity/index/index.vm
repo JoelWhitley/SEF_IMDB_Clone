@@ -3,6 +3,9 @@
 #if($currentUser)
 <div id="userReturning">
 	Welcome back, $currentUser!
+	<p>
+		Want to suggest a new show? Add it <a href="/suggestion">here!</a>
+	</p>
 </div>
 #end
 <div id="indexSearchBar">

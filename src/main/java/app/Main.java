@@ -8,6 +8,7 @@ import app.controller.LoginController;
 import app.controller.PersonSearchController;
 import app.controller.ShowController;
 import app.controller.personController;
+import app.controller.suggestionController;
 import app.controller.paths.Web;
 import app.controller.utils.ViewUtil;
 
@@ -28,31 +29,30 @@ public class Main {
         }).start(getHerokuAssignedPort());
 
         app.routes(() -> {
-            // You will have to update this, to limit who can see the reviews
-            // before(LoginController.ensureLoginBeforeViewing);
-
-            get(Web.INDEX, IndexController.serveIndexPage);
-            post(Web.INDEX, IndexController.handleIndexPost);
-            
-            get(Web.LOGIN, LoginController.serveLoginPage);
-            post(Web.LOGIN, LoginController.handleLoginPost);
-            post(Web.LOGOUT, LoginController.handleLogoutPost);
-
-            get(Web.ACCOUNT, AccountController.serveAccountPage);
-            
-            get(Web.USER, UserPreviewController.serveUserPage);
-            
-            
-           get(Web.RESULT, PersonSearchController.servePersonResults);
-           
-           get(Web.SEARCHINDEX, ShowSearchController.serveShowResults);
-            
-            
-            get(Web.SHOW, ShowController.serveShowPage);
-            post(Web.SHOW, ShowController.handleUserReview);
-
-
-            get(Web.PERSON, personController.personPage);
+			// You will have to update this, to limit who can see the reviews
+			// before(LoginController.ensureLoginBeforeViewing);
+			
+			get(Web.INDEX, IndexController.serveIndexPage);
+			post(Web.INDEX, IndexController.handleIndexPost);
+			    
+			get(Web.LOGIN, LoginController.serveLoginPage);
+			post(Web.LOGIN, LoginController.handleLoginPost);
+			post(Web.LOGOUT, LoginController.handleLogoutPost);
+			
+			get(Web.ACCOUNT, AccountController.serveAccountPage);
+			    
+			get(Web.USER, UserPreviewController.serveUserPage);
+			    
+			get(Web.RESULT, PersonSearchController.servePersonResults);
+			get(Web.SEARCHINDEX, ShowSearchController.serveShowResults);
+			
+			get(Web.SHOW, ShowController.serveShowPage);
+			post(Web.SHOW, ShowController.handleUserReview);
+			
+			get(Web.SUGGESTION, suggestionController.suggestionPage);
+			post(Web.SUGGESTION, suggestionController.handleNewSuggestion);
+			
+			get(Web.PERSON, personController.personPage);
 
             // Add new actions here
             // Seeing pages (get) and sending information in forms (post)

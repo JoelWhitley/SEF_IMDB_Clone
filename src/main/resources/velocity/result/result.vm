@@ -4,11 +4,10 @@
 <h1>Results</h1>
 	#foreach($person in $persons) 
 	<div>
-            <a class="shows" href="/persons/$person.personId">    
-                $person.fullName
-            </a><br>
-        </div>	
-	
+        <a class="shows" href="/persons/$person.personId">    
+            $person.fullName
+        </a><br>
+    </div>	
 	#end	
 </div>
 #end

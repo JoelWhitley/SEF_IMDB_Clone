@@ -41,8 +41,6 @@ public class Account {
     	this.country = c;
     	this.gender = g;
     	this.email= email;
-    	
-    	
     }
 
 
