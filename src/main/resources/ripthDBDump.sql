@@ -30,6 +30,7 @@ CREATE TABLE `account` (
   `email` varchar(45) NOT NULL,
   `address` varchar(45) NOT NULL,
   `country` varchar(45) NOT NULL,
+  `type` varchar(45) NOT NULL,
   `gender` varchar(10) NOT NULL,
   `first_name` varchar(45) NOT NULL,
   `last_name` varchar(45) NOT NULL,
@@ -44,7 +45,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES ('caramel6','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','caramelwilson@gmail.com','123 Fake Street, Fakesville','Australia','Female','Cara','Wilson'),('chocolate7','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','garychoco@gmail.com','123 Fake Street, Fakesville','Australia','Male','Gary','Chocobo'),('vanilla8','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','vanillaice@gmail.com','123 Fake Street, Fakesville','Australia','Male','Vanilla','Ice'),('strawberry9','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','samanthastrawberry@gmail.com','123 Fake Street, Fakesville','Australia','Female','Samantha','Strawberry'),('banana10','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','bartnanny@gmail.com','123 Fake Street, Fakesville','Australia','Female','Bart','Nanny');
+INSERT INTO `account` VALUES ('caramel6','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','caramelwilson@gmail.com','123 Fake Street, Fakesville','Australia','admin','Female','Cara','Wilson'),('chocolate7','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','garychoco@gmail.com','123 Fake Street, Fakesville','Australia','proco','Male','Gary','Chocobo'),('vanilla8','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','vanillaice@gmail.com','123 Fake Street, Fakesville','Australia','user','Male','Vanilla','Ice'),('strawberry9','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','samanthastrawberry@gmail.com','123 Fake Street, Fakesville','Australia','user','Female','Samantha','Strawberry'),('banana10','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','bartnanny@gmail.com','123 Fake Street, Fakesville','Australia','user','Female','Bart','Nanny');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146,6 +147,7 @@ CREATE TABLE `show` (
   `series` int(11) NOT NULL DEFAULT '0',
   `proco_id` int(11) NOT NULL,
   `year` int(4) NOT NULL DEFAULT '2020',
+  `status` varchar(45) NOT NULL,
   PRIMARY KEY (`showid`),
   KEY `fk_proco_idx` (`proco_id`),
   CONSTRAINT `fk_proco` FOREIGN KEY (`proco_id`) REFERENCES `production_company` (`proco_id`)
@@ -158,7 +160,7 @@ CREATE TABLE `show` (
 
 LOCK TABLES `show` WRITE;
 /*!40000 ALTER TABLE `show` DISABLE KEYS */;
-INSERT INTO `show` VALUES (1,'Star Wars: Episode IX - The Rise of Skywalker','Action',2.22,1,0,9,2019),(2,'The Wire','Drama',1.00,0,1,3,2002),(3,'How to Train Your Dragon','Comedy/Family',1.63,1,0,5,2010),(4,'Blade Runner','Sci-fi/Thriller',1.90,1,0,4,1982),(5,'Stranger Things','Horror',1.05,0,1,7,2016);
+INSERT INTO `show` VALUES (1,'Star Wars: Episode IX - The Rise of Skywalker','Action',2.22,1,0,9,2019,'visable'),(2,'The Wire','Drama',1.00,0,1,3,2002,'visable'),(3,'How to Train Your Dragon','Comedy/Family',1.63,1,0,5,2010,'visable'),(4,'Blade Runner','Sci-fi/Thriller',1.90,1,0,4,1982,'visable'),(5,'Stranger Things','Horror',1.05,0,1,7,2016,'visable');
 /*!40000 ALTER TABLE `show` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -193,6 +195,7 @@ LOCK TABLES `user_review` WRITE;
 INSERT INTO `user_review` VALUES (1, 1, 'banana10', 1, 'Episode 9 fails on almost every level to tie up the sequel trilogy in a satisfying manner. In a fumbling rush, it tries to completely redirect the series, but hopes nostalgia will serve in place of establishing its own pathos. In doing so, it fails to do justice to its characters or established conflicts.', '2020-04-18 16:30:00');
 /*!40000 ALTER TABLE `user_review` ENABLE KEYS */;
 UNLOCK TABLES;
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
