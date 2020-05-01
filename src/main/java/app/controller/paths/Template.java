@@ -11,6 +11,7 @@ public class Template {
     
     public static final String ACCOUNT = "/velocity/account/account.vm";
     public static final String USER = "/velocity/user/user.vm";
+    public static final String ADMIN = "/velocity/user/admin.vm";
 
     public static final String SHOW = "/velocity/show/show.vm";
     public static final String INDEXSEARCH = "/velocity/index/indexSearch.vm";

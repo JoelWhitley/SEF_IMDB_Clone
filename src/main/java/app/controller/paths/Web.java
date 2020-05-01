@@ -26,5 +26,7 @@ public class Web {
     public static final String PERSON = "/persons/:personId";
 
     public static final String RESULT = "/result";
+    
+    public static final String ADMIN = "/admin";
 
 }

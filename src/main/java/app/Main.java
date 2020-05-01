@@ -1,6 +1,7 @@
 package app;
 
 import app.controller.AccountController;
+import app.controller.AdminController;
 import app.controller.IndexController;
 import app.controller.ShowSearchController;
 import app.controller.UserPreviewController;
@@ -47,7 +48,7 @@ public class Main {
             get(Web.SHOW, ShowController.serveShowPage);
             post(Web.SHOW, ShowController.handleUserReview);
             
-           
+           get(Web.ADMIN, AdminController.serveAdminPage);
 
 
             get(Web.PERSON, personController.personPage);
