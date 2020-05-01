@@ -15,10 +15,6 @@ import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
 import static io.javalin.apibuilder.ApiBuilder.*;
 
-
-
-
-
 public class Main {
 
     public static void main(String[] args) {
@@ -62,11 +58,6 @@ public class Main {
 
         app.error(404, ViewUtil.notFound);
     }
-
-
-
-
-
 
     public static int getHerokuAssignedPort() {
         ProcessBuilder processBuilder = new ProcessBuilder();
