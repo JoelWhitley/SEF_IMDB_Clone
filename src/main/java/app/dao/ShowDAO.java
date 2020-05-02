@@ -1,6 +1,7 @@
 package app.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -73,6 +74,20 @@ public class ShowDAO {
 	    if(!shows.isEmpty()) return last;
 	    // If we are here, something bad happened
 	    return 1;
+	}
+
+	public static void updateStatus() {
+		Connection connection;
+		try {
+			connection = DatabaseUtils.connectToDatabase();
+			String updateQuery = "UPDATE `show` SET status = 'visable' WHERE status = 'procosubmission' AND DATEDIFF(submitted, CURRENT_TIMESTAMP ) <= -1;";
+			PreparedStatement insertStatement = connection.prepareStatement(updateQuery);
+	    	insertStatement.execute();
+		} catch (Exception e) {
+			System.out.println("Error connecting to database");
+		}
+		
+	
 	}
 }
 

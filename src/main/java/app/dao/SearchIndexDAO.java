@@ -13,6 +13,9 @@ public class SearchIndexDAO {
 	public static final String SALT = "$2a$10$h.dl5J86rGH7I8bD9bZeZe";
 
     public static List<Show> getShowsByTitle(String search) {
+    	
+    	ShowDAO.updateStatus();
+    	
         // Fish out the results
         List<Show> shows = new ArrayList<>();
         	//%" + search + "%
@@ -21,6 +24,7 @@ public class SearchIndexDAO {
             String sql = "SELECT `show`.showid, `show`.show_title, `show`.genre, `show`.length, `show`.movie, `show`.series, `show`.proco_id, `show`.`year` " + 
             		"FROM `show` " + 
             		"LEFT JOIN `credits_roll` " + 
+            		
             		"ON `show`.showid = credits_roll.show_id " + 
             		"LEFT JOIN `person` " + 
             		"on credits_roll.person_id = person.person_id " + 
