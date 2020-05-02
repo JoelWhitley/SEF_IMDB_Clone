@@ -27,7 +27,8 @@ public class SearchIndexDAO {
             		"WHERE ( UPPER(show_title) LIKE UPPER('%" + search + "%') " + 
             		"OR UPPER(genre) LIKE UPPER('%" + search + "%') " + 
             		"OR UPPER(person.fullname) LIKE UPPER('%" + search + "%') " + 
-            		"OR UPPER(credits_roll.character_name) LIKE UPPER('%" + search + "%')) " + 
+            		"OR UPPER(credits_roll.character_name) LIKE UPPER('%" + search + "%')) " +
+            		"AND `show`.status LIKE 'visable'" +
             		"group by showid;";
 
 
