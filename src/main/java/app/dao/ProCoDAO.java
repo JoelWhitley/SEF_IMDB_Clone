@@ -1,17 +1,12 @@
 package app.dao;
 
-import app.Main;
 import app.dao.utils.DatabaseUtils;
 import app.model.ProductionCompany;
-
-import org.eclipse.collections.impl.list.mutable.FastList;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 
@@ -63,6 +58,41 @@ public class ProCoDAO {
         if(!procos.isEmpty()) return procos;
         // If we are here, something bad happened
         return null;
+    }
+    
+    public static String findProCoID(String name) {
+    	
+    	String proCoID = "";
+    	
+        try {
+            // Here you prepare your sql statement
+            String sql = "SELECT * FROM production_company WHERE proco_name LIKE '" + name + "'";
+
+            // Execute the query
+            Connection connection = DatabaseUtils.connectToDatabase();
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+
+            
+            //grab the id
+            //contract: there are not duplicate names for procos
+            while(result.next()) proCoID = result.getString("proco_id");
+
+                  
+            DatabaseUtils.closeConnection(connection);
+        }
+        catch (Exception e) {
+        	proCoID = "null";
+            e.printStackTrace();
+        }
+
+
+        // If there is a result
+        if (proCoID != "") return proCoID;
+        
+        else {
+        	return null;
+        }
     }
     
 

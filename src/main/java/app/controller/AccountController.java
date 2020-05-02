@@ -1,6 +1,5 @@
 package app.controller;
 
-import app.Main;
 import app.controller.paths.Template;
 import app.controller.utils.ViewUtil;
 import app.model.Account;
@@ -17,7 +16,7 @@ public class AccountController {
         
         // You'll have to update the model... maybe here
         if(ctx.sessionAttribute("currentUser") != null) {
-        	Account user = UserController.getUserInfo(ctx.sessionAttribute("currentUser"));
+			Account user = UserController.getUserInfo(ctx.sessionAttribute("currentUser"));
         	model.put("nouser", false);
             model.put("username", user.getUsername());
             model.put("firstname", user.getFirstName());

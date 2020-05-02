@@ -12,8 +12,8 @@
 	<h4><label>Genre</label></h4>
 		<input name="genre" placeholder="Title"></input>
 	
-	<h4><label>Length</label></h4>
-		<input name="length" placeholder="Length"></input>
+	<h4><label>Length (H.MM)</label></h4>
+		<input type="text" name="length" min="0" max="100.00" step=".01" placeholder="Length" pattern="[0-9]{0,1}\.[0-5]{1}[0-9]{1}"></input>
 	
 	<h4><label>Type *</label></h4>
 		<input type="radio" name="movie_or_series" value="movie" required>
@@ -34,6 +34,8 @@
 				<option value="$year">$year</option>
 			#end
 		</select>
+		
+	<input type="hidden" name="user" value='$currentUser'>
 	
 	
 	<h4><label> </label></h4>

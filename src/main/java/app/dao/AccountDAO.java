@@ -94,6 +94,28 @@ public class AccountDAO {
     	return user;
     	
     }
+    
+    public static String getUserType(String username) {
+	    String user = null;
+		try {
+	        // Here you prepare your sql statement
+	        String sql = "SELECT * FROM `account` WHERE username LIKE '" + username + "'";
+	
+	        // Execute the query
+	        Connection connection = DatabaseUtils.connectToDatabase();
+	        Statement statement = connection.createStatement();
+	        ResultSet result = statement.executeQuery(sql);
+	        while(result.next()) {
+                user = result.getString("type");
+            }
+	        // Close it
+	        DatabaseUtils.closeConnection(connection);
+	    }
+	    catch (Exception e) {
+	        e.printStackTrace();
+	    }
+		return user;
+    }
 
 
 

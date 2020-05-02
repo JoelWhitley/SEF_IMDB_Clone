@@ -12,15 +12,18 @@ public class Show {
     private boolean isSeries;
     private String genre;
     private int year;
+    private boolean isSuggestion;
 
     private List<UserReview> userReviewList;
-    private ProductionCompany productionCompany;
+    private String productionCompany;
 
     private List<CreditsRoll> creditsRolls;
     
    
 
-    public Show(int showid,String showTitle,double length,boolean isMovie,boolean isSeries,String genre,int year) {
+    public Show(int showid,String showTitle,double length,boolean isMovie,
+    		boolean isSeries,String genre,int year,boolean isSuggestion,
+    		String proCo) {
     	this.showid = showid;
     	this.showTitle = showTitle;
     	this.length = length;
@@ -28,6 +31,8 @@ public class Show {
     	this.isSeries = isSeries;
     	this.genre = genre;
     	this.year = year;
+    	this.isSuggestion = isSuggestion;
+    	this.productionCompany = proCo;
     }
     public int getShowid() {
     	return showid;
@@ -40,12 +45,15 @@ public class Show {
     	return length;
     }
     
-    public boolean getIsMovie() {
-    	return isMovie;
+    public int getIsMovie() {
+    	if (isMovie) return 1;
+    	else return 0;
     }
     
-    public boolean getIsSeries() {
-    	return isSeries;
+    public int getIsSeries() {
+    	if (isSeries) return 1;
+    	else return 0;
+    	
     }
     
     public String getGenre() {
@@ -56,6 +64,13 @@ public class Show {
     	return year;
     }
     
+    public String getProCo() {
+    	return productionCompany;
+    }
+    
+    public boolean isSuggestion() {
+    	return isSuggestion;
+    }
     
     
 

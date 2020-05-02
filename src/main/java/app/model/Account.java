@@ -16,10 +16,11 @@ public class Account {
     private String country;
     private String gender;
     private String email;
+    private String type;
 
 
 
-    public Account(String un, String p) {
+	public Account(String un, String p) {
         username = un;
         password = p;
     }
@@ -41,6 +42,7 @@ public class Account {
     	this.country = c;
     	this.gender = g;
     	this.email= email;
+    	this.type = type;
     }
 
 
@@ -81,5 +83,9 @@ public class Account {
 
     public String getPassword() {
         return password;
+    }
+    
+    public String getType() {
+    	return type;
     }
 }

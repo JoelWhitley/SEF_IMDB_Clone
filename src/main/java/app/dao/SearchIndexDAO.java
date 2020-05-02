@@ -53,8 +53,15 @@ public class SearchIndexDAO {
             // If you have multiple results, you do a while
             while(result.next()) {
                 shows.add(   
-                  new Show(result.getInt("showid"),result.getString("show_title"), result.getDouble("length"),
-                		  result.getBoolean("movie"),result.getBoolean("series"),result.getString("genre"),result.getInt("year"))
+                  new Show(result.getInt("showid"),
+                		  result.getString("show_title"), 
+                		  result.getDouble("length"),
+                		  result.getBoolean("movie"),
+                		  result.getBoolean("series"),
+                		  result.getString("genre"),
+                		  result.getInt("year"),
+                		  true,
+                		  result.getString("proco_id"))
                   );
             }
 
