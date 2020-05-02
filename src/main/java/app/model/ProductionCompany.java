@@ -10,7 +10,6 @@ public class ProductionCompany {
 
     public ProductionCompany(String n) {
         name = n;
-        name = n;
     }
 
     public String getName() {

@@ -9,6 +9,7 @@ import app.controller.LoginController;
 import app.controller.PersonSearchController;
 import app.controller.ShowController;
 import app.controller.personController;
+import app.controller.suggestionController;
 import app.controller.paths.Web;
 import app.controller.utils.ViewUtil;
 
@@ -25,6 +26,7 @@ public class Main {
         }).start(getHerokuAssignedPort());
 
         app.routes(() -> {
+
             // You will have to update this, to limit who can see the reviews
             // before(LoginController.ensureLoginBeforeViewing);
 
@@ -40,18 +42,23 @@ public class Main {
             get(Web.USER, UserPreviewController.serveUserPage);
             
             
-           get(Web.RESULT, PersonSearchController.servePersonResults);
+            get(Web.RESULT, PersonSearchController.servePersonResults);
            
-           get(Web.SEARCHINDEX, ShowSearchController.serveShowResults);
+            get(Web.SEARCHINDEX, ShowSearchController.serveShowResults);
             
             
             get(Web.SHOW, ShowController.serveShowPage);
             post(Web.SHOW, ShowController.handleUserReview);
             
-           get(Web.ADMIN, AdminController.serveAdminPage);
+            get(Web.ADMIN, AdminController.serveAdminPage);
 
 
             get(Web.PERSON, personController.personPage);
+
+			get(Web.SUGGESTION, suggestionController.suggestionPage);
+			post(Web.SUGGESTION, suggestionController.handleNewSuggestion);
+			
+		
 
             // Add new actions here
             // Seeing pages (get) and sending information in forms (post)

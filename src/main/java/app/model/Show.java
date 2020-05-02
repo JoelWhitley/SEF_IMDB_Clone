@@ -3,6 +3,8 @@ package app.model;
 
 import java.util.List;
 
+import app.model.enumeration.showStatus;
+
 
 public class Show {
     private int showid;
@@ -12,15 +14,18 @@ public class Show {
     private boolean isSeries;
     private String genre;
     private int year;
+    private showStatus status;
 
     private List<UserReview> userReviewList;
-    private ProductionCompany productionCompany;
+    private String productionCompany;
 
     private List<CreditsRoll> creditsRolls;
     
    
 
-    public Show(int showid,String showTitle,double length,boolean isMovie,boolean isSeries,String genre,int year) {
+    public Show(int showid,String showTitle,double length,boolean isMovie,
+    		boolean isSeries,String genre,int year,showStatus status,
+    		String proCo) {
     	this.showid = showid;
     	this.showTitle = showTitle;
     	this.length = length;
@@ -28,6 +33,8 @@ public class Show {
     	this.isSeries = isSeries;
     	this.genre = genre;
     	this.year = year;
+    	this.status = status;
+    	this.productionCompany = proCo;
     }
     public int getShowid() {
     	return showid;
@@ -40,12 +47,15 @@ public class Show {
     	return length;
     }
     
-    public boolean getIsMovie() {
-    	return isMovie;
+    public int getIsMovie() {
+    	if (isMovie) return 1;
+    	else return 0;
     }
     
-    public boolean getIsSeries() {
-    	return isSeries;
+    public int getIsSeries() {
+    	if (isSeries) return 1;
+    	else return 0;
+    	
     }
     
     public String getGenre() {
@@ -56,6 +66,13 @@ public class Show {
     	return year;
     }
     
+    public String getProCo() {
+    	return productionCompany;
+    }
+    
+    public showStatus Status() {
+    	return status;
+    }
     
     
 

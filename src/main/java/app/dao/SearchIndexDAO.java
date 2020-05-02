@@ -8,6 +8,7 @@ import java.util.List;
 
 import app.dao.utils.DatabaseUtils;
 import app.model.Show;
+import app.model.enumeration.showStatus;
 
 public class SearchIndexDAO {
 	public static final String SALT = "$2a$10$h.dl5J86rGH7I8bD9bZeZe";
@@ -27,7 +28,8 @@ public class SearchIndexDAO {
             		"WHERE ( UPPER(show_title) LIKE UPPER('%" + search + "%') " + 
             		"OR UPPER(genre) LIKE UPPER('%" + search + "%') " + 
             		"OR UPPER(person.fullname) LIKE UPPER('%" + search + "%') " + 
-            		"OR UPPER(credits_roll.character_name) LIKE UPPER('%" + search + "%')) " + 
+            		"OR UPPER(credits_roll.character_name) LIKE UPPER('%" + search + "%')) " +
+            		"AND `show`.status LIKE 'visable'" +
             		"group by showid;";
 
 
@@ -53,8 +55,15 @@ public class SearchIndexDAO {
             // If you have multiple results, you do a while
             while(result.next()) {
                 shows.add(   
-                  new Show(result.getInt("showid"),result.getString("show_title"), result.getDouble("length"),
-                		  result.getBoolean("movie"),result.getBoolean("series"),result.getString("genre"),result.getInt("year"))
+                  new Show(result.getInt("showid"),
+                		  result.getString("show_title"), 
+                		  result.getDouble("length"),
+                		  result.getBoolean("movie"),
+                		  result.getBoolean("series"),
+                		  result.getString("genre"),
+                		  result.getInt("year"),
+                		  showStatus.VISABLE,
+                		  result.getString("proco_id"))
                   );
             }
 

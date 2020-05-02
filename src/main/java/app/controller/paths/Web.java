@@ -21,6 +21,8 @@ public class Web {
     public static final String SHOW = "/shows/:showid";
     public static final String REVIEW = "/review";
     
+    public static final String SUGGESTION = "/suggestion";
+    
     public static final String SEARCHINDEX = "/search";
 
     public static final String PERSON = "/persons/:personId";

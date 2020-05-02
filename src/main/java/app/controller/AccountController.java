@@ -1,9 +1,9 @@
 package app.controller;
 
-import app.Main;
 import app.controller.paths.Template;
 import app.controller.utils.ViewUtil;
 import app.model.Account;
+import app.model.enumeration.accountRole;
 import io.javalin.http.Handler;
 
 import java.util.Map;
@@ -17,7 +17,7 @@ public class AccountController {
         
         // You'll have to update the model... maybe here
         if(ctx.sessionAttribute("currentUser") != null) {
-        	Account user = UserController.getUserInfo(ctx.sessionAttribute("currentUser"));
+			Account user = UserController.getUserInfo(ctx.sessionAttribute("currentUser"));
         	model.put("nouser", false);
             model.put("username", user.getUsername());
             model.put("firstname", user.getFirstName());
@@ -26,7 +26,9 @@ public class AccountController {
             model.put("country", user.getCountry());
             model.put("gender", user.getGender());
             model.put("email", user.getEmail());
-            }
+            model.put("type", user.getType());
+            
+        }
         else {
         	model.put("nouser", true);
         }

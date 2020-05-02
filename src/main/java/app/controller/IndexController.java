@@ -4,7 +4,6 @@ import app.controller.paths.Template;
 import app.controller.paths.Web;
 import app.controller.utils.ViewUtil;
 import app.dao.PersonDAO;
-import app.dao.SearchIndexDAO;
 import app.model.Image;
 import app.model.Person;
 import io.javalin.http.Context;
