@@ -14,6 +14,7 @@ public class personController {
     public static Handler personPage = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         model.put("person", PersonDAO.getPersonById(getParamPersonId(ctx)));
+        model.put("filmography", PersonDAO.getFilmography(getParamPersonId(ctx)));
         ctx.render(Template.PERSON, model);
         
     };

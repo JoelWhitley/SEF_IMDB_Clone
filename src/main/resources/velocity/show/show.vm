@@ -13,9 +13,33 @@
 </div>
 
 <div id = "content">
+	<h2>Production Company</h2>
+		#if($proco)
+				#foreach($ProductionCompany in $proco)
+        	       	$ProductionCompany.name<br>
+   				#end
+    	#else
+   			<label>No Cast Added Yet</label><br>
+   		#end
 	<h2>Cast and crew</h2>
-	<label>Cast members</label><br>
-	<label>Crew members</label>
+	<h4>Cast members</h4>
+		#if($cast)
+				#foreach($person in $cast)
+        	       	$person.fullName : $person.role<br>
+   				#end
+    	#else
+   			<label>No Cast Added Yet</label><br>
+   		#end
+	<h4>Crew members</h4>
+		#if($crew)
+			<div>
+				#foreach($person in $crew)
+        	       		$person.fullname : $person.role<br>
+   				#end
+    		</div>
+    	#else
+   			<label>No Crew Added Yet</label><br>
+   		#end
 </div>
 
 <div id = "content">

@@ -12,8 +12,15 @@
 			<h2>Biography</h2><br>
 			<label>$person.bio</label>
 			<h2>Filmography</h2>
-		
-	
+			#if($filmography)
+				<div>
+				#foreach($show in $filmography)
+        	       		$show.showTitle : $show.year<br>
+   				#end
+    			</div>
+    		#else
+    			<label>No Filmography Yet</label>
+    		#end
 		#else
 		<h1>Person not found</h1>
 

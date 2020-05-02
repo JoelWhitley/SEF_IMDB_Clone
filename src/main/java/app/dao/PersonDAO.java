@@ -3,6 +3,8 @@ package app.dao;
 
 import app.dao.utils.DatabaseUtils;
 import app.model.Person;
+import app.model.Show;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -158,6 +160,52 @@ public class PersonDAO {
         // If we are here, something bad happened
         return null;
     }
+
+	public static List<Show> getFilmography(int personId) {
+		// Fish out the results
+        List<Show> filmography = new ArrayList<>();
+
+        try {
+            // Here you prepare your sql statement
+            String sql = "SELECT `show`.*"
+            		+ " FROM `show`"
+            		+ " JOIN credits_roll ON credits_roll.show_id=`show`.showid"
+            		+ " JOIN person ON credits_roll.person_id=person.person_id"
+            		+ " WHERE credits_roll.person_id=" + personId
+            		+ " ORDER BY `year` DESC";
+
+            // Execute the query
+            Connection connection = DatabaseUtils.connectToDatabase();
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+
+            // If you have multiple results, you do a while
+            while(result.next()) {
+                // 2) Add it to the list we have prepared
+            	filmography.add(
+                  // 1) Create a new account object
+            			 new Show(result.getInt("showid"),
+            					 result.getString("show_title"),
+            					 result.getDouble("length"),
+            					 result.getBoolean("movie"),
+            					 result.getBoolean("series"),
+            					 result.getString("genre"),
+            					 result.getInt("year"))
+                );
+            }
+
+            // Close it
+            DatabaseUtils.closeConnection(connection);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        // If there is a result
+        if(!filmography.isEmpty()) return filmography;
+        // If we are here, something bad happened
+        return null;
+	}
 
 
 }
