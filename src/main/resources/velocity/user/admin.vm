@@ -1,0 +1,14 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+	<div>
+		<h1> Shows for Review: </h1>
+		#foreach($show in $shows)
+        <div>
+            <a class="shows" href="/shows/$show.showid">    
+                $show.showTitle
+            </a><br>
+        </div>
+    #end
+	</div>
+		
+#end

@@ -3,6 +3,8 @@ package app.controller;
 import app.Main;
 import app.dao.AccountDAO;
 import app.model.Account;
+import app.model.enumeration.accountRole;
+
 import org.mindrot.jbcrypt.BCrypt;
 
 
@@ -54,6 +56,14 @@ public class UserController {
 
             // Update the user salt and password
         }
+    }
+    
+    public static boolean isAdmin(String username) {
+    	Account user = AccountDAO.getUserDetails(username);
+        if (user == null) {
+            return false;
+        }
+        return user.getType() == accountRole.ADMIN;
     }
 
 }

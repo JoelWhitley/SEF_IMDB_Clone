@@ -17,8 +17,13 @@
                         <form method="post" action="/logout">
                             <button id="logout">Log Out</button>
                         </form>
+                       
                     </li>
                     <li><a href="/account" id="account">Account</a></li>
+                    #if($admin)
+                    	<li><a href="/admin" id="admin">Admin</a></li>
+                    #else
+                    #end
                 #else
                     <li><a href="/login" >Log In</a></li>
                 #end

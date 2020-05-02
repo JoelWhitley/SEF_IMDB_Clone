@@ -36,8 +36,13 @@ public class LoginController {
             if (RequestUtil.getQueryLoginRedirect(ctx) != null) {
                 ctx.redirect(RequestUtil.getQueryLoginRedirect(ctx));
             }
+            if(UserController.isAdmin(getQueryUsername(ctx))) {
+            	model.put("admin", true);
+            }
             ctx.render(Template.LOGIN, model);
+            
         }
+        
     };
 
 

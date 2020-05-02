@@ -10,6 +10,7 @@ import app.dao.UserReviewDAO;
 import app.dao.suggestionDAO;
 import app.model.Show;
 import app.model.UserReview;
+import app.model.enumeration.showStatus;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
@@ -42,7 +43,7 @@ public class suggestionController {
 			suggestion = new Show(ShowDAO.getHighestShowID(), getFormTitle(ctx), 
 									getFormLength(ctx), getFormIsMovie(ctx),
 									getFormIsSeries(ctx), getFormGenre(ctx),
-									getFormYear(ctx), true, getFormProCo(ctx));
+									getFormYear(ctx), showStatus.VISABLE, getFormProCo(ctx));
 			
 			
 			currentUser = AccountDAO.getUserType(getFormUser(ctx));
