@@ -20,22 +20,57 @@ public class ShowController {
 		Map<String, Object> model = ViewUtil.baseModel(ctx);
         model.put("show", ShowDAO.getShowById(getParamShowId(ctx)));
         model.put("reviews", UserReviewDAO.searchReviewByShowID(getParamShowId(ctx)));
+        //simple impl
+        model.put("fiveRating", ShowDAO.getStarRating(getParamShowId(ctx), 5));
+        model.put("fourRating", ShowDAO.getStarRating(getParamShowId(ctx), 4));
+        model.put("threeRating", ShowDAO.getStarRating(getParamShowId(ctx), 3));
+        model.put("twoRating", ShowDAO.getStarRating(getParamShowId(ctx), 2));
+        model.put("oneRating", ShowDAO.getStarRating(getParamShowId(ctx), 1));
+        
+        model.put("fivePercent", ShowDAO.getStarPercent(getParamShowId(ctx), 5));
+        model.put("fourPercent", ShowDAO.getStarPercent(getParamShowId(ctx), 4));
+        model.put("threePercent", ShowDAO.getStarPercent(getParamShowId(ctx), 3));
+        model.put("twoPercent", ShowDAO.getStarPercent(getParamShowId(ctx), 2));
+        model.put("onePercent", ShowDAO.getStarPercent(getParamShowId(ctx), 1));
         ctx.render(Template.SHOW, model);
     };
-    
     public static Handler handleUserReview = ctx -> {
+
     	UserReview review = null;
     	 if(getReviewPost(ctx) != null) {
+
     	review = new UserReview(-1, getSessionCurrentUser(ctx), getParamShowId(ctx), getRatingPost(ctx), getReviewPost(ctx));
     	UserReviewDAO.insertReviewIntoDataBase(review);
     	 }
     	 else if (getRatingPost(ctx) != -1) {
+
     		 review = new UserReview(-1, getSessionCurrentUser(ctx), getParamShowId(ctx), getRatingPost(ctx));
     		 UserReviewDAO.insertReviewIntoDataBase(review);
     	 }
+    	 //if delete button = pressed then execute sql delete query for current logged user with current showid
+    	 else if(getDelete(ctx)) {
+
+    		//UserReviewDAO.deleteReviewInDataBase((String) ctx.sessionAttribute("currentUser"), Integer.parseInt(ctx.pathParam("showid")));
+    		UserReviewDAO.deleteReviewInDataBase(getSessionCurrentUser(ctx), getParamShowId(ctx));
+
+    	 }
+    	 
     	 Map<String, Object> model = ViewUtil.baseModel(ctx);
          model.put("show", ShowDAO.getShowById(getParamShowId(ctx)));
          model.put("reviews", UserReviewDAO.searchReviewByShowID(getParamShowId(ctx)));
+         
+         model.put("fiveRating", ShowDAO.getStarRating(getParamShowId(ctx), 5));
+         model.put("fourRating", ShowDAO.getStarRating(getParamShowId(ctx), 4));
+         model.put("threeRating", ShowDAO.getStarRating(getParamShowId(ctx), 3));
+         model.put("twoRating", ShowDAO.getStarRating(getParamShowId(ctx), 2));
+         model.put("oneRating", ShowDAO.getStarRating(getParamShowId(ctx), 1));
+         
+         model.put("fivePercent", ShowDAO.getStarPercent(getParamShowId(ctx), 5));
+         model.put("fourPercent", ShowDAO.getStarPercent(getParamShowId(ctx), 4));
+         model.put("threePercent", ShowDAO.getStarPercent(getParamShowId(ctx), 3));
+         model.put("twoPercent", ShowDAO.getStarPercent(getParamShowId(ctx), 2));
+         model.put("onePercent", ShowDAO.getStarPercent(getParamShowId(ctx), 1));
+         
          ctx.render(Template.SHOW, model);
     };
 
@@ -49,7 +84,10 @@ public class ShowController {
     	}
     	else {
     		return -1;
-    	}
+    	}	
     }
-
+    
+    public static boolean getDelete(Context ctx) {
+    	return ctx.formParam("Check") != null;
+    	}
 }
