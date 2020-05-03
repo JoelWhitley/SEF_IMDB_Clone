@@ -40,6 +40,10 @@ public class RequestUtil {
     	return ctx.pathParam("username");
     }
 
+	public static Boolean getSessionIsAdmin(Context ctx) {
+		return ctx.sessionAttribute("admin");
+	}
+
 
     //new suggestion set
 
