@@ -1,18 +1,21 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
 	<div>
+	#if($admin)
 		<h1> Shows for Review: </h1>
 		#foreach($show in $shows)
-	        <h4><a class="shows" href="/shows/$show.showid">    
+	        <h4><a class="shows" href="/shows/$show.showid">$show.showTitle</a><br></h4> 
 	        
-            $show.showTitle
+            
            	<form>
 	        	<input name="show" type="hidden" value="$show.showid">
 	        	<input name="accept" type="submit" value="Accept"></input>
 	        	<input name="deny" type="submit" value="Deny"></input>
 	        </form>
-            </a><br></h4>
+            
 	    	#end
 	</div>
-		
+	#else
+	<h2>This page can only be accessed by admins</h2>
+	#end
 #end
