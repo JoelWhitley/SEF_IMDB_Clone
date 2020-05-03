@@ -40,7 +40,7 @@
 			</a>
             <h2>$review.rating / 5 </h2>
             #if($review.review)
-            	<div style="width:600px;height:150px;overflow:auto;padding:5px;"> $review.review </div>	
+            	<div style="width:600px;height:100px;overflow:auto;padding:5px;"> $review.review </div>	
            	#end
         </div>
         #end
@@ -48,26 +48,28 @@
         <label> There aren't any user reviews for $show.showTitle yet. </label>
         #end
         #if($currentUser)
-        	<form id="userReviewForm" method="post">
-        	<select name="Rating" size="5" required>
-  					<option value="1">1</option>
-  					<option value="2">2</option>
-  					<option value="3">3</option>
-  					<option value="4">4</option>
-  					<option value="5">5</option>
-				</select>
-	    		<h4><label>Leave a review here</label></h4>
-	    		<textarea name="review" rows="10" cols="60"placeholder="Type your review here" value=""></textarea>
-	    		<input type="submit" value="Submit">
-			</form>
-			
-			<form id="deleteReviewForm" method="post">
-	    		<h4><label>Press to delete previous review</label></h4>
-	    		<select name="Check" size="1" required>
-	    			<option value="Yes">Yes</option>
-	    		</select>
-	    		<input type="submit" value="Delete">
-			</form>
+        	#if(!$alreadyReviewed)
+	        	<form id="userReviewForm" method="post">
+	        	<select name="Rating" size="5" required>
+	  					<option value="1">1</option>
+	  					<option value="2">2</option>
+	  					<option value="3">3</option>
+	  					<option value="4">4</option>
+	  					<option value="5">5</option>
+					</select>
+		    		<h4><label>Leave a review here</label></h4>
+		    		<textarea name="review" rows="10" cols="60"placeholder="Type your review here" value=""></textarea>
+		    		<input type="submit" value="Submit">
+				</form>
+			#else			
+				<form id="deleteReviewForm" method="post">
+		    		<h4><label>Press to delete previous review</label></h4>
+		    		<select name="Check" size="1" required>
+		    			<option value="Yes">Yes</option>
+		    		</select>
+		    		<input type="submit" value="Delete">
+				</form>
+			#end
 		#else
 			<h2> You must <a href="/login" >log in</a> to leave a review </h2>
 		#end

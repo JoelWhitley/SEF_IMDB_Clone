@@ -142,7 +142,6 @@ public static void deleteReviewInDataBase(String username, int showId) {
 	
 		String deleteQuery = "DELETE FROM user_review WHERE user_id = '" + username 
 		+ "' AND show_id = " + showId + ";";
-		System.out.println(deleteQuery);
 		
 		try {
         	Connection connection = DatabaseUtils.connectToDatabase();

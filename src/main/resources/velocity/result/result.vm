@@ -2,12 +2,16 @@
 #@mainLayout()
 <div id = "content">	
 <h1>Results</h1>
-	#foreach($person in $persons) 
-	<div>
-        <a class="shows" href="/persons/$person.personId">    
-            $person.fullName
-        </a><br>
-    </div>	
-	#end	
+	#if($persons)
+		#foreach($person in $persons) 
+		<div>
+	        <a class="shows" href="/persons/$person.personId">    
+	            $person.fullName
+	        </a><br>
+	    </div>	
+		#end
+	#else
+	<h2>No one matched your search</h2>	
+	#end
 </div>
 #end
