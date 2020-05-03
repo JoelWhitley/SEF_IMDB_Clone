@@ -3,22 +3,18 @@ package app.controller;
 import app.controller.paths.Template;
 import app.controller.utils.ViewUtil;
 import app.dao.AccountDAO;
-import app.dao.PersonDAO;
 import app.dao.ProCoDAO;
 import app.dao.ShowDAO;
-import app.dao.UserReviewDAO;
 import app.dao.suggestionDAO;
 import app.model.Show;
-import app.model.UserReview;
 import app.model.enumeration.showStatus;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
 import java.util.Calendar;
 import java.util.Map;
-import static app.controller.utils.RequestUtil.*;
 
-public class suggestionController {
+public class SuggestionController {
 
 
 	

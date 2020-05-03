@@ -3,12 +3,16 @@
 	<div>
 		<h1> Shows for Review: </h1>
 		#foreach($show in $shows)
-        <div>
-            <a class="shows" href="/shows/$show.showid">    
-                $show.showTitle
-            </a><br>
-        </div>
-    #end
+	        <h4><a class="shows" href="/shows/$show.showid">    
+	        
+            $show.showTitle
+           	<form>
+	        	<input name="show" type="hidden" value="$show.showid">
+	        	<input name="accept" type="submit" value="Accept"></input>
+	        	<input name="deny" type="submit" value="Deny"></input>
+	        </form>
+            </a><br></h4>
+	    	#end
 	</div>
 		
 #end

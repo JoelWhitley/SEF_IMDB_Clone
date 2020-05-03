@@ -39,7 +39,6 @@ public class RequestUtil {
     public static String getParamUsername(Context ctx) {
     	return ctx.pathParam("username");
     }
-    
 
 
     //new suggestion set

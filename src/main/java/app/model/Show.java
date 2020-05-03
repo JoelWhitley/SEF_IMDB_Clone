@@ -8,17 +8,16 @@ import app.model.enumeration.showStatus;
 
 public class Show {
     private int showid;
-    private String showTitle;
+    private int year;
     private double length;
     private boolean isMovie;
     private boolean isSeries;
     private String genre;
-    private int year;
-    private showStatus status;
-
-    private List<UserReview> userReviewList;
     private String productionCompany;
-
+    private String showTitle;
+    private showStatus status;
+    //TODO
+    private List<UserReview> userReviewList;
     private List<CreditsRoll> creditsRolls;
     
    

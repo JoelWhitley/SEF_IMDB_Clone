@@ -7,7 +7,7 @@ import io.javalin.http.Handler;
 import java.util.Map;
 import static app.controller.utils.RequestUtil.*;
 
-public class personController {
+public class PersonController {
 
 
 	

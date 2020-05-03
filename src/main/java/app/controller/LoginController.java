@@ -1,6 +1,5 @@
 package app.controller;
 
-import app.Main;
 import app.controller.paths.Template;
 import app.controller.paths.Web;
 import app.controller.utils.RequestUtil;
@@ -26,6 +25,7 @@ public class LoginController {
 
     public static Handler handleLoginPost = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
+        System.out.println(UserController.isAdmin(getQueryUsername(ctx)));
         if (!UserController.authenticate(getQueryUsername(ctx), getQueryPassword(ctx))) {
             model.put("authenticationFailed", true);
             ctx.render(Template.LOGIN, model);
@@ -37,7 +37,7 @@ public class LoginController {
                 ctx.redirect(RequestUtil.getQueryLoginRedirect(ctx));
             }
             if(UserController.isAdmin(getQueryUsername(ctx))) {
-            	model.put("admin", true);
+            	 ctx.sessionAttribute("admin", true);
             }
             ctx.render(Template.LOGIN, model);
             

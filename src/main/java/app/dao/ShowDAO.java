@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.dao.utils.DatabaseUtils;
-import app.model.Person;
 import app.model.Show;
 import app.model.enumeration.showStatus;
 
@@ -110,7 +109,7 @@ public class ShowDAO {
 		Connection connection;
 		try {
 			connection = DatabaseUtils.connectToDatabase();
-			String updateQuery = "UPDATE `show` SET status = 'visable' WHERE status = 'procosubmission' AND DATEDIFF(submitted, CURRENT_TIMESTAMP ) <= -1;";
+			String updateQuery = "UPDATE `show` SET status = 'VISABLE' WHERE status = 'PROCOSUBMISSION' AND DATEDIFF(submitted, CURRENT_TIMESTAMP ) <= -1;";
 			PreparedStatement insertStatement = connection.prepareStatement(updateQuery);
 	    	insertStatement.execute();
 		} catch (Exception e) {

@@ -33,7 +33,7 @@ public class SearchIndexDAO {
             		"OR UPPER(genre) LIKE UPPER('%" + search + "%') " + 
             		"OR UPPER(person.fullname) LIKE UPPER('%" + search + "%') " + 
             		"OR UPPER(credits_roll.character_name) LIKE UPPER('%" + search + "%')) " +
-            		"AND `show`.status LIKE 'visable'" +
+            		"AND `show`.status LIKE 'VISABLE'" +
             		"group by showid;";
 
 

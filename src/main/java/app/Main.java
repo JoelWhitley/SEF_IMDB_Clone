@@ -8,8 +8,8 @@ import app.controller.UserPreviewController;
 import app.controller.LoginController;
 import app.controller.PersonSearchController;
 import app.controller.ShowController;
-import app.controller.personController;
-import app.controller.suggestionController;
+import app.controller.PersonController;
+import app.controller.SuggestionController;
 import app.controller.paths.Web;
 import app.controller.utils.ViewUtil;
 
@@ -51,12 +51,12 @@ public class Main {
             post(Web.SHOW, ShowController.handleUserReview);
             
             get(Web.ADMIN, AdminController.serveAdminPage);
+            post(Web.ADMIN, AdminController.handleAdminAction);
 
+            get(Web.PERSON, PersonController.personPage);
 
-            get(Web.PERSON, personController.personPage);
-
-			get(Web.SUGGESTION, suggestionController.suggestionPage);
-			post(Web.SUGGESTION, suggestionController.handleNewSuggestion);
+			get(Web.SUGGESTION, SuggestionController.suggestionPage);
+			post(Web.SUGGESTION, SuggestionController.handleNewSuggestion);
 			
 		
 

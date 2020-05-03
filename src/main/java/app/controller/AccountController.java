@@ -3,7 +3,6 @@ package app.controller;
 import app.controller.paths.Template;
 import app.controller.utils.ViewUtil;
 import app.model.Account;
-import app.model.enumeration.accountRole;
 import io.javalin.http.Handler;
 
 import java.util.Map;

@@ -6,7 +6,6 @@ import static app.controller.utils.RequestUtil.getSessionCurrentUser;
 import java.util.Map;
 
 import app.controller.paths.Template;
-import app.controller.paths.Web;
 import app.controller.utils.ViewUtil;
 import app.dao.ShowDAO;
 import app.dao.UserReviewDAO;
@@ -22,8 +21,6 @@ public class ShowController {
         model.put("show", ShowDAO.getShowById(getParamShowId(ctx)));
         model.put("reviews", UserReviewDAO.searchReviewByShowID(getParamShowId(ctx)));
         ctx.render(Template.SHOW, model);
-        
-        
     };
     
     public static Handler handleUserReview = ctx -> {

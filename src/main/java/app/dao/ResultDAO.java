@@ -8,7 +8,6 @@ import java.util.List;
 
 import app.dao.utils.DatabaseUtils;
 import app.model.Person;
-import app.model.Show;
 
 public class ResultDAO {
 	public static final String SALT = "$2a$10$h.dl5J86rGH7I8bD9bZeZe";

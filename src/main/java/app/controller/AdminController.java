@@ -12,7 +12,11 @@ public class AdminController {
 		Map<String, Object> model = ViewUtil.baseModel(ctx);
         model.put("shows", ShowDAO.getShowsByPending());
         ctx.render(Template.ADMIN, model);
-        
-        
+    };
+    
+    public static Handler handleAdminAction = ctx -> {
+		Map<String, Object> model = ViewUtil.baseModel(ctx);
+        model.put("shows", ShowDAO.getShowsByPending());
+        ctx.render(Template.ADMIN, model);
     };
 }

@@ -1,6 +1,5 @@
 package app.controller;
 
-import app.Main;
 import app.dao.AccountDAO;
 import app.model.Account;
 import app.model.enumeration.accountRole;
@@ -52,6 +51,8 @@ public class UserController {
     public static void setPassword(String username, String oldPassword, String newPassword) {
         if (authenticate(username, oldPassword)) {
             String newSalt = BCrypt.gensalt();
+            
+            //TODO
             String newHashedPassword = BCrypt.hashpw(newSalt, newPassword);
 
             // Update the user salt and password
@@ -63,7 +64,7 @@ public class UserController {
         if (user == null) {
             return false;
         }
-        return user.getType() == accountRole.ADMIN;
+        return user.getType().equals(accountRole.ADMIN);
     }
 
 }

@@ -28,9 +28,6 @@ public class IndexController {
     
 
     public static Handler handleIndexPost = ctx -> {
-    	Map<String, Object> model = ViewUtil.baseModel(ctx);
-    	
-    	
     	if(getQueryNameSearch(ctx) != null) {
     		ctx.sessionAttribute("personSearch", getQueryNameSearch(ctx));
     		ctx.redirect(Web.RESULT);
@@ -39,7 +36,6 @@ public class IndexController {
     		 ctx.sessionAttribute("showSearch", getShowQuery(ctx));
     		ctx.redirect(Web.SEARCHINDEX);
     	}
-
     };
     
     public static String getShowQuery(Context ctx) {
