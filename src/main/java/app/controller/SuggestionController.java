@@ -46,9 +46,9 @@ public class SuggestionController {
 		}
 		suggestionDAO.insertSuggestionShow(suggestion,currentUser);
 
-    	 Map<String, Object> model = ViewUtil.baseModel(ctx);
-         model.put("show", suggestion);
-         ctx.render(Template.SHOW, model);
+    	Map<String, Object> model = ViewUtil.baseModel(ctx);
+        model.put("show", suggestion);
+        ctx.render(Template.SHOW, model);
     };
     
     

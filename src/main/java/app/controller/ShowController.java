@@ -89,5 +89,5 @@ public class ShowController {
     
     public static boolean getDelete(Context ctx) {
     	return ctx.formParam("Check") != null;
-    	}
+    }
 }
