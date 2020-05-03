@@ -25,7 +25,6 @@ public class LoginController {
 
     public static Handler handleLoginPost = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
-        System.out.println(UserController.isAdmin(getQueryUsername(ctx)));
         if (!UserController.authenticate(getQueryUsername(ctx), getQueryPassword(ctx))) {
             model.put("authenticationFailed", true);
             ctx.render(Template.LOGIN, model);
