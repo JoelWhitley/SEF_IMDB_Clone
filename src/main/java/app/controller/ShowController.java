@@ -56,12 +56,9 @@ public class ShowController {
     		}
     	}
     	 //if delete button = pressed then execute sql delete query for current logged user with current showid
-    	 else if(getDelete(ctx)) {
-
-    		//UserReviewDAO.deleteReviewInDataBase((String) ctx.sessionAttribute("currentUser"), Integer.parseInt(ctx.pathParam("showid")));
-    		UserReviewDAO.deleteReviewInDataBase(getSessionCurrentUser(ctx), getParamShowId(ctx));
-
-    	 }
+    	if(getReviewDeleteUsername(ctx)!=null) {
+    		deleteUserReview(getReviewDeleteUsername(ctx), getParamShowId(ctx));
+    	}
     	 
     	 Map<String, Object> model = ViewUtil.baseModel(ctx);
          model.put("show", ShowDAO.getShowById(getParamShowId(ctx)));
@@ -97,9 +94,9 @@ public class ShowController {
     	}	
     }
     
-    public static boolean getDelete(Context ctx) {
-    	return ctx.formParam("Check") != null;
-    	}
+    public static String getReviewDeleteUsername(Context ctx) {
+    	return ctx.formParam("Check");
+    }
     
     public static boolean checkAlreadyReviewed(Context ctx) {
 		List<UserReview> currentUsersReviews =  UserReviewDAO.searchReviewByUsername(getSessionCurrentUser(ctx));
@@ -113,6 +110,10 @@ public class ShowController {
 		}
 		return contains;
 	}
+    
+    public static void deleteUserReview(String username, int showID) {
+    	UserReviewDAO.deleteReviewInDataBase(username, showID);
+    }
 
     }
 

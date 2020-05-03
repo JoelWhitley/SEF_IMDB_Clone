@@ -118,9 +118,9 @@ public class UserReviewDAO {
             result.next();
             
             //Insert query.
-            String insertQuery = String.format("INSERT INTO `user_review` VALUES ('%s', '%s', '%s', '%s', '%s', '%s')", 
-            		result.getInt(1) +1, review.getShowID(), review.getUsername(), 
-            		review.getRating(), review.getReview(), review.getDate());
+            String insertQuery = String.format("INSERT INTO `user_review` VALUES ('%s', '%s', '%s', '%s', '%s', '%s')",
+            		result.getInt(1) +1, review.getShowID(), review.getUsername(),
+            		review.getRating(), review.getReview().replace("'", "''").replace("\\", "\\\\"),review.getDate());
             		
             try {
             	PreparedStatement insertStatement = connection.prepareStatement(insertQuery);

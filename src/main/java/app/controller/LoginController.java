@@ -52,6 +52,7 @@ public class LoginController {
     public static Handler handleLogoutPost = ctx -> {
         ctx.sessionAttribute("currentUser", null);
         ctx.sessionAttribute("loggedOut", "true");
+        ctx.sessionAttribute("admin", false);
         ctx.redirect(Web.LOGIN);
     };
 
