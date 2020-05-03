@@ -40,7 +40,7 @@ public class suggestionDAO {
             
             //Insert query.
             String insertQuery = String.format("INSERT INTO `show` VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')", 
-            		result.getInt(1) +1, suggestion.getShowTitle(), suggestion.getGenre(), 
+            		ShowDAO.getLowestUnusedID(), suggestion.getShowTitle(), suggestion.getGenre(), 
             		suggestion.getLength(), suggestion.getIsMovie(), suggestion.getIsSeries(),
             		ProCoDAO.findProCoID(company), suggestion.getYear(), status, dateTime);
             		

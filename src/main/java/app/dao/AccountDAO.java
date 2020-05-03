@@ -77,15 +77,15 @@ public class AccountDAO {
                 while(result.next()) {
                     // 2) Add it to the list we have prepared
                 	
-                	
+                	//if(result.getString("type").contentEquals(accountRole.ADMIN.getString()))
                     user = new Account(result.getString("username"),
                             result.getString("password"), result.getString("first_name"),
                               result.getString("last_name"), result.getString("address"), 
                               result.getString("country"), result.getString("gender"), result.getString("email"),accountRole.USER);
-                    if(result.getString("type").contentEquals(accountRole.ADMIN.getString())) {
+                    if(result.getString("type").equalsIgnoreCase(accountRole.ADMIN.getString())) {
                     	user.setRole(accountRole.ADMIN);
                     }
-                    else if(result.getString("type").contentEquals(accountRole.PROCO.getString())) {
+                    else if(result.getString("type").equalsIgnoreCase(accountRole.PROCO.getString())) {
                     	user.setRole(accountRole.PROCO);
                     }
                 }

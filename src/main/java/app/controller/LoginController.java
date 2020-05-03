@@ -37,6 +37,7 @@ public class LoginController {
             }
             if(UserController.isAdmin(getQueryUsername(ctx))) {
             	 ctx.sessionAttribute("admin", true);
+            	 model.put("admin", RequestUtil.getSessionIsAdmin(ctx));
             }
             ctx.render(Template.LOGIN, model);
             
