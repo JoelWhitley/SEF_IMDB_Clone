@@ -4,6 +4,7 @@ package app.dao;
 import app.dao.utils.DatabaseUtils;
 import app.model.Person;
 import app.model.Show;
+import app.model.enumeration.showStatus;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -182,15 +183,21 @@ public class PersonDAO {
             // If you have multiple results, you do a while
             while(result.next()) {
                 // 2) Add it to the list we have prepared
+            	           	
             	filmography.add(
-                  // 1) Create a new account object
+//            			public Show(int showid,String showTitle,double length,boolean isMovie,
+//            		    		boolean isSeries,String genre,int year,showStatus status,
+//            		    		String proCo)
             			 new Show(result.getInt("showid"),
             					 result.getString("show_title"),
             					 result.getDouble("length"),
             					 result.getBoolean("movie"),
             					 result.getBoolean("series"),
             					 result.getString("genre"),
-            					 result.getInt("year"))
+            					 result.getInt("year"),
+            					 showStatus.valueOf(result.getString("show_status")),
+            					 result.getString("proCo")
+            					 )
                 );
             }
 

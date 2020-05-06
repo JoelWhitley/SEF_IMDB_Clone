@@ -1,6 +1,5 @@
 package app.controller;
 
-import app.Main;
 import app.controller.paths.Template;
 import app.controller.paths.Web;
 import app.controller.utils.RequestUtil;
@@ -36,8 +35,14 @@ public class LoginController {
             if (RequestUtil.getQueryLoginRedirect(ctx) != null) {
                 ctx.redirect(RequestUtil.getQueryLoginRedirect(ctx));
             }
+            if(UserController.isAdmin(getQueryUsername(ctx))) {
+            	 ctx.sessionAttribute("admin", true);
+            	 model.put("admin", RequestUtil.getSessionIsAdmin(ctx));
+            }
             ctx.render(Template.LOGIN, model);
+            
         }
+        
     };
 
 
@@ -47,6 +52,7 @@ public class LoginController {
     public static Handler handleLogoutPost = ctx -> {
         ctx.sessionAttribute("currentUser", null);
         ctx.sessionAttribute("loggedOut", "true");
+        ctx.sessionAttribute("admin", false);
         ctx.redirect(Web.LOGIN);
     };
 

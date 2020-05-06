@@ -1,23 +1,21 @@
 package app;
 
 import app.controller.AccountController;
+import app.controller.AdminController;
 import app.controller.IndexController;
 import app.controller.ShowSearchController;
 import app.controller.UserPreviewController;
 import app.controller.LoginController;
 import app.controller.PersonSearchController;
 import app.controller.ShowController;
-import app.controller.personController;
+import app.controller.PersonController;
+import app.controller.SuggestionController;
 import app.controller.paths.Web;
 import app.controller.utils.ViewUtil;
 
 import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
 import static io.javalin.apibuilder.ApiBuilder.*;
-
-
-
-
 
 public class Main {
 
@@ -28,6 +26,7 @@ public class Main {
         }).start(getHerokuAssignedPort());
 
         app.routes(() -> {
+
             // You will have to update this, to limit who can see the reviews
             // before(LoginController.ensureLoginBeforeViewing);
 
@@ -42,16 +41,23 @@ public class Main {
             
            get(Web.USER, UserPreviewController.serveUserPage);
             
-           get(Web.RESULT, PersonSearchController.servePersonResults);
+            get(Web.RESULT, PersonSearchController.servePersonResults);
            
-           get(Web.SEARCHINDEX, ShowSearchController.serveShowResults);
+            get(Web.SEARCHINDEX, ShowSearchController.serveShowResults);
             
             
             get(Web.SHOW, ShowController.serveShowPage);
             post(Web.SHOW, ShowController.handleUserReview);
+            
+            get(Web.ADMIN, AdminController.serveAdminPage);
+            post(Web.ADMIN, AdminController.handleAdminAction);
 
+            get(Web.PERSON, PersonController.personPage);
 
-            get(Web.PERSON, personController.personPage);
+			get(Web.SUGGESTION, SuggestionController.suggestionPage);
+			post(Web.SUGGESTION, SuggestionController.handleNewSuggestion);
+			
+		
 
             // Add new actions here
             // Seeing pages (get) and sending information in forms (post)
@@ -59,11 +65,6 @@ public class Main {
 
         app.error(404, ViewUtil.notFound);
     }
-
-
-
-
-
 
     public static int getHerokuAssignedPort() {
         ProcessBuilder processBuilder = new ProcessBuilder();

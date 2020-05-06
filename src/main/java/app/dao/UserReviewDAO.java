@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import app.dao.utils.DatabaseUtils;
@@ -119,9 +118,9 @@ public class UserReviewDAO {
             result.next();
             
             //Insert query.
-            String insertQuery = String.format("INSERT INTO `user_review` VALUES ('%s', '%s', '%s', '%s', '%s', '%s')", 
-            		result.getInt(1) +1, review.getShowID(), review.getUsername(), 
-            		review.getRating(), review.getReview(), review.getDate());
+            String insertQuery = String.format("INSERT INTO `user_review` VALUES ('%s', '%s', '%s', '%s', '%s', '%s')",
+            		result.getInt(1) +1, review.getShowID(), review.getUsername(),
+            		review.getRating(), review.getReview().replace("'", "''").replace("\\", "\\\\"),review.getDate());
             		
             try {
             	PreparedStatement insertStatement = connection.prepareStatement(insertQuery);
@@ -143,7 +142,6 @@ public static void deleteReviewInDataBase(String username, int showId) {
 	
 		String deleteQuery = "DELETE FROM user_review WHERE user_id = '" + username 
 		+ "' AND show_id = " + showId + ";";
-		System.out.println(deleteQuery);
 		
 		try {
         	Connection connection = DatabaseUtils.connectToDatabase();

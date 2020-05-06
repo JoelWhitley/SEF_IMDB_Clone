@@ -1,16 +1,17 @@
 package app.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.math.*;
 
 import app.dao.utils.DatabaseUtils;
 import app.model.Person;
 import app.model.ProductionCompany;
 import app.model.Show;
+import app.model.enumeration.showStatus;
 
 public class ShowDAO {
 
@@ -28,8 +29,11 @@ public class ShowDAO {
             // If you have multiple results, you do a while
 	        while(result.next()) {
 	            shows.add(   
-	              new Show(result.getInt("showid"),result.getString("show_title"), result.getDouble("length"),
-	            		  result.getBoolean("movie"),result.getBoolean("series"),result.getString("genre"),result.getInt("year"))
+	              new Show(result.getInt("showid"),result.getString("show_title")
+	            		  ,result.getDouble("length")
+	            		  ,result.getBoolean("movie"),result.getBoolean("series")
+	            		  ,result.getString("genre"),result.getInt("year"),showStatus.VISABLE
+	            		  ,result.getString("proco_id")) 
 	              );
 	        }
 	
@@ -74,8 +78,7 @@ public class ShowDAO {
 	    }
 	    return totalReviews;
 	}
-
-
+	
 	public static double getStarPercent(int id, int star) {
 		double starReviews = 0;
 		double allReviews = 0;
@@ -209,6 +212,126 @@ public class ShowDAO {
         if(!cast.isEmpty()) return cast;
         // If we are here, something bad happened
         return null;
+	}
+	
+	public static List<Show> getShowsByPending() {
+		List<Show> shows =  new ArrayList<>();
+		String sql = "SELECT * FROM `show` WHERE status ='" + showStatus.USERSUBMISSION.getString() + "'";
+		
+        try {
+        	Connection connection = DatabaseUtils.connectToDatabase();
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            // If you have multiple results, you do a while
+	        while(result.next()) {
+	            shows.add(   
+	              new Show(result.getInt("showid"),result.getString("show_title"), result.getDouble("length"), 
+	            		  result.getBoolean("movie"),result.getBoolean("series"),result.getString("genre"),result.getInt("year"),showStatus.USERSUBMISSION,
+	              		result.getString("proco_id")) 
+	              );
+	        }
+	
+	        // Close it
+	        DatabaseUtils.closeConnection(connection);
+		    }
+	    catch (Exception e) {
+	        e.printStackTrace();
+	    }
+     // If there is a result
+	    if(!shows.isEmpty()) return shows;
+	    // If we are here, something bad happened
+	    return null;
+	}
+
+	public static int getHighestShowID() {
+		List<Show> shows =  new ArrayList<>();
+		String sql = "SELECT * FROM `show`";
+		int last = 0;
+		
+        try {
+        	Connection connection = DatabaseUtils.connectToDatabase();
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+	        while(result.next()) {
+	            last++;
+	        }
+	
+	        // Close it
+	        DatabaseUtils.closeConnection(connection);
+		    }
+	    catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	
+	
+	    // If there is a result
+	    if(!shows.isEmpty()) return last;
+	    // If we are here, something bad happened
+	    return 1;
+	}
+
+	public static void updateStatus() {
+		Connection connection;
+		try {
+			connection = DatabaseUtils.connectToDatabase();
+			String updateQuery = "UPDATE `show` SET status = 'VISABLE' WHERE status = 'PROCOSUBMISSION' AND DATEDIFF(datetime_submitted, CURRENT_TIMESTAMP ) <= -1;";
+			PreparedStatement insertStatement = connection.prepareStatement(updateQuery);
+	    	insertStatement.execute();
+		} catch (Exception e) {
+			System.out.println("Error connecting to database");
+		}
+		
+	
+	}
+
+	public static void changeShowStatus(int index, showStatus status) {
+		Connection connection;
+		try {
+			connection = DatabaseUtils.connectToDatabase();
+			String updateQuery = "UPDATE `show` SET status = '" + status.getString() + "' WHERE showid = " + index + ";";
+			PreparedStatement insertStatement = connection.prepareStatement(updateQuery);
+	    	insertStatement.execute();
+		} catch (Exception e) {
+			System.out.println("Error connecting to database");
+		}
+		
+	}
+
+	public static void deleteShow(int index) {
+		Connection connection;
+		try {
+			connection = DatabaseUtils.connectToDatabase();
+			String updateQuery = "DELETE FROM `show` WHERE showid = " + index + ";";
+			PreparedStatement insertStatement = connection.prepareStatement(updateQuery);
+	    	insertStatement.execute();
+		} catch (Exception e) {
+			System.out.println("Error connecting to database");
+		}
+		
+	}
+	
+	public static int getLowestUnusedID() {
+		String sql = "SELECT * FROM `show`";
+		int currentRow = 1;
+		
+        try {
+        	Connection connection = DatabaseUtils.connectToDatabase();
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+	        while(result.next()) {
+	            if (result.getInt("showid") != currentRow) {
+	            	DatabaseUtils.closeConnection(connection);
+	            	return currentRow;
+	            }
+	            currentRow++;
+	        }
+
+		}
+	    catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	
+        return currentRow;
 	}
 }
 

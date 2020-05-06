@@ -17,6 +17,7 @@ public class ViewUtil {
     public static Map<String, Object> baseModel(Context ctx) {
         Map<String, Object> model = new HashMap<>();
         model.put("currentUser", RequestUtil.getSessionCurrentUser(ctx));
+        model.put("admin", RequestUtil.getSessionIsAdmin(ctx));
         return model;
     }
 

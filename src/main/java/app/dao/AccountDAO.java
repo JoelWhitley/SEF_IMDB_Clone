@@ -1,17 +1,14 @@
 package app.dao;
 
-import app.Main;
 import app.dao.utils.DatabaseUtils;
 import app.model.Account;
-import org.eclipse.collections.impl.list.mutable.FastList;
+import app.model.enumeration.accountRole;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
 
 
 public class AccountDAO {
@@ -79,10 +76,18 @@ public class AccountDAO {
                 // If you have multiple results, you do a while
                 while(result.next()) {
                     // 2) Add it to the list we have prepared
+                	
+                	//if(result.getString("type").contentEquals(accountRole.ADMIN.getString()))
                     user = new Account(result.getString("username"),
                             result.getString("password"), result.getString("first_name"),
                               result.getString("last_name"), result.getString("address"), 
-                              result.getString("country"), result.getString("gender"), result.getString("email") );
+                              result.getString("country"), result.getString("gender"), result.getString("email"),accountRole.USER);
+                    if(result.getString("type").equalsIgnoreCase(accountRole.ADMIN.getString())) {
+                    	user.setRole(accountRole.ADMIN);
+                    }
+                    else if(result.getString("type").equalsIgnoreCase(accountRole.PROCO.getString())) {
+                    	user.setRole(accountRole.PROCO);
+                    }
                 }
 
                 // Close it
@@ -93,6 +98,28 @@ public class AccountDAO {
             }
     	return user;
     	
+    }
+    
+    public static String getUserType(String username) {
+	    String user = null;
+		try {
+	        // Here you prepare your sql statement
+	        String sql = "SELECT * FROM `account` WHERE username LIKE '" + username + "'";
+	
+	        // Execute the query
+	        Connection connection = DatabaseUtils.connectToDatabase();
+	        Statement statement = connection.createStatement();
+	        ResultSet result = statement.executeQuery(sql);
+	        while(result.next()) {
+                user = result.getString("type");
+            }
+	        // Close it
+	        DatabaseUtils.closeConnection(connection);
+	    }
+	    catch (Exception e) {
+	        e.printStackTrace();
+	    }
+		return user;
     }
 
 

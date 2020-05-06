@@ -3,10 +3,10 @@ package app.controller;
 import static app.controller.utils.RequestUtil.getParamShowId;
 import static app.controller.utils.RequestUtil.getSessionCurrentUser;
 
+import java.util.List;
 import java.util.Map;
 
 import app.controller.paths.Template;
-import app.controller.paths.Web;
 import app.controller.utils.ViewUtil;
 import app.dao.ShowDAO;
 import app.dao.UserReviewDAO;
@@ -23,6 +23,9 @@ public class ShowController {
         model.put("cast", ShowDAO.getCast(getParamShowId(ctx)));
         model.put("proco", ShowDAO.getProco(getParamShowId(ctx)));
         model.put("reviews", UserReviewDAO.searchReviewByShowID(getParamShowId(ctx)));
+        
+        model.put("alreadyReviewed", checkAlreadyReviewed(ctx));
+        
         //simple impl
         model.put("fiveRating", ShowDAO.getStarRating(getParamShowId(ctx), 5));
         model.put("fourRating", ShowDAO.getStarRating(getParamShowId(ctx), 4));
@@ -36,35 +39,36 @@ public class ShowController {
         model.put("twoPercent", ShowDAO.getStarPercent(getParamShowId(ctx), 2));
         model.put("onePercent", ShowDAO.getStarPercent(getParamShowId(ctx), 1));
         ctx.render(Template.SHOW, model);
-        
-        
     };
     public static Handler handleUserReview = ctx -> {
 
     	UserReview review = null;
-    	 if(getReviewPost(ctx) != null) {
-
-    	review = new UserReview(-1, getSessionCurrentUser(ctx), getParamShowId(ctx), getRatingPost(ctx), getReviewPost(ctx));
-    	UserReviewDAO.insertReviewIntoDataBase(review);
-    	 }
-    	 else if (getRatingPost(ctx) != -1) {
-
-    		 review = new UserReview(-1, getSessionCurrentUser(ctx), getParamShowId(ctx), getRatingPost(ctx));
-    		 UserReviewDAO.insertReviewIntoDataBase(review);
-    	 }
+    	if(getReviewPost(ctx) != null || getRatingPost(ctx) != -1) {
+    		//Check User has not
+    		
+    		if(checkAlreadyReviewed(ctx)== false) {
+	    	 if(getReviewPost(ctx) != null) {
+	    		 review = new UserReview(-1, getSessionCurrentUser(ctx), getParamShowId(ctx), getRatingPost(ctx), getReviewPost(ctx));
+	    		 UserReviewDAO.insertReviewIntoDataBase(review);
+	    	 }
+	    	 else if (getRatingPost(ctx) != -1) {
+	    		 review = new UserReview(-1, getSessionCurrentUser(ctx), getParamShowId(ctx), getRatingPost(ctx));
+	    		 UserReviewDAO.insertReviewIntoDataBase(review);
+	    	 }
+    		}
+    	}
     	 //if delete button = pressed then execute sql delete query for current logged user with current showid
-    	 else if(getDelete(ctx)) {
-
-    		//UserReviewDAO.deleteReviewInDataBase((String) ctx.sessionAttribute("currentUser"), Integer.parseInt(ctx.pathParam("showid")));
-    		UserReviewDAO.deleteReviewInDataBase(getSessionCurrentUser(ctx), getParamShowId(ctx));
-
-    	 }
+    	if(getReviewDeleteUsername(ctx)!=null) {
+    		deleteUserReview(getReviewDeleteUsername(ctx), getParamShowId(ctx));
+    	}
     	 
     	 Map<String, Object> model = ViewUtil.baseModel(ctx);
          model.put("show", ShowDAO.getShowById(getParamShowId(ctx)));
          model.put("cast", ShowDAO.getCast(getParamShowId(ctx)));
          model.put("proco", ShowDAO.getProco(getParamShowId(ctx)));
          model.put("reviews", UserReviewDAO.searchReviewByShowID(getParamShowId(ctx)));
+         
+         model.put("alreadyReviewed", checkAlreadyReviewed(ctx));
          
          model.put("fiveRating", ShowDAO.getStarRating(getParamShowId(ctx), 5));
          model.put("fourRating", ShowDAO.getStarRating(getParamShowId(ctx), 4));
@@ -94,7 +98,28 @@ public class ShowController {
     	}	
     }
     
-    public static boolean getDelete(Context ctx) {
-    	return ctx.formParam("Check") != null;
-    	}
-}
+    public static String getReviewDeleteUsername(Context ctx) {
+    	return ctx.formParam("Check");
+    }
+    
+    public static boolean checkAlreadyReviewed(Context ctx) {
+		List<UserReview> currentUsersReviews =  UserReviewDAO.searchReviewByUsername(getSessionCurrentUser(ctx));
+		boolean contains = false;
+		if (currentUsersReviews != null) {
+		for(UserReview review : currentUsersReviews) {
+			if(review.getShowID() == getParamShowId(ctx)) {
+				contains = true;
+			}
+		}
+		}
+		return contains;
+	}
+    
+    public static void deleteUserReview(String username, int showID) {
+    	UserReviewDAO.deleteReviewInDataBase(username, showID);
+    }
+
+    }
+
+
+	

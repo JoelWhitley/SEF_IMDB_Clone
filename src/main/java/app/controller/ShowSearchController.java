@@ -6,11 +6,7 @@ import java.util.Map;
 
 import app.controller.paths.Template;
 import app.controller.utils.ViewUtil;
-import app.dao.PersonDAO;
 import app.dao.SearchIndexDAO;
-import app.dao.ShowDAO;
-import app.dao.UserReviewDAO;
-import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import static app.controller.utils.RequestUtil.*;
 

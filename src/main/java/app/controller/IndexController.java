@@ -4,7 +4,6 @@ import app.controller.paths.Template;
 import app.controller.paths.Web;
 import app.controller.utils.ViewUtil;
 import app.dao.PersonDAO;
-import app.dao.SearchIndexDAO;
 import app.model.Image;
 import app.model.Person;
 import io.javalin.http.Context;
@@ -29,9 +28,6 @@ public class IndexController {
     
 
     public static Handler handleIndexPost = ctx -> {
-    	Map<String, Object> model = ViewUtil.baseModel(ctx);
-    	
-    	
     	if(getQueryNameSearch(ctx) != null) {
     		ctx.sessionAttribute("personSearch", getQueryNameSearch(ctx));
     		ctx.redirect(Web.RESULT);
@@ -40,7 +36,6 @@ public class IndexController {
     		 ctx.sessionAttribute("showSearch", getShowQuery(ctx));
     		ctx.redirect(Web.SEARCHINDEX);
     	}
-
     };
     
     public static String getShowQuery(Context ctx) {

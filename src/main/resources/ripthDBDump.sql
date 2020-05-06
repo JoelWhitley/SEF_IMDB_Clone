@@ -1,10 +1,14 @@
+
+    
 -- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
 --
 -- Host: localhost    Database: imbd
 -- -----------------------------------------accountperson-------------
--- Server version	8.0.16
+-- Server version    8.0.16
+
 
 SET time_zone = '+11:00';
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -17,9 +21,11 @@ SET time_zone = '+11:00';
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+
 --
 -- Table structure for table `account`
 --
+
 
 DROP TABLE IF EXISTS `account`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -39,19 +45,23 @@ CREATE TABLE `account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+
 --
 -- Dumping data for table `account`
 --
 
+
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES ('caramel6','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','caramelwilson@gmail.com','123 Fake Street, Fakesville','Australia','admin','Female','Cara','Wilson'),('chocolate7','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','garychoco@gmail.com','123 Fake Street, Fakesville','Australia','proco','Male','Gary','Chocobo'),('vanilla8','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','vanillaice@gmail.com','123 Fake Street, Fakesville','Australia','user','Male','Vanilla','Ice'),('strawberry9','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','samanthastrawberry@gmail.com','123 Fake Street, Fakesville','Australia','user','Female','Samantha','Strawberry'),('banana10','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','bartnanny@gmail.com','123 Fake Street, Fakesville','Australia','user','Female','Bart','Nanny');
+INSERT INTO `account` VALUES ('caramel6','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','caramelwilson@gmail.com','123 Fake Street, Fakesville','Australia','ADMIN','Female','Cara','Wilson'),('chocolate7','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','garychoco@gmail.com','123 Fake Street, Fakesville','Australia','PROCO','Male','Gary','Chocobo'),('vanilla8','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','vanillaice@gmail.com','123 Fake Street, Fakesville','Australia','USER','Male','Vanilla','Ice'),('strawberry9','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','samanthastrawberry@gmail.com','123 Fake Street, Fakesville','Australia','USER','Female','Samantha','Strawberry'),('banana10','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','bartnanny@gmail.com','123 Fake Street, Fakesville','Australia','USER','Female','Bart','Nanny');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
+
 
 --
 -- Table structure for table `credits_roll`
 --
+
 
 DROP TABLE IF EXISTS `credits_roll`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -70,9 +80,11 @@ CREATE TABLE `credits_roll` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+
 --
 -- Dumping data for table `credits_roll`
 --
+
 
 LOCK TABLES `credits_roll` WRITE;
 /*!40000 ALTER TABLE `credits_roll` DISABLE KEYS */;
@@ -80,9 +92,11 @@ INSERT INTO `credits_roll` VALUES (6,'Actor',1,2019,0,'Kylo Ren'),(11,'Actress',
 /*!40000 ALTER TABLE `credits_roll` ENABLE KEYS */;
 UNLOCK TABLES;
 
+
 --
 -- Table structure for table `person`
 --
+
 
 DROP TABLE IF EXISTS `person`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -97,9 +111,11 @@ CREATE TABLE `person` (
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+
 --
 -- Dumping data for table `person`
 --
+
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
@@ -107,9 +123,11 @@ INSERT INTO `person` VALUES (1,'Robert De Niro','Actor','1943-08-17','One of the
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
+
 --
 -- Table structure for table `production_company`
 --
+
 
 DROP TABLE IF EXISTS `production_company`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -121,9 +139,11 @@ CREATE TABLE `production_company` (
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+
 --
 -- Dumping data for table `production_company`
 --
+
 
 LOCK TABLES `production_company` WRITE;
 /*!40000 ALTER TABLE `production_company` DISABLE KEYS */;
@@ -131,9 +151,11 @@ INSERT INTO `production_company` VALUES (1,'Universal Pictures'),(2,'Paramount P
 /*!40000 ALTER TABLE `production_company` ENABLE KEYS */;
 UNLOCK TABLES;
 
+
 --
 -- Table structure for table `show`
 --
+
 
 DROP TABLE IF EXISTS `show`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -155,19 +177,23 @@ CREATE TABLE `show` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+
 --
 -- Dumping data for table `show`
 --
 
+
 LOCK TABLES `show` WRITE;
 /*!40000 ALTER TABLE `show` DISABLE KEYS */;
-INSERT INTO `show` VALUES (1,'Star Wars: Episode IX - The Rise of Skywalker','Action',2.22,1,0,9,2019,'visable','2000-01-01 00:00:00.000'),(2,'The Wire','Drama',1.00,0,1,3,2002,'visable','2000-01-01 00:00:00.000'),(3,'How to Train Your Dragon','Comedy/Family',1.63,1,0,5,2010,'visable','2000-01-01 00:00:00.000'),(4,'Blade Runner','Sci-fi/Thriller',1.90,1,0,4,1982,'visable','2000-01-01 00:00:00.000'),(5,'Stranger Things','Horror',1.05,0,1,7,2016,'usersubmission','2000-01-01 00:00:00.000');
+INSERT INTO `show` VALUES (1,'Star Wars: Episode IX - The Rise of Skywalker','Action',2.22,1,0,9,2019,'VISABLE','2000-01-01 00:00:00.000'),(2,'The Wire','Drama',1.00,0,1,3,2002,'VISABLE','2000-01-01 00:00:00.000'),(3,'How to Train Your Dragon','Comedy/Family',1.63,1,0,5,2010,'VISABLE','2000-01-01 00:00:00.000'),(4,'Blade Runner','Sci-fi/Thriller',1.90,1,0,4,1982,'VISABLE','2000-01-01 00:00:00.000'),(5,'Stranger Things','Horror',1.05,0,1,7,2016,'USERSUBMISSION','2000-01-01 00:00:00.000');
 /*!40000 ALTER TABLE `show` ENABLE KEYS */;
 UNLOCK TABLES;
+
 
 --
 -- Table structure for table `user_review`
 --
+
 
 DROP TABLE IF EXISTS `user_review`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -187,9 +213,11 @@ CREATE TABLE `user_review` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+
 --
 -- Dumping data for table `user_review`
 --
+
 
 LOCK TABLES `user_review` WRITE;
 /*!40000 ALTER TABLE `user_review` DISABLE KEYS */;
@@ -199,6 +227,7 @@ UNLOCK TABLES;
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
+
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
@@ -207,4 +236,32 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-17 11:53:45
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
