@@ -7,7 +7,7 @@
 	        <h4><a class="shows" href="/shows/$show.showid">$show.showTitle</a><br></h4> 
 	        
             
-           	<form>
+           	<form id="addShowSuggestion" method="post">
 	        	<input name="show" type="hidden" value="$show.showid">
 	        	<input name="accept" type="submit" value="Accept"></input>
 	        	<input name="deny" type="submit" value="Deny"></input>

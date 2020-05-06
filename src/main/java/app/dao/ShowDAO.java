@@ -190,7 +190,7 @@ public class ShowDAO {
 		Connection connection;
 		try {
 			connection = DatabaseUtils.connectToDatabase();
-			String updateQuery = "UPDATE `show` SET status = 'VISABLE' WHERE status = 'PROCOSUBMISSION' AND DATEDIFF(submitted, CURRENT_TIMESTAMP ) <= -1;";
+			String updateQuery = "UPDATE `show` SET status = 'VISABLE' WHERE status = 'PROCOSUBMISSION' AND DATEDIFF(datetime_submitted, CURRENT_TIMESTAMP ) <= -1;";
 			PreparedStatement insertStatement = connection.prepareStatement(updateQuery);
 	    	insertStatement.execute();
 		} catch (Exception e) {
@@ -219,8 +219,17 @@ public class ShowDAO {
 		Connection connection;
 		try {
 			connection = DatabaseUtils.connectToDatabase();
-			String updateQuery = "DELETE FROM `show` WHERE showid = " + index + ";";
+			//delete refs to show
+			String updateQuery = "DELETE FROM `credits_roll` WHERE show_id = " + index + ";";
 			PreparedStatement insertStatement = connection.prepareStatement(updateQuery);
+	    	insertStatement.execute();
+	    	updateQuery = "DELETE FROM `user_review` WHERE show_id = " + index + ";";
+			insertStatement = connection.prepareStatement(updateQuery);
+	    	insertStatement.execute();
+	    	
+			//delete show
+			updateQuery = "DELETE FROM `show` WHERE showid = " + index + ";";
+			insertStatement = connection.prepareStatement(updateQuery);
 	    	insertStatement.execute();
 		} catch (Exception e) {
 			System.out.println("Error connecting to database");

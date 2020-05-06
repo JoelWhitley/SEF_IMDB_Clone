@@ -53,7 +53,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES ('caramel6','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','caramelwilson@gmail.com','123 Fake Street, Fakesville','Australia','admin','Female','Cara','Wilson'),('chocolate7','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','garychoco@gmail.com','123 Fake Street, Fakesville','Australia','proco','Male','Gary','Chocobo'),('vanilla8','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','vanillaice@gmail.com','123 Fake Street, Fakesville','Australia','user','Male','Vanilla','Ice'),('strawberry9','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','samanthastrawberry@gmail.com','123 Fake Street, Fakesville','Australia','user','Female','Samantha','Strawberry'),('banana10','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','bartnanny@gmail.com','123 Fake Street, Fakesville','Australia','user','Female','Bart','Nanny');
+INSERT INTO `account` VALUES ('caramel6','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','caramelwilson@gmail.com','123 Fake Street, Fakesville','Australia','ADMIN','Female','Cara','Wilson'),('chocolate7','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','garychoco@gmail.com','123 Fake Street, Fakesville','Australia','PROCO','Male','Gary','Chocobo'),('vanilla8','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','vanillaice@gmail.com','123 Fake Street, Fakesville','Australia','USER','Male','Vanilla','Ice'),('strawberry9','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','samanthastrawberry@gmail.com','123 Fake Street, Fakesville','Australia','USER','Female','Samantha','Strawberry'),('banana10','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','bartnanny@gmail.com','123 Fake Street, Fakesville','Australia','USER','Female','Bart','Nanny');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,11 +185,7 @@ CREATE TABLE `show` (
 
 LOCK TABLES `show` WRITE;
 /*!40000 ALTER TABLE `show` DISABLE KEYS */;
-<<<<<<< HEAD
-INSERT INTO `show` VALUES (1,'Star Wars: Episode IX - The Rise of Skywalker','Action',2.22,1,0,9,2019,'visable'),(2,'The Wire','Drama',1.00,0,1,3,2002,'visable'),(3,'How to Train Your Dragon','Comedy/Family',1.63,1,0,5,2010,'visable'),(4,'Blade Runner','Sci-fi/Thriller',1.90,1,0,4,1982,'visable'),(5,'Stranger Things','Horror',1.05,0,1,7,2016,'visable');
-=======
-INSERT INTO `show` VALUES (1,'Star Wars: Episode IX - The Rise of Skywalker','Action',2.22,1,0,9,2019,'visable','2000-01-01 00:00:00.000'),(2,'The Wire','Drama',1.00,0,1,3,2002,'visable','2000-01-01 00:00:00.000'),(3,'How to Train Your Dragon','Comedy/Family',1.63,1,0,5,2010,'visable','2000-01-01 00:00:00.000'),(4,'Blade Runner','Sci-fi/Thriller',1.90,1,0,4,1982,'visable','2000-01-01 00:00:00.000'),(5,'Stranger Things','Horror',1.05,0,1,7,2016,'usersubmission','2000-01-01 00:00:00.000');
->>>>>>> 6aa4ea5a445b86ba8f3d7776bc44d0ce63bf6384
+INSERT INTO `show` VALUES (1,'Star Wars: Episode IX - The Rise of Skywalker','Action',2.22,1,0,9,2019,'VISABLE','2000-01-01 00:00:00.000'),(2,'The Wire','Drama',1.00,0,1,3,2002,'VISABLE','2000-01-01 00:00:00.000'),(3,'How to Train Your Dragon','Comedy/Family',1.63,1,0,5,2010,'VISABLE','2000-01-01 00:00:00.000'),(4,'Blade Runner','Sci-fi/Thriller',1.90,1,0,4,1982,'VISABLE','2000-01-01 00:00:00.000'),(5,'Stranger Things','Horror',1.05,0,1,7,2016,'USERSUBMISSION','2000-01-01 00:00:00.000');
 /*!40000 ALTER TABLE `show` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,33 +235,3 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

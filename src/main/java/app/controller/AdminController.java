@@ -4,10 +4,7 @@ import java.util.Map;
 
 import app.controller.paths.Template;
 import app.controller.utils.ViewUtil;
-import app.dao.AccountDAO;
 import app.dao.ShowDAO;
-import app.dao.suggestionDAO;
-import app.model.Show;
 import app.model.enumeration.showStatus;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
