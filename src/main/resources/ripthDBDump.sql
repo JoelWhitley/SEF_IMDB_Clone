@@ -185,7 +185,7 @@ CREATE TABLE `show` (
 
 LOCK TABLES `show` WRITE;
 /*!40000 ALTER TABLE `show` DISABLE KEYS */;
-INSERT INTO `show` VALUES (1,'Star Wars: Episode IX - The Rise of Skywalker','Action',2.22,1,0,9,2019,'VISABLE','2000-01-01 00:00:00.000'),(2,'The Wire','Drama',1.00,0,1,3,2002,'VISABLE','2000-01-01 00:00:00.000'),(3,'How to Train Your Dragon','Comedy/Family',1.63,1,0,5,2010,'VISABLE','2000-01-01 00:00:00.000'),(4,'Blade Runner','Sci-fi/Thriller',1.90,1,0,4,1982,'VISABLE','2000-01-01 00:00:00.000'),(5,'Stranger Things','Horror',1.05,0,1,7,2016,'USERSUBMISSION','2000-01-01 00:00:00.000');
+INSERT INTO `show` VALUES (1,'Star Wars: Episode IX - The Rise of Skywalker','Action',2.22,1,0,9,2019,'VISABLE','2000-01-01 00:00:00.000'),(2,'The Wire','Drama',1.00,0,1,3,2002,'PROCOSUBMISSION','2000-01-01 00:00:00.000'),(3,'How to Train Your Dragon','Comedy/Family',1.63,1,0,5,2010,'SUSPENDED','2000-01-01 00:00:00.000'),(4,'Blade Runner','Sci-fi/Thriller',1.90,1,0,4,1982,'PENDING','2000-01-01 00:00:00.000'),(5,'Stranger Things','Horror',1.05,0,1,7,2016,'USERSUBMISSION','2000-01-01 00:00:00.000');
 /*!40000 ALTER TABLE `show` ENABLE KEYS */;
 UNLOCK TABLES;
 

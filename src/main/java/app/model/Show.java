@@ -15,7 +15,8 @@ public class Show {
     private String genre;
     private String productionCompany;
     private String showTitle;
-    private showStatus status;
+    private showStatus showStatus;
+    private String status;
     //TODO
     private List<UserReview> userReviewList;
     private List<CreditsRoll> creditsRolls;
@@ -32,7 +33,8 @@ public class Show {
     	this.isSeries = isSeries;
     	this.genre = genre;
     	this.year = year;
-    	this.status = status;
+    	this.showStatus = status;
+    	this.status = status.getString();
     	this.productionCompany = proCo;
     }
     public int getShowid() {
@@ -69,11 +71,12 @@ public class Show {
     	return productionCompany;
     }
     
-    public showStatus Status() {
+    public String getStatus() {
     	return status;
     }
     
-    
-
+    public showStatus getShowStatus() {
+    	return showStatus;
+    }
 
 }

@@ -2,18 +2,78 @@
 #@mainLayout()
 	<div>
 	#if($admin)
-		<h1> Shows for Review: </h1>
-		#foreach($show in $shows)
-	        <h4><a class="shows" href="/shows/$show.showid">$show.showTitle</a><br></h4> 
-	        
-            
-           	<form id="addShowSuggestion" method="post">
-	        	<input name="show" type="hidden" value="$show.showid">
-	        	<input name="accept" type="submit" value="Accept"></input>
-	        	<input name="deny" type="submit" value="Deny"></input>
-	        </form>
-            
-	    	#end
+		#if ($userShows)
+			<h1> User Submitted Shows for Review: </h1>
+			#foreach($show in $userShows)
+		        <h4><a class="shows" href="/shows/$show.showid">$show.showTitle</a><br></h4> 
+		        
+	            
+	           	<form id="addShowSuggestion" method="post">
+		        	<input name="show" type="hidden" value="$show.showid"></input>
+		        	<input name="status" type="hidden" value="$show.status"></input>
+		        	<input name="accept" type="submit" value="Accept Submission"></input>
+		        	<input name="deny" type="submit" value="Deny Submission"></input>
+		        </form>
+		    #end
+	 	#end
+	 	
+	 	#if ($procoShows)
+			<h1> Production Company Submitted Shows for Review: </h1>
+			#foreach($show in $procoShows)
+		        <h4><a class="shows" href="/shows/$show.showid">$show.showTitle</a><br></h4> 
+		        
+	            
+	           	<form id="addShowSuggestion" method="post">
+		        	<input name="show" type="hidden" value="$show.showid"></input>
+		        	<input name="status" type="hidden" value="$show.status"></input>
+		        	<input name="accept" type="submit" value="Fast-track Submisson"></input>
+		        	<input name="deny" type="submit" value="Request a review"></input>
+		        </form>
+		    #end
+	 	#end
+	 	
+	 	#if ($pendingShows)
+			<h1> Pending Shows for Review: </h1>
+			#foreach($show in $pendingShows)
+		        <h4><a class="shows" href="/shows/$show.showid">$show.showTitle</a><br></h4> 
+		        
+	            
+	           	<form id="addShowSuggestion" method="post">
+		        	<input name="show" type="hidden" value="$show.showid"></input>
+		        	<input name="status" type="hidden" value="$show.status"></input>
+		        	<input name="accept" type="submit" value="Mark as Accepted"></input>
+		        	<input name="deny" type="submit" value="Delete Show"></input>
+		        </form>
+		    #end
+	 	#end
+	 	
+	 	#if ($suspendedShows)
+			<h1> Currently Suspended Shows for Review: </h1>
+			#foreach($show in $suspendedShows)
+		        <h4><a class="shows" href="/shows/$show.showid">$show.showTitle</a><br></h4> 
+		        
+	            
+	           	<form id="addShowSuggestion" method="post">
+		        	<input name="show" type="hidden" value="$show.showid"></input>
+		        	<input name="status" type="hidden" value="$show.status"></input>
+		        	<input name="accept" type="submit" value="Re-approve"></input>
+		        	<input name="deny" type="submit" value="Delete Show"></input>
+		        </form>
+		    #end
+	 	#end
+	 	#if ($visableShows)
+			<h1> Shows on Site: </h1>
+			#foreach($show in $visableShows)
+		        <h4><a class="shows" href="/shows/$show.showid">$show.showTitle</a><br></h4> 
+		        
+	            
+	           	<form id="addShowSuggestion" method="post">
+		        	<input name="show" type="hidden" value="$show.showid"></input>
+		        	<input name="status" type="hidden" value="$show.status"></input>
+		        	<input name="accept" type="submit" value="Request Show Review"></input>
+		        </form>
+		    #end
+	 	#end
 	</div>
 	#else
 	<h2>This page can only be accessed by admins</h2>
