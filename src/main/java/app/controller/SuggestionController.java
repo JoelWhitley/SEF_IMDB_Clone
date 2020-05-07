@@ -5,9 +5,9 @@ import app.controller.utils.ViewUtil;
 import app.dao.AccountDAO;
 import app.dao.ProCoDAO;
 import app.dao.ShowDAO;
-import app.dao.suggestionDAO;
+import app.dao.SuggestionDAO;
 import app.model.Show;
-import app.model.enumeration.showStatus;
+import app.model.enumeration.ShowStatus;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
@@ -35,20 +35,34 @@ public class SuggestionController {
     public static Handler handleNewSuggestion = ctx -> {
     	Show suggestion = null;
     	String currentUser = "";
+    	//form a suggestion show
 		if (getFormTitle(ctx) != null) {
+			//visable is a placeholder, gets replaced in the DAO
 			suggestion = new Show(ShowDAO.getHighestShowID(), getFormTitle(ctx), 
 									getFormLength(ctx), getFormIsMovie(ctx),
 									getFormIsSeries(ctx), getFormGenre(ctx),
-									getFormYear(ctx), showStatus.VISABLE, getFormProCo(ctx));
+									getFormYear(ctx), ShowStatus.VISABLE, getFormProCo(ctx));
 			
 			
 			currentUser = AccountDAO.getUserType(getFormUser(ctx));
 		}
-		suggestionDAO.insertSuggestionShow(suggestion,currentUser);
+		//if there is another show of this name, bring up an error, else just redirect
+		//to a preview of the page.
+		if (ShowDAO.checkDuplicateName(suggestion.getShowTitle()) == false) {
+			SuggestionDAO.insertSuggestionShow(suggestion,currentUser);
 
-    	Map<String, Object> model = ViewUtil.baseModel(ctx);
-        model.put("show", suggestion);
-        ctx.render(Template.SHOW, model);
+	    	Map<String, Object> model = ViewUtil.baseModel(ctx);
+	        model.put("show", suggestion);
+	        ctx.render(Template.SHOW, model);
+		}
+		else {
+	    	Map<String, Object> model = ViewUtil.baseModel(ctx);
+	        model.put("show", suggestion);
+	        model.put("error", "This entry is a duplicate. If you believe this is incorrect"
+	        		+ ", please contact an admin to edit the conflicting page.");
+	        ctx.render(Template.SUGGESTION, model);
+		}
+		
     };
     
     

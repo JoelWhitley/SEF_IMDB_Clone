@@ -8,7 +8,7 @@ import java.util.List;
 
 import app.dao.utils.DatabaseUtils;
 import app.model.Show;
-import app.model.enumeration.showStatus;
+import app.model.enumeration.ShowStatus;
 
 public class SearchIndexDAO {
 	public static final String SALT = "$2a$10$h.dl5J86rGH7I8bD9bZeZe";
@@ -66,7 +66,7 @@ public class SearchIndexDAO {
                 		  result.getBoolean("series"),
                 		  result.getString("genre"),
                 		  result.getInt("year"),
-                		  showStatus.VISABLE,
+                		  ShowStatus.VISABLE,
                 		  result.getString("proco_id"))
                   );
             }

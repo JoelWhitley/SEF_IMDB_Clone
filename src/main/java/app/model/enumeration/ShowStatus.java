@@ -1,6 +1,6 @@
 package app.model.enumeration;
 
-public enum showStatus {
+public enum ShowStatus {
 	USERSUBMISSION  {
 		@Override
 		public String getString() {

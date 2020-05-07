@@ -2,7 +2,7 @@ package app.dao;
 
 import app.dao.utils.DatabaseUtils;
 import app.model.Account;
-import app.model.enumeration.accountRole;
+import app.model.enumeration.AccountRole;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -81,12 +81,12 @@ public class AccountDAO {
                     user = new Account(result.getString("username"),
                             result.getString("password"), result.getString("first_name"),
                               result.getString("last_name"), result.getString("address"), 
-                              result.getString("country"), result.getString("gender"), result.getString("email"),accountRole.USER);
-                    if(result.getString("type").contentEquals(accountRole.ADMIN.getString())) {
-                    	user.setRole(accountRole.ADMIN);
+                              result.getString("country"), result.getString("gender"), result.getString("email"),AccountRole.USER);
+                    if(result.getString("type").contentEquals(AccountRole.ADMIN.getString())) {
+                    	user.setRole(AccountRole.ADMIN);
                     }
-                    else if(result.getString("type").contentEquals(accountRole.PROCO.getString())) {
-                    	user.setRole(accountRole.PROCO);
+                    else if(result.getString("type").contentEquals(AccountRole.PROCO.getString())) {
+                    	user.setRole(AccountRole.PROCO);
                     }
                 }
 

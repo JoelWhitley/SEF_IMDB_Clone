@@ -1,6 +1,6 @@
 package app.model.enumeration;
 
-public enum accountRole {
+public enum AccountRole {
 	USER {
 		@Override
 		public String getString() {

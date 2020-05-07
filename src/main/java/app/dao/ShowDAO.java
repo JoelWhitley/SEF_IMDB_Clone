@@ -9,7 +9,7 @@ import java.util.List;
 
 import app.dao.utils.DatabaseUtils;
 import app.model.Show;
-import app.model.enumeration.showStatus;
+import app.model.enumeration.ShowStatus;
 
 public class ShowDAO {
 
@@ -30,7 +30,7 @@ public class ShowDAO {
 	              new Show(result.getInt("showid"),result.getString("show_title")
 	            		  ,result.getDouble("length")
 	            		  ,result.getBoolean("movie"),result.getBoolean("series")
-	            		  ,result.getString("genre"),result.getInt("year"),showStatus.VISABLE
+	            		  ,result.getString("genre"),result.getInt("year"),ShowStatus.VISABLE
 	            		  ,result.getString("proco_id")) 
 	              );
 	        }
@@ -132,7 +132,7 @@ public class ShowDAO {
 	
 	public static List<Show> getShowsByPending() {
 		List<Show> shows =  new ArrayList<>();
-		String sql = "SELECT * FROM `show` WHERE status ='" + showStatus.USERSUBMISSION.getString() + "'";
+		String sql = "SELECT * FROM `show` WHERE status ='" + ShowStatus.USERSUBMISSION.getString() + "'";
 		
         try {
         	Connection connection = DatabaseUtils.connectToDatabase();
@@ -142,7 +142,7 @@ public class ShowDAO {
 	        while(result.next()) {
 	            shows.add(   
 	              new Show(result.getInt("showid"),result.getString("show_title"), result.getDouble("length"), 
-	            		  result.getBoolean("movie"),result.getBoolean("series"),result.getString("genre"),result.getInt("year"),showStatus.USERSUBMISSION,
+	            		  result.getBoolean("movie"),result.getBoolean("series"),result.getString("genre"),result.getInt("year"),ShowStatus.USERSUBMISSION,
 	              		result.getString("proco_id")) 
 	              );
 	        }
@@ -159,7 +159,7 @@ public class ShowDAO {
 	    return null;
 	}
 	
-	public static List<Show> getShowsByType(showStatus status) {
+	public static List<Show> getShowsByType(ShowStatus status) {
 		List<Show> shows =  new ArrayList<>();
 		String sql = "SELECT * FROM `show` WHERE status ='" + status.getString() + "'";
 		
@@ -230,7 +230,7 @@ public class ShowDAO {
 	}
 
 
-	public static void changeShowStatus(int index, showStatus status) {
+	public static void changeShowStatus(int index, ShowStatus status) {
 		Connection connection;
 		try {
 			connection = DatabaseUtils.connectToDatabase();
@@ -288,6 +288,26 @@ public class ShowDAO {
 	    }
 	
         return currentRow;
+	}
+
+
+	public static boolean checkDuplicateName(String showTitle) {
+		String sql = "SELECT * FROM `show` WHERE show_title = '" + showTitle + "'";
+		
+        try {
+        	Connection connection = DatabaseUtils.connectToDatabase();
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+	        while(result.next()) {
+	            return true;
+	        }
+
+		}
+	    catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	
+        return false;
 	}
 }
 

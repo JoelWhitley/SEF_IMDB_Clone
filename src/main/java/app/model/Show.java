@@ -3,7 +3,7 @@ package app.model;
 
 import java.util.List;
 
-import app.model.enumeration.showStatus;
+import app.model.enumeration.ShowStatus;
 
 
 public class Show {
@@ -15,7 +15,7 @@ public class Show {
     private String genre;
     private String productionCompany;
     private String showTitle;
-    private showStatus showStatus;
+    private ShowStatus showStatus;
     private String status;
     //TODO
     private List<UserReview> userReviewList;
@@ -24,7 +24,7 @@ public class Show {
    
 
     public Show(int showid,String showTitle,double length,boolean isMovie,
-    		boolean isSeries,String genre,int year,showStatus status,
+    		boolean isSeries,String genre,int year,ShowStatus status,
     		String proCo) {
     	this.showid = showid;
     	this.showTitle = showTitle;
@@ -75,7 +75,7 @@ public class Show {
     	return status;
     }
     
-    public showStatus getShowStatus() {
+    public ShowStatus getShowStatus() {
     	return showStatus;
     }
 

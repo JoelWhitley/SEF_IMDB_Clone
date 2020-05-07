@@ -2,7 +2,7 @@ package app.controller;
 
 import app.dao.AccountDAO;
 import app.model.Account;
-import app.model.enumeration.accountRole;
+import app.model.enumeration.AccountRole;
 
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -64,7 +64,7 @@ public class UserController {
         if (user == null) {
             return false;
         }
-        return user.getType().equals(accountRole.ADMIN);
+        return user.getType().equals(AccountRole.ADMIN);
     }
 
 }

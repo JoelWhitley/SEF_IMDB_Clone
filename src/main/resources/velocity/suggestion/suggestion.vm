@@ -5,7 +5,10 @@
 <div id = "content">	
 <h1>Results</h1>
 <form id="addShowSuggestion" method="post">
-
+	
+	#if ($error)
+		<h2>$error</h2>
+	#end
 	<h4><label>Title *</label></h4>
 		<input name="show_title" placeholder="Title" required></input>
 	

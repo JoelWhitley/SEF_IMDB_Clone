@@ -10,7 +10,7 @@ import java.util.Date;
 import app.dao.utils.DatabaseUtils;
 import app.model.Show;
 
-public class suggestionDAO {
+public class SuggestionDAO {
 	
 	public static void insertSuggestionShow(Show suggestion, String user) {
 		

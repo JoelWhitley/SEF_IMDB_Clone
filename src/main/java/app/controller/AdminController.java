@@ -4,7 +4,7 @@ import java.util.Map;
 import app.controller.paths.Template;
 import app.controller.utils.ViewUtil;
 import app.dao.ShowDAO;
-import app.model.enumeration.showStatus;
+import app.model.enumeration.ShowStatus;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
@@ -39,37 +39,37 @@ public class AdminController {
     //handle action depending on status
     public static void handleStatusUpdate(int showIndex, String currentStatus, boolean decision) {
     	
-    	if (currentStatus.equals(showStatus.USERSUBMISSION.getString())) {
+    	if (currentStatus.equals(ShowStatus.USERSUBMISSION.getString())) {
     		if (decision) {
-    			ShowDAO.changeShowStatus(showIndex,showStatus.VISABLE);
+    			ShowDAO.changeShowStatus(showIndex,ShowStatus.VISABLE);
     		}
     		else {
     			ShowDAO.deleteShow(showIndex);
     		}
-    	} else if (currentStatus.equals(showStatus.PROCOSUBMISSION.getString())) {
+    	} else if (currentStatus.equals(ShowStatus.PROCOSUBMISSION.getString())) {
     		if (decision) {
-    			ShowDAO.changeShowStatus(showIndex,showStatus.VISABLE);
+    			ShowDAO.changeShowStatus(showIndex,ShowStatus.VISABLE);
     		}
     		else {
-    			ShowDAO.changeShowStatus(showIndex,showStatus.PENDING);
+    			ShowDAO.changeShowStatus(showIndex,ShowStatus.PENDING);
     		}
-    	} else if (currentStatus.equals(showStatus.PENDING.getString())) {
+    	} else if (currentStatus.equals(ShowStatus.PENDING.getString())) {
     		if (decision) {
-    			ShowDAO.changeShowStatus(showIndex,showStatus.VISABLE);
-    		}
-    		else {
-    			ShowDAO.deleteShow(showIndex);
-    		}
-    	} else if (currentStatus.equals(showStatus.SUSPENDED.getString())) {
-    		if (decision) {
-    			ShowDAO.changeShowStatus(showIndex,showStatus.VISABLE);
+    			ShowDAO.changeShowStatus(showIndex,ShowStatus.VISABLE);
     		}
     		else {
     			ShowDAO.deleteShow(showIndex);
     		}
-    	} else if (currentStatus.equals(showStatus.VISABLE.getString())) {
+    	} else if (currentStatus.equals(ShowStatus.SUSPENDED.getString())) {
     		if (decision) {
-    			ShowDAO.changeShowStatus(showIndex,showStatus.SUSPENDED);
+    			ShowDAO.changeShowStatus(showIndex,ShowStatus.VISABLE);
+    		}
+    		else {
+    			ShowDAO.deleteShow(showIndex);
+    		}
+    	} else if (currentStatus.equals(ShowStatus.VISABLE.getString())) {
+    		if (decision) {
+    			ShowDAO.changeShowStatus(showIndex,ShowStatus.SUSPENDED);
     		}
     	}
     }
@@ -91,11 +91,11 @@ public class AdminController {
     
     //serve all lists
     public static void serveAllShowLists(Map<String, Object> model) {
-    	model.put("userShows", ShowDAO.getShowsByType(showStatus.USERSUBMISSION));
-        model.put("procoShows", ShowDAO.getShowsByType(showStatus.PROCOSUBMISSION));
-        model.put("pendingShows", ShowDAO.getShowsByType(showStatus.PENDING));
-        model.put("suspendedShows", ShowDAO.getShowsByType(showStatus.SUSPENDED));
-        model.put("visableShows", ShowDAO.getShowsByType(showStatus.VISABLE));
+    	model.put("userShows", ShowDAO.getShowsByType(ShowStatus.USERSUBMISSION));
+        model.put("procoShows", ShowDAO.getShowsByType(ShowStatus.PROCOSUBMISSION));
+        model.put("pendingShows", ShowDAO.getShowsByType(ShowStatus.PENDING));
+        model.put("suspendedShows", ShowDAO.getShowsByType(ShowStatus.SUSPENDED));
+        model.put("visableShows", ShowDAO.getShowsByType(ShowStatus.VISABLE));
     }
     
 

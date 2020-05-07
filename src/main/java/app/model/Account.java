@@ -1,6 +1,6 @@
 package app.model;
 
-import app.model.enumeration.accountRole;
+import app.model.enumeration.AccountRole;
 
 public class Account {
     private String firstName;
@@ -16,7 +16,7 @@ public class Account {
     private String country;
     private String gender;
     private String email;
-    private accountRole type;
+    private AccountRole type;
 
 
 
@@ -26,7 +26,7 @@ public class Account {
     }
 
 
-    public Account(String username, String password, String fn, String ln, String a, String c, String g, String email,accountRole type) {
+    public Account(String username, String password, String fn, String ln, String a, String c, String g, String email,AccountRole type) {
         // TODO fill in here
         /* You should use this constructor when you are showing the account page,
         hence, the user is already logged in. Therefore, the username Should be used
@@ -85,10 +85,10 @@ public class Account {
         return password;
     }
     
-    public accountRole getType() {
+    public AccountRole getType() {
     	return type;
     }
-    public void setRole(accountRole ar) {
+    public void setRole(AccountRole ar) {
     	this.type = ar;
     }
 }

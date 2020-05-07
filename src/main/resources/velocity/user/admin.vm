@@ -3,9 +3,9 @@
 	<div>
 	#if($admin)
 		#if ($userShows)
-			<h1> User Submitted Shows for Review: </h1>
+			<h2> User Submitted Shows for Review: </h2>
 			#foreach($show in $userShows)
-		        <h4><a class="shows" href="/shows/$show.showid">$show.showTitle</a><br></h4> 
+		        <h4><a class="shows" href="/shows/$show.showid">$show.showTitle</a><br></h4>
 		        
 	            
 	           	<form id="addShowSuggestion" method="post">
@@ -18,7 +18,7 @@
 	 	#end
 	 	
 	 	#if ($procoShows)
-			<h1> Production Company Submitted Shows for Review: </h1>
+			<h2> Production Company Submitted Shows for Review: </h2>
 			#foreach($show in $procoShows)
 		        <h4><a class="shows" href="/shows/$show.showid">$show.showTitle</a><br></h4> 
 		        
@@ -33,7 +33,7 @@
 	 	#end
 	 	
 	 	#if ($pendingShows)
-			<h1> Pending Shows for Review: </h1>
+			<h2> Pending Shows for Review: </h2>
 			#foreach($show in $pendingShows)
 		        <h4><a class="shows" href="/shows/$show.showid">$show.showTitle</a><br></h4> 
 		        
@@ -48,7 +48,7 @@
 	 	#end
 	 	
 	 	#if ($suspendedShows)
-			<h1> Currently Suspended Shows for Review: </h1>
+			<h2> Currently Suspended Shows for Review: </h2>
 			#foreach($show in $suspendedShows)
 		        <h4><a class="shows" href="/shows/$show.showid">$show.showTitle</a><br></h4> 
 		        
@@ -62,7 +62,7 @@
 		    #end
 	 	#end
 	 	#if ($visableShows)
-			<h1> Shows on Site: </h1>
+			<h2> Shows on Site: </h2>
 			#foreach($show in $visableShows)
 		        <h4><a class="shows" href="/shows/$show.showid">$show.showTitle</a><br></h4> 
 		        
