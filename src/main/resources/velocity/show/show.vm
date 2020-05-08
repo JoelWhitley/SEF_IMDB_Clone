@@ -26,6 +26,19 @@
 	#else
 		<h2>There is no cast yet for this show</h2>
 	#end
+	#if($crew)
+	<h2>Crew:</h2>
+	#foreach($crewMember in $crew)	
+		<p>$crewMember.role:
+		<a class="user" href="/persons/$crewMember.personID">
+			$crewMember.realName 
+		</a>
+		</p>
+		
+	#end
+	#else
+		<h2>There is no crew yet for this show</h2>
+	#end
 </div>
 
 <div id = "content">

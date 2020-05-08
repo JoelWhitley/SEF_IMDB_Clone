@@ -50,9 +50,9 @@ public class ShowDAO {
 	    // If we are here, something bad happened
 	    return null;
 	}
-	public static List<CreditsRoll> getCast(int id) {
+	public static List<CreditsRoll> getCast(int id, String check) {
 		List<CreditsRoll> cast = new ArrayList<>();
-		String sql = "SELECT * FROM credits_roll WHERE show_id ='" + id + "'";
+		String sql = "SELECT * FROM credits_roll WHERE show_id ='" + id + "' AND character_name IS " + check + "NULL;";
 		try {
         	Connection connection = DatabaseUtils.connectToDatabase();
             Statement statement = connection.createStatement();
