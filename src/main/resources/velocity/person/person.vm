@@ -4,8 +4,9 @@
 		#if($person)
 		<h1>$person.fullName</h1>
 	
-			
-			<img src="$person.profile" id="featureImage" align="top">
+			<div>
+				<img src="$person.profile" id="featureImage" align="top">
+			</sdiv>
 			<h2>Details</h2>
 			<label>Role: $person.role</label><br>
 			<label>Date of Birth: $person.birthdate</label>
