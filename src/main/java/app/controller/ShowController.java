@@ -22,6 +22,8 @@ public class ShowController {
         model.put("show", ShowDAO.getShowById(getParamShowId(ctx)));
         model.put("reviews", UserReviewDAO.searchReviewByShowID(getParamShowId(ctx)));
         
+        model.put("cast", ShowDAO.getCast(getParamShowId(ctx)));
+        
         model.put("alreadyReviewed", checkAlreadyReviewed(ctx));
         
         //simple impl

@@ -13,9 +13,19 @@
 </div>
 
 <div id = "content">
-	<h2>Cast and crew</h2>
-	<label>Cast members</label><br>
-	<label>Crew members</label>
+	#if($cast)
+	<h2>Cast:</h2>
+	#foreach($castMember in $cast)	
+		<p>$castMember.role 
+		<a class="user" href="/persons/$castMember.personID">
+			$castMember.realName 
+		</a>
+		playing $castMember.character</p>
+		
+	#end
+	#else
+		<h2>There is no cast yet for this show</h2>
+	#end
 </div>
 
 <div id = "content">
@@ -41,16 +51,16 @@
 	        <h2>$review.rating / 5 </h2>
 	            #if($review.review)
 	            	<div style="width:600px;height:100px;overflow:auto;padding:5px;"> $review.review </div>	
-	           		#end
+	           	#end
 	     	</div>
         #if($admin)
         	<form id="adminDeleteReviewForm" method="post">
-		    		<h4><label>Admin: Remove this review:</label></h4>
-		    		<select name="Check" size="1" required>
-		    			<option value="$review.username">Yes</option>
-		    		</select>
-		    		<input type="submit" value="Delete">
-				</form>
+		    	<h4><label>Admin: Remove this review:</label></h4>
+		    	<select name="Check" size="1" required>
+		    		<option value="$review.username">Yes</option>
+		    	</select>
+		    	<input type="submit" value="Delete">
+			</form>
         #end
         #end
         #else
