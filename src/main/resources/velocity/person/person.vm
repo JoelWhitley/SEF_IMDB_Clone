@@ -23,7 +23,6 @@
 	    			<label>No Filmography Yet</label>
 	    		#end
 			</div>
-			
 		#else
 		<h1>Person not found</h1>
 
