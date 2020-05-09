@@ -3,7 +3,7 @@
 
 ## #if($currentUser)
 <div id = "content">	
-<h1>Results</h1>
+<h1>Suggestion Page</h1>
 <form id="addShowSuggestion" method="post">
 	
 	#if ($error)
