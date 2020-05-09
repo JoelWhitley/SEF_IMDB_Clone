@@ -22,6 +22,7 @@ public class IndexController {
         Image actorImage = new Image(actorInfo.getPersonId(), true);
         model.put("actorBio", actorInfo.getBio());
         model.put("actorName", actorInfo.getFullName());
+        model.put("actorID", actorInfo.getPersonId());
         model.put("actorImagePath", actorImage.getImagePath());
         ctx.render(Template.INDEX, model);
     };

@@ -30,7 +30,7 @@
 	<img src="$actorImagePath" id="featureImage" />
 	<div id="featureText">
 		<h2>Featured Actor</h2>
-		<h4>$actorName</h4>
+		<h4><a href="/persons/$actorID">$actorName</a></h4>
 		<p>$actorBio</p>
 	</div>
 </div>

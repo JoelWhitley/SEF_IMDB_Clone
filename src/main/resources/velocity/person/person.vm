@@ -2,26 +2,28 @@
 #@mainLayout()
 	<div id = "featureContent">
 		#if($person)
-		<h1>$person.fullName</h1>
-	
-			<div>
-				<img src="$person.profile" id="featureImage" align="top">
-			</sdiv>
-			<h2>Details</h2>
-			<label>Role: $person.role</label><br>
-			<label>Date of Birth: $person.birthdate</label>
-			<h2>Biography</h2><br>
-			<label>$person.bio</label>
-			<h2>Filmography</h2>
-			#if($filmography)
-				<div>
-				#foreach($show in $filmography)
-        	       		$show.showTitle : $show.year<br>
-   				#end
-    			</div>
-    		#else
-    			<label>No Filmography Yet</label>
-    		#end
+			<h1>$person.fullName</h1>
+			<hr>
+			<br>
+			<img src="$person.profile" id="featureImage" align="top">
+			<div id="featureText">
+				<h2>Details</h2>
+				<label>Role: $person.role</label><br>
+				<label>Date of Birth: $person.birthdate</label>
+				<h2>Biography</h2><br>
+				<label>$person.bio</label>
+				<h2>Filmography</h2>
+				#if($filmography)
+					<div>
+					#foreach($show in $filmography)
+	        	       		$show.showTitle : $show.year<br>
+	   				#end
+	    			</div>
+	    		#else
+	    			<label>No Filmography Yet</label>
+	    		#end
+			</div>
+			
 		#else
 		<h1>Person not found</h1>
 

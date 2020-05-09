@@ -1,5 +1,5 @@
 * {
-    box-sizing: border-box;
+    box-sizing: content-box;
 }
 
 html, body {
@@ -11,9 +11,13 @@ html, body {
 }
 
 body {
-    padding: 0 0 40px;
+    padding: 0;
     color: #333;
     background: #f9f9f9;
+    position: relative;
+    min-height: 100vh;
+    overflow-y: hidden;
+    
 }
 
 h1, h2, h3, h4 {
@@ -120,6 +124,8 @@ main {
     padding: 15px 20px;
     background: #fff;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    height: auto;
+    min-width: 390px;
 }
 
 footer {
@@ -302,7 +308,7 @@ a .bookCover img {
 }
 #featureContent {
   display: inline-block;
-  height: 35%;
+  height: auto;
 }
 
  
@@ -310,10 +316,12 @@ a .bookCover img {
 #featureImage {
   width: 30%;
   float: left;
-  height: 100%;
-  max-height: 75%;
+  height: 40vh;
+  max-height: 100%;
   object-fit: cover;
   object-position: 50% top;
+  min-width: 120px;
+  min-height: 280px;
 }
 
  
@@ -321,8 +329,9 @@ a .bookCover img {
 #featureText {
   float: left;
   padding-left: 10px;
-  max-width: 70%;
-  height: 70%;
+  max-width: 65%;
+  height: auto;
+  max-height: 75%;
 }
 
  
