@@ -20,6 +20,8 @@ public class ShowController {
 	public static Handler serveShowPage = ctx -> {
 		Map<String, Object> model = ViewUtil.baseModel(ctx);
         model.put("show", ShowDAO.getShowById(getParamShowId(ctx)));
+        model.put("cast", ShowDAO.getCast(getParamShowId(ctx)));
+        model.put("proco", ShowDAO.getProco(getParamShowId(ctx)));
         model.put("reviews", UserReviewDAO.searchReviewByShowID(getParamShowId(ctx)));
         
         model.put("alreadyReviewed", checkAlreadyReviewed(ctx));
@@ -62,6 +64,8 @@ public class ShowController {
     	 
     	 Map<String, Object> model = ViewUtil.baseModel(ctx);
          model.put("show", ShowDAO.getShowById(getParamShowId(ctx)));
+         model.put("cast", ShowDAO.getCast(getParamShowId(ctx)));
+         model.put("proco", ShowDAO.getProco(getParamShowId(ctx)));
          model.put("reviews", UserReviewDAO.searchReviewByShowID(getParamShowId(ctx)));
          
          model.put("alreadyReviewed", checkAlreadyReviewed(ctx));
