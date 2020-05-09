@@ -16,7 +16,9 @@
 			#if($filmography)
 				<div>
 				#foreach($show in $filmography)
+					<a class="user" href="/shows/$show.showid">
         	       		$show.showTitle : $show.year<br>
+        	       	</a>
    				#end
     			</div>
     		#else
