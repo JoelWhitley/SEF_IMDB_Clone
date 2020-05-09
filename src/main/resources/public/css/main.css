@@ -15,9 +15,7 @@ body {
     color: #333;
     background: #f9f9f9;
     position: relative;
-    min-height: 100vh;
-    overflow-y: hidden;
-    
+    min-height: 100vh;    
 }
 
 h1, h2, h3, h4 {
