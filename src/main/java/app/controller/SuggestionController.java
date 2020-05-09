@@ -35,10 +35,14 @@ public class SuggestionController {
     public static Handler handleNewSuggestion = ctx -> {
     	Show suggestion = null;
     	String currentUser = "";
+    	
+    	
+    	
     	//form a suggestion show
+    	int showID = ShowDAO.getLowestUnusedID();
 		if (getFormTitle(ctx) != null) {
 			//visable is a placeholder, gets replaced in the DAO
-			suggestion = new Show(ShowDAO.getHighestShowID(), getFormTitle(ctx), 
+			suggestion = new Show(showID, getFormTitle(ctx), 
 									getFormLength(ctx), getFormIsMovie(ctx),
 									getFormIsSeries(ctx), getFormGenre(ctx),
 									getFormYear(ctx), ShowStatus.VISABLE, getFormProCo(ctx));
@@ -52,14 +56,20 @@ public class SuggestionController {
 			SuggestionDAO.insertSuggestionShow(suggestion,currentUser);
 
 	    	Map<String, Object> model = ViewUtil.baseModel(ctx);
-	        model.put("show", suggestion);
+	        model.put("show", ShowDAO.getShowById(showID));
 	        ctx.render(Template.SHOW, model);
 		}
 		else {
 	    	Map<String, Object> model = ViewUtil.baseModel(ctx);
-	        model.put("show", suggestion);
 	        model.put("error", "This entry is a duplicate. If you believe this is incorrect"
 	        		+ ", please contact an admin to edit the conflicting page.");
+	        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+	        int[] years = new int[currentYear + 11 - 1800];
+	        for (int i = currentYear + 10; i >= 1800; i--) {
+	        	years[currentYear + 10 - i] = i;
+	        }
+	        model.put("years", years);
+	        model.put("procos", ProCoDAO.getAllProCo());
 	        ctx.render(Template.SUGGESTION, model);
 		}
 		
