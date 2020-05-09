@@ -59,17 +59,11 @@
 	#if($reviews)
 	#foreach($review in $reviews)
 		<div id = "content">
-		<a class="user" href="/user/$review.username"> 
-			<h3>$review.username </h3>
-			</a>
-	        <h2>$review.rating / 5 </h2>
+		<a class="user" href="/user/$review.username"><h3 style="float: left; margin: 2px;">$review.username</h3></a><h4 style="float: right; margin: 2px">$review.date</h4>
+	        <h2 style="float: left; width: 100%; margin: 2px">$review.rating / 5</h2>
 	            #if($review.review)
 	            	<div style="width:600px;height:75px;overflow:auto;padding:5px;"> $review.review </div>	
 	           	#end
-
-	            	
-	    #end
-
 	     	</div>
         #if($admin)
         	<form id="adminDeleteReviewForm" method="post">
@@ -77,8 +71,8 @@
 		    		<input name="Check" type="hidden" value="$review.username"></input>
 		    		<input type="submit" value="Delete">
 				</form>
-        #end
-        
+				#end
+				#end
         #else
         <label> There aren't any user reviews for $show.showTitle yet. </label>
         #end
