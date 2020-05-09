@@ -2,12 +2,16 @@
 #@mainLayout()
 <h1>Results</h1>
 <div>
-    #foreach($show in $shows)
-        <div>
-            <a class="shows" href="/shows/$show.showid">    
-                $show.showTitle
-            </a><br>
-        </div>
-    #end
+	#if($shows)
+	    #foreach($show in $shows)
+	        <div>
+	            <a class="shows" href="/shows/$show.showid">    
+	                $show.showTitle
+	            </a><br>
+	        </div>
+	    #end
+	#else
+		<h2>No Show Matched Your Search</h2>
+	#end
 </div>
 #end

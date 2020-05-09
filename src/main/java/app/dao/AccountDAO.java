@@ -77,9 +77,9 @@ public class AccountDAO {
                 while(result.next()) {
                     // 2) Add it to the list we have prepared
                 	
-                	
+                	//if(result.getString("type").contentEquals(accountRole.ADMIN.getString()))
                     user = new Account(result.getString("username"),
-                            result.getString("password"), result.getString("first_name"),
+                              result.getString("password"), result.getString("first_name"),
                               result.getString("last_name"), result.getString("address"), 
                               result.getString("country"), result.getString("gender"), result.getString("email"),AccountRole.USER);
                     if(result.getString("type").contentEquals(AccountRole.ADMIN.getString())) {

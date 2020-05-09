@@ -12,10 +12,34 @@
 	
 </div>
 
-<div id = "content">
-	<h2>Cast and crew</h2>
-	<label>Cast members</label><br>
-	<label>Crew members</label>
+
+	#if($cast)
+	<h2>Cast:</h2>
+	#foreach($castMember in $cast)	
+		<p>$castMember.role 
+		<a class="user" href="/persons/$castMember.personID">
+			$castMember.realName 
+		</a>
+		playing $castMember.character</p>
+		
+	#end
+	#else
+		<h2>There is no cast yet for this show</h2>
+	#end
+	#if($crew)
+	<h2>Crew:</h2>
+	#foreach($crewMember in $crew)	
+		<p>$crewMember.role:
+		<a class="user" href="/persons/$crewMember.personID">
+			$crewMember.realName 
+		</a>
+		</p>
+		
+	#end
+	#else
+		<h2>There is no crew yet for this show</h2>
+	#end
+
 </div>
 
 <div id = "content">
@@ -34,44 +58,67 @@
 	<h2>Reviews</h2>
 	#if($reviews)
 	#foreach($review in $reviews)
-	<div id = "content">
-	<a class="user" href="/user/$review.username"> 
-		<h3>$review.username </h3>
+		<div id = "content">
+		<a class="user" href="/user/$review.username"> 
+			<h3>$review.username </h3>
 			</a>
-            <h2>$review.rating / 5 </h2>
-            #if($review.review)
-            	<div style="width:600px;height:150px;overflow:auto;padding:5px;"> $review.review </div>	
-           	#end
-        </div>
+	        <h2>$review.rating / 5 </h2>
+	            #if($review.review)
+	            	<div style="width:600px;height:75px;overflow:auto;padding:5px;"> $review.review </div>	
+	           	#end
+
+	            	
+	    #end
+
+	     	</div>
+        #if($admin)
+        	<form id="adminDeleteReviewForm" method="post">
+		    		<h4><label>Admin: Remove this review:</label></h4>
+		    		<input name="Check" type="hidden" value="$review.username"></input>
+		    		<input type="submit" value="Delete">
+				</form>
         #end
+        
         #else
         <label> There aren't any user reviews for $show.showTitle yet. </label>
         #end
         #if($currentUser)
-        	<form id="userReviewForm" method="post">
-        	<select name="Rating" size="5" required>
-  					<option value="1">1</option>
-  					<option value="2">2</option>
-  					<option value="3">3</option>
-  					<option value="4">4</option>
-  					<option value="5">5</option>
-				</select>
-	    		<h4><label>Leave a review here</label></h4>
-	    		<textarea name="review" rows="10" cols="60"placeholder="Type your review here" value=""></textarea>
-	    		<input type="submit" value="Submit">
-			</form>
-			
-			<form id="deleteReviewForm" method="post">
-	    		<h4><label>Press to delete previous review</label></h4>
-	    		<select name="Check" size="1" required>
-	    			<option value="Yes">Yes</option>
-	    		</select>
-	    		<input type="submit" value="Delete">
-			</form>
+        	#if(!$alreadyReviewed)
+	        	<form id="userReviewForm" method="post">
+	        	<h3>Leave a Starred Review</h3>
+					    <label class="radio-inline">
+					      <input type="radio" name="Rating" value="1">1
+					    </label>
+					    <label class="radio-inline">
+					      <input type="radio" name="Rating" value="2">2
+					    </label>
+					    <label class="radio-inline">
+					      <input type="radio" name="Rating" value="3" checked>3
+					    </label>
+					    <label class="radio-inline">
+					      <input type="radio" name="Rating" value="4">4
+					    </label>
+					    <label class="radio-inline">
+					      <input type="radio" name="Rating" value="5">5
+					    </label>
+					    <br>
+		    		<textarea name="review" rows="6" cols="60"placeholder="Type your written review here" value=""></textarea><br>
+		    		<input type="submit" value="Submit">
+				</form>
+			#else
+				<h3>You have already reviewed this show.<br>
+				Delete your current review in order to leave an another.</h3>
+				#if(!$admin)			
+				<form id="deleteReviewForm" method="post">
+		    		<input name="Check" type="hidden" value="$currentUser"></input>
+		    		<input type="submit" value="Delete">
+				</form>
+				#end
+			#end
 		#else
 			<h2> You must <a href="/login" >log in</a> to leave a review </h2>
 		#end
-</div>
+	</div>
 
 
-#end
+	#end

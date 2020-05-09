@@ -6,8 +6,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 import app.dao.utils.DatabaseUtils;
+import app.model.Person;
+import app.model.ProductionCompany;
+import app.model.CreditsRoll;
 import app.model.Show;
 import app.model.enumeration.ShowStatus;
 
@@ -48,7 +50,33 @@ public class ShowDAO {
 	    // If we are here, something bad happened
 	    return null;
 	}
+	public static List<CreditsRoll> getCast(int id, String check) {
+		List<CreditsRoll> cast = new ArrayList<>();
+		String sql = "SELECT * FROM credits_roll WHERE show_id ='" + id + "' AND character_name IS " + check + "NULL;";
+		try {
+        	Connection connection = DatabaseUtils.connectToDatabase();
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            // If you have multiple results, you do a while
+	        while(result.next()) {
+	        	Person p = PersonDAO.getPersonById(result.getInt("person_id"));
+	            cast.add(  	
+	              new CreditsRoll(p.getPersonId(),result.getString("role"), p.getFullName(),result.getString("character_name")) 
+	              );
+	        }
 	
+	        // Close it
+	        DatabaseUtils.closeConnection(connection);
+		    }
+	    catch (Exception e) {
+	        e.printStackTrace();
+	    }
+     // If there is a result
+	    if(!cast.isEmpty()) return cast;
+	    // If we are here, something bad happened
+	    return null;
+		
+	}
 	
 	public static int getStarRating(int id, int star) {
 		int totalReviews = 0;
@@ -129,6 +157,88 @@ public class ShowDAO {
 	    return percent;
 	}
 
+	public static List<ProductionCompany> getProco(int showId) {
+		List<ProductionCompany> proco = new ArrayList<>();
+		
+		try {
+            // Here you prepare your sql statement
+            String sql = "SELECT proco_name "
+            		+ "FROM `show` "
+            		+ "JOIN production_company "
+            		+ "ON production_company.proco_id =`show`.proco_id "
+            		+ "WHERE `show`.showid="
+            		+ showId +"";
+
+            // Execute the query
+            Connection connection = DatabaseUtils.connectToDatabase();
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+
+            // If you have multiple results, you do a while
+            while(result.next()) {
+                // 2) Add it to the list we have prepared
+            	proco.add(
+                  // 1) Create a new account object
+            			new ProductionCompany(result.getString("proco_name"))
+                );
+            }
+            // Close it
+            DatabaseUtils.closeConnection(connection);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        // If there is a result
+        if(!proco.isEmpty()) return proco;
+        // If we are here, something bad happened
+        return null;
+	}
+	
+	public static List<Person> getCast(int showId) {
+		// Fish out the results
+        List<Person> cast = new ArrayList<>();
+
+        try {
+            // Here you prepare your sql statement
+            String sql = "SELECT `person`.*"
+            		+ " FROM `show`"
+            		+ " JOIN credits_roll ON credits_roll.show_id=`show`.showid"
+            		+ " JOIN person ON credits_roll.person_id=person.person_id"
+            		+ " WHERE credits_roll.show_id=" + showId
+            		+ " ORDER BY person.person_id ASC";
+
+            // Execute the query
+            Connection connection = DatabaseUtils.connectToDatabase();
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+
+            // If you have multiple results, you do a while
+            while(result.next()) {
+                // 2) Add it to the list we have prepared
+            	cast.add(
+                  // 1) Create a new account object
+            			//new Person(personId, name, role, birthdate, bio)
+            			new Person(result.getInt("person_id"), 
+                      		  result.getString("fullname"), 
+                      		  result.getString("role"), 
+                      		  result.getDate("birthdate"), 
+                      		  result.getString("bio"))
+                );
+            }
+
+            // Close it
+            DatabaseUtils.closeConnection(connection);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        // If there is a result
+        if(!cast.isEmpty()) return cast;
+        // If we are here, something bad happened
+        return null;
+	}
 	
 	public static List<Show> getShowsByPending() {
 		List<Show> shows =  new ArrayList<>();
@@ -242,7 +352,6 @@ public class ShowDAO {
 		}
 		
 	}
-
 
 	public static void deleteShow(int index) {
 		Connection connection;

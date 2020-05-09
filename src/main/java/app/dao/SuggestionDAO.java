@@ -14,6 +14,7 @@ public class SuggestionDAO {
 	
 	public static void insertSuggestionShow(Show suggestion, String user) {
 		
+		//SOLID COMMENTING AND VARIABLE NAMES GUYS... 
 		//Getting number of reviews for the new reviewID
 		String countReviewsQuery = "Select COUNT(showid) from `show`;";
 		
