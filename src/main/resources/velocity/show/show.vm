@@ -12,34 +12,34 @@
 	
 </div>
 
-<div id = "content">
-	<h2>Production Company</h2>
-		#if($proco)
-				#foreach($ProductionCompany in $proco)
-        	       	$ProductionCompany.name<br>
-   				#end
-    	#else
-   			<label>No Cast Added Yet</label><br>
-   		#end
-	<h2>Cast and crew</h2>
-	<h4>Cast members</h4>
-		#if($cast)
-				#foreach($person in $cast)
-        	       	$person.fullName : $person.role<br>
-   				#end
-    	#else
-   			<label>No Cast Added Yet</label><br>
-   		#end
-	<h4>Crew members</h4>
-		#if($crew)
-			<div>
-				#foreach($person in $crew)
-        	       		$person.fullname : $person.role<br>
-   				#end
-    		</div>
-    	#else
-   			<label>No Crew Added Yet</label><br>
-   		#end
+
+	#if($cast)
+	<h2>Cast:</h2>
+	#foreach($castMember in $cast)	
+		<p>$castMember.role 
+		<a class="user" href="/persons/$castMember.personID">
+			$castMember.realName 
+		</a>
+		playing $castMember.character</p>
+		
+	#end
+	#else
+		<h2>There is no cast yet for this show</h2>
+	#end
+	#if($crew)
+	<h2>Crew:</h2>
+	#foreach($crewMember in $crew)	
+		<p>$crewMember.role:
+		<a class="user" href="/persons/$crewMember.personID">
+			$crewMember.realName 
+		</a>
+		</p>
+		
+	#end
+	#else
+		<h2>There is no crew yet for this show</h2>
+	#end
+
 </div>
 
 <div id = "content">
@@ -65,7 +65,11 @@
 	        <h2>$review.rating / 5 </h2>
 	            #if($review.review)
 	            	<div style="width:600px;height:75px;overflow:auto;padding:5px;"> $review.review </div>	
-	           		#end
+	           	#end
+
+	            	
+	    #end
+
 	     	</div>
         #if($admin)
         	<form id="adminDeleteReviewForm" method="post">
@@ -74,7 +78,7 @@
 		    		<input type="submit" value="Delete">
 				</form>
         #end
-        #end
+        
         #else
         <label> There aren't any user reviews for $show.showTitle yet. </label>
         #end
@@ -114,7 +118,7 @@
 		#else
 			<h2> You must <a href="/login" >log in</a> to leave a review </h2>
 		#end
-</div>
+	</div>
 
 
-#end
+	#end

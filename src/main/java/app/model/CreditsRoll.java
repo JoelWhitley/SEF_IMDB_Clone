@@ -2,24 +2,26 @@ package app.model;
 
 
 public class CreditsRoll {
-    private Person person;
+    private int personID;
     private String role;
     private String character;
+    private String realName;
     private int startYear;
     private int endYear;
 
 
 
 
-    public CreditsRoll(Person person, String role, int startYear) {
-        this.person = person;
+    public CreditsRoll(int personID, String role, String realName, String character) {
+        this.personID = personID;
         this.role = role;
-        this.startYear = startYear;
+        this.character = character;
+        this.realName = realName;
     }
 
 
-    public Person getPerson() {
-        return person;
+    public int getPersonID() {
+        return personID;
     }
 
     public String getRole() {
@@ -36,6 +38,10 @@ public class CreditsRoll {
 
     public String getCharacter() {
         return character;
+    }
+    
+    public String getRealName() {
+    	return realName;
     }
 
     public void setCharacter(String character) {

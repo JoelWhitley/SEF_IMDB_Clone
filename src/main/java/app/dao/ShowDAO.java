@@ -6,10 +6,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 import app.dao.utils.DatabaseUtils;
 import app.model.Person;
 import app.model.ProductionCompany;
+import app.model.CreditsRoll;
 import app.model.Show;
 import app.model.enumeration.showStatus;
 
@@ -50,7 +50,33 @@ public class ShowDAO {
 	    // If we are here, something bad happened
 	    return null;
 	}
+	public static List<CreditsRoll> getCast(int id, String check) {
+		List<CreditsRoll> cast = new ArrayList<>();
+		String sql = "SELECT * FROM credits_roll WHERE show_id ='" + id + "' AND character_name IS " + check + "NULL;";
+		try {
+        	Connection connection = DatabaseUtils.connectToDatabase();
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            // If you have multiple results, you do a while
+	        while(result.next()) {
+	        	Person p = PersonDAO.getPersonById(result.getInt("person_id"));
+	            cast.add(  	
+	              new CreditsRoll(p.getPersonId(),result.getString("role"), p.getFullName(),result.getString("character_name")) 
+	              );
+	        }
 	
+	        // Close it
+	        DatabaseUtils.closeConnection(connection);
+		    }
+	    catch (Exception e) {
+	        e.printStackTrace();
+	    }
+     // If there is a result
+	    if(!cast.isEmpty()) return cast;
+	    // If we are here, something bad happened
+	    return null;
+		
+	}
 	
 	public static int getStarRating(int id, int star) {
 		int totalReviews = 0;

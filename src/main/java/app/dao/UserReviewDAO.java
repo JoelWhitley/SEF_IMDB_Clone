@@ -138,22 +138,21 @@ public class UserReviewDAO {
 
 	}
 	
-public static void deleteReviewInDataBase(String username, int showId) {
-	
-		String deleteQuery = "DELETE FROM user_review WHERE user_id = '" + username 
-		+ "' AND show_id = " + showId + ";";
+	public static void deleteReviewInDataBase(String username, int showId) {
 		
-		try {
-        	Connection connection = DatabaseUtils.connectToDatabase();
-            PreparedStatement insertStatement = connection.prepareStatement(deleteQuery);
-         	insertStatement.execute();
-                       
-            DatabaseUtils.closeConnection(connection);
-		}
-		catch (Exception e) {
-	        e.printStackTrace();
-	    }
-
+			String deleteQuery = "DELETE FROM user_review WHERE user_id = '" + username 
+			+ "' AND show_id = " + showId + ";";
+			
+			try {
+	        	Connection connection = DatabaseUtils.connectToDatabase();
+	            PreparedStatement insertStatement = connection.prepareStatement(deleteQuery);
+	         	insertStatement.execute();
+	                       
+	            DatabaseUtils.closeConnection(connection);
+			}
+			catch (Exception e) {
+		        e.printStackTrace();
+		    }
 	}
 }
 
