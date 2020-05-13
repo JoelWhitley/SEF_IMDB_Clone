@@ -2,9 +2,12 @@ package app.dao;
 
 import app.dao.utils.DatabaseUtils;
 import app.model.Account;
+import app.model.Show;
 import app.model.enumeration.AccountRole;
+import app.model.enumeration.ShowStatus;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -78,6 +81,7 @@ public class AccountDAO {
                     // 2) Add it to the list we have prepared
                 	
                 	//if(result.getString("type").contentEquals(accountRole.ADMIN.getString()))
+                	//we put in user type = 
                     user = new Account(result.getString("username"),
                               result.getString("password"), result.getString("first_name"),
                               result.getString("last_name"), result.getString("address"), 
@@ -121,6 +125,57 @@ public class AccountDAO {
 	    }
 		return user;
     }
+    
+    
+    public static void updateUserType(String username, AccountRole type) {
+    	
+		Connection connection;
+		try {
+			connection = DatabaseUtils.connectToDatabase();
+			String updateQuery = "UPDATE `account` SET type = '" + type.getString() + "' WHERE username = '" + username + "';";
+			PreparedStatement insertStatement = connection.prepareStatement(updateQuery);
+	    	insertStatement.execute();
+	    	// Close it
+	        DatabaseUtils.closeConnection(connection);
+		} catch (Exception e) {
+			System.out.println("Error connecting to database");
+		}
+    		
+
+	        
+    }
+
+	public static List<Account> getAccountsByType(AccountRole role) {
+
+		List<Account> accounts =  new ArrayList<>();
+		String sql = "SELECT * FROM `account` WHERE type ='" + role.getString() + "'";
+		
+        try {
+        	Connection connection = DatabaseUtils.connectToDatabase();
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            // If you have multiple results, you do a while
+	        while(result.next()) {
+	            accounts.add(   
+	              new Account(result.getString("username"), result.getString("password"),
+	            		  result.getString("first_name"), result.getString("last_name"), 
+	            		  result.getString("address"), result.getString("country"), 
+	            		  result.getString("gender"), result.getString("email"), role)
+	              );
+	        }
+	
+	        // Close it
+	        DatabaseUtils.closeConnection(connection);
+		    }
+	    catch (Exception e) {
+	        e.printStackTrace();
+	    }
+     // If there is a result
+	    if(!accounts.isEmpty()) return accounts;
+	    // If we are here, something bad happened
+	    return null;
+	}
+
 
 
 

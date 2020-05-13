@@ -18,6 +18,24 @@ public enum AccountRole {
 		public String getString() {
 			return "PROCO";
 		}
+	},
+	CRITIC {
+		@Override
+		public String getString() {
+			return "CRITIC";
+		}
+	},
+	PENDING_PROCO {
+		@Override
+		public String getString() {
+			return "PENDING_PROCO";
+		}
+	},
+	PENDING_CRITIC {
+		@Override
+		public String getString() {
+			return "PENDING_CRITIC";
+		}
 	};
 	public abstract String getString();
 }

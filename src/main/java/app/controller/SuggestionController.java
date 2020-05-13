@@ -18,7 +18,7 @@ public class SuggestionController {
 
 
 	
-	public static Handler suggestionPage = ctx -> {
+	public static Handler serveSuggestionPage = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         //added 10 years of ahead time for movies anticipated to come out.
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);

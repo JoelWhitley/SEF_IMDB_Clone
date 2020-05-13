@@ -18,6 +18,9 @@ public class Template {
 
     public static final String SUGGESTION = "/velocity/suggestion/suggestion.vm";
     
+    public static final String REQUEST = "/velocity/accountRequest/accountRequest.vm";
+    public static final String REQUEST_REVIEW = "/velocity/user/accountRequests.vm";
+    
     public static final String PERSON = "/velocity/person/person.vm";
     public static final String RESULT = "/velocity/result/result.vm";
 }

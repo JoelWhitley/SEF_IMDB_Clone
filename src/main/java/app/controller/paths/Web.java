@@ -22,6 +22,8 @@ public class Web {
     public static final String REVIEW = "/review";
     
     public static final String SUGGESTION = "/suggestion";
+    public static final String REQUEST = "/request";
+    public static final String REQUEST_REVIEW = "/accountReview";
     
     public static final String SEARCHINDEX = "/search";
 

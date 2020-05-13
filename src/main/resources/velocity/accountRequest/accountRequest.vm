@@ -1,0 +1,34 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+
+#if($currentUser)
+<div id = "content">	
+<h1>Request Account Upgrade Form</h1>
+<form id="requestAccountUpgrade" method="post">
+	
+	#if ($message)
+		<h2>$message</h2>
+	#end
+	
+	<h4><label>Type of account to upgrade to *</label></h4>
+		<select name="accountType" required>
+			<option value="pco">Production Company</option>
+			<option value="critic">Critic</option>
+		</select>
+	
+	
+	<input type="hidden" name="user" value='$currentUser'>
+	
+	
+	<h4><label> </label></h4>
+		<input type="submit" value="Submit">
+		
+		
+</form>
+
+</div>
+#else
+You need to be <a href="../login">create an account and be logged in</a> to request an upgrade to your account.
+#end
+
+#end

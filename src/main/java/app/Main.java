@@ -1,9 +1,11 @@
 package app;
 
 import app.controller.AccountController;
+import app.controller.AccountRequestController;
 import app.controller.AdminController;
 import app.controller.IndexController;
 import app.controller.ShowSearchController;
+import app.controller.AccountRequestReviewController;
 import app.controller.UserPreviewController;
 import app.controller.LoginController;
 import app.controller.PersonSearchController;
@@ -39,12 +41,14 @@ public class Main {
 
             get(Web.ACCOUNT, AccountController.serveAccountPage);
             
-           get(Web.USER, UserPreviewController.serveUserPage);
+            get(Web.USER, UserPreviewController.serveUserPage);
             
             get(Web.RESULT, PersonSearchController.servePersonResults);
            
             get(Web.SEARCHINDEX, ShowSearchController.serveShowResults);
             
+            get(Web.REQUEST_REVIEW, AccountRequestReviewController.serveRequestReviewPage);
+            post(Web.REQUEST_REVIEW, AccountRequestReviewController.handleAdminAction);
             
             get(Web.SHOW, ShowController.serveShowPage);
             post(Web.SHOW, ShowController.handleUserReview);
@@ -54,9 +58,11 @@ public class Main {
 
             get(Web.PERSON, PersonController.personPage);
 
-			get(Web.SUGGESTION, SuggestionController.suggestionPage);
+			get(Web.SUGGESTION, SuggestionController.serveSuggestionPage);
 			post(Web.SUGGESTION, SuggestionController.handleNewSuggestion);
 			
+			get(Web.REQUEST, AccountRequestController.serveRequestPage);
+            post(Web.REQUEST, AccountRequestController.handleRequestForm);
 		
 
             // Add new actions here

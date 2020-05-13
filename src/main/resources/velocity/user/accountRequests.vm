@@ -1,0 +1,66 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+	<div>
+	#if($admin)
+		#if ($pendingProCo)
+			<h2> Pending Requests for a ProCo Account: TODO: ADD USER DETAILS AND FORMAT THEM ALSO MAYBE ADD THE OPTION TO DELTE USERS IDK</h2>
+			#foreach($user in $pendingProCo)
+		        <h4><a class="shows" href="/user/$user.username">$user.username</a><br></h4>
+		        
+	           	<form id="reviewRequestForm" method="post">
+		        	<input name="username" type="hidden" value="$user.username"></input>
+		        	<input name="role" type="hidden" value="$user.type"></input>
+		        	<input name="accept" type="submit" value="Accept Request"></input>
+		        	<input name="deny" type="submit" value="Deny Request"></input>
+		        </form>
+		    #end
+	 	#end
+	 	
+	 	#if ($pendingCritic)
+			<h2> Pending Requests for a Critic Account: </h2>
+			#foreach($user in $pendingCritic)
+		        <h4><a class="shows" href="/user/$user.username">$user.username</a><br></h4>
+		        
+	           	<form id="reviewRequestForm" method="post">
+		        	<input name="username" type="hidden" value="$user.username"></input>
+		        	<input name="role" type="hidden" value="$user.type"></input>
+		        	<input name="accept" type="submit" value="Accept Request"></input>
+		        	<input name="deny" type="submit" value="Deny Request"></input>
+		        </form>
+		    #end
+	 	#end
+	 	
+	 	#if ($admins)
+			<h2> Admin Accounts: </h2>
+			#foreach($user in $admins)
+		        <h4><a class="shows" href="/user/$user.username">$user.username</a><br></h4> 
+		    #end
+	 	#end
+	 	
+	 	#if ($proCo)
+			<h2> ProCo Accounts: </h2>
+			#foreach($user in $proCo)
+		        <h4><a class="shows" href="/user/$user.username">$user.username</a><br></h4> 
+		        
+		    #end
+	 	#end
+	 	
+	 	#if ($critic)
+			<h2> Critic Accounts: </h2>
+			#foreach($user in $critic)
+		        <h4><a class="shows" href="/user/$user.username">$user.username</a><br></h4> 
+
+		    #end
+	 	#end
+	 	#if ($users)
+			<h2> Plebs: </h2>
+			#foreach($user in $users)
+		        <h4><a class="shows" href="/user/$user.username">$user.username</a><br></h4> 
+
+		    #end
+	 	#end
+	</div>
+	#else
+	<h2>This page can only be accessed by admins</h2>
+	#end
+#end
