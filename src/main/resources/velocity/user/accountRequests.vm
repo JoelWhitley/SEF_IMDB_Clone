@@ -1,9 +1,9 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
 	<div>
-	#if($admin)
+	#if ($admin)
 		#if ($pendingProCo)
-			<h2> Pending Requests for a ProCo Account: TODO: ADD USER DETAILS AND FORMAT THEM ALSO MAYBE ADD THE OPTION TO DELTE USERS IDK</h2>
+			<h2> Pending Requests for a ProCo Account:</h2>
 			#foreach($user in $pendingProCo)
 		        <h4><a class="shows" href="/user/$user.username">$user.username</a><br></h4>
 		        

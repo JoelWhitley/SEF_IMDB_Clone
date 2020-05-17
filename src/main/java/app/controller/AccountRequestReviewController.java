@@ -4,9 +4,7 @@ import java.util.Map;
 import app.controller.paths.Template;
 import app.controller.utils.ViewUtil;
 import app.dao.AccountDAO;
-import app.dao.ShowDAO;
 import app.model.enumeration.AccountRole;
-import app.model.enumeration.ShowStatus;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
@@ -40,13 +38,13 @@ public class AccountRequestReviewController {
     
     //handle action depending on status
     public static void handleStatusUpdate(String username, String currentStatus, boolean decision) {
-    	System.out.println(username + " " + currentStatus);
     	if (currentStatus.equals(AccountRole.PENDING_PROCO.getString())) {
     		if (decision) {
     			AccountDAO.updateUserType(username, AccountRole.PROCO);
     		}
     		else {
     			AccountDAO.updateUserType(username, AccountRole.USER);
+    			AccountDAO.banUserForTime(username, 1, "days");
     		}
     	} 
     	else if (currentStatus.equals(AccountRole.PENDING_CRITIC.getString())) {
@@ -55,6 +53,7 @@ public class AccountRequestReviewController {
     		}
     		else {
     			AccountDAO.updateUserType(username, AccountRole.USER);
+    			AccountDAO.banUserForTime(username, 1, "days");
     		}
     	}     		
     }
