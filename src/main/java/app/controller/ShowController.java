@@ -68,8 +68,7 @@ public class ShowController {
     	
     	//if proco press edit show button, redirects to edit show page
     	if(getProcoEditShow(ctx)!=null) {
-
-	    	ctx.redirect(Web.INDEX);
+	    	ctx.redirect(Web.EDITSHOW);
 	    }
     	
     	//if proco press edit cast, redirects to edit show page
