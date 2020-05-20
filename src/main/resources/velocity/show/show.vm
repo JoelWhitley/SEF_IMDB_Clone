@@ -11,7 +11,26 @@
 		
 	
 </div>
-
+<div id = "procoOptions">
+#if($admin)
+		<h4><label>Production Company: Edit Options</label></h4>
+        	<form id="procoEditShowInfo" method="post">
+		    		
+		    		<input name="editShow" type="hidden" value="$show.showTitle"></input>
+		    		<input type="submit" value="Edit Show Info">
+				</form>
+				<form id="procoEditCast" method="post">
+		    		
+		    		<input name="editCast" type="hidden" value="$castMember.realName"></input>
+		    		<input type="submit" value="Edit Cast Names">
+				</form>
+				<form id="procoDeleteShow" method="post">
+		    		
+		    		<input name="deleteShow" type="hidden" value="$show.showTitle"></input>
+		    		<input type="submit" value="Delete Entire Show">
+				</form>
+	#end
+</div>	
 
 	#if($cast)
 	<h2>Cast:</h2>

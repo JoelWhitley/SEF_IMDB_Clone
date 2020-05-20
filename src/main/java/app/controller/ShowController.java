@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import app.controller.paths.Template;
+import app.controller.paths.Web;
 import app.controller.utils.ViewUtil;
 import app.dao.ShowDAO;
 import app.dao.UserReviewDAO;
@@ -57,6 +58,14 @@ public class ShowController {
     };
     public static Handler handleUserReview = ctx -> {
 
+    	
+    	//if proco press delete button, deletes show and returns to index
+    	if(getProcoDeleteShow(ctx)!=null) {
+	    	deleteShow(getParamShowId(ctx));
+
+	    	ctx.redirect(Web.INDEX);
+	    }
+    	
     	UserReview review = null;
     	if(getReviewPost(ctx) != null || getRatingPost(ctx) != -1) {
     		//Check User has not
@@ -99,6 +108,8 @@ public class ShowController {
          
          ctx.render(Template.SHOW, model);
     };
+    
+  
 
     public static String getReviewPost(Context ctx) {
         return ctx.formParam("review");
@@ -133,8 +144,16 @@ public class ShowController {
     public static void deleteUserReview(String username, int showID) {
     	UserReviewDAO.deleteReviewInDataBase(username, showID);
     }
-
+    
+    public static String getProcoDeleteShow(Context ctx) {
+    	return ctx.formParam("deleteShow");
     }
+    
+    public static void deleteShow(int showID) {
+    	ShowDAO.deleteShow(showID);
+    }
+
+}
 
 
 	
