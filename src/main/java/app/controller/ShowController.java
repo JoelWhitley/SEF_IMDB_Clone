@@ -56,12 +56,24 @@ public class ShowController {
 		
         ctx.render(Template.SHOW, model);
     };
-    public static Handler handleUserReview = ctx -> {
+    public static Handler handleShowPage = ctx -> {
 
     	
     	//if proco press delete button, deletes show and returns to index
     	if(getProcoDeleteShow(ctx)!=null) {
 	    	deleteShow(getParamShowId(ctx));
+
+	    	ctx.redirect(Web.INDEX);
+	    }
+    	
+    	//if proco press edit show button, redirects to edit show page
+    	if(getProcoEditShow(ctx)!=null) {
+
+	    	ctx.redirect(Web.INDEX);
+	    }
+    	
+    	//if proco press edit cast, redirects to edit show page
+    	if(getProcoEditCast(ctx)!=null) {
 
 	    	ctx.redirect(Web.INDEX);
 	    }
@@ -152,7 +164,14 @@ public class ShowController {
     public static void deleteShow(int showID) {
     	ShowDAO.deleteShow(showID);
     }
-
+    
+    public static String getProcoEditShow(Context ctx) {
+    	return ctx.formParam("editShow");
+    }
+    
+    public static String getProcoEditCast(Context ctx) {
+    	return ctx.formParam("editCast");
+    }
 }
 
 

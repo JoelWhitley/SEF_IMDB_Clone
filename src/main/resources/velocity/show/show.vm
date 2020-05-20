@@ -19,11 +19,7 @@
 		    		<input name="editShow" type="hidden" value="$show.showTitle"></input>
 		    		<input type="submit" value="Edit Show Info">
 				</form>
-				<form id="procoEditCast" method="post">
-		    		
-		    		<input name="editCast" type="hidden" value="$castMember.realName"></input>
-		    		<input type="submit" value="Edit Cast Names">
-				</form>
+				
 				<form id="procoDeleteShow" method="post">
 		    		
 		    		<input name="deleteShow" type="hidden" value="$show.showTitle"></input>
@@ -40,7 +36,13 @@
 			$castMember.realName 
 		</a>
 		playing $castMember.character</p>
-		
+		#if($admin)
+		<form id="procoEditCast" method="post">
+		    		
+		    		<input name="editCast" type="hidden" value="$castMember.realName"></input>
+		    		<input type="submit" value="Edit Cast Name">
+				</form>
+		#end
 	#end
 	#else
 		<h2>There is no cast yet for this show</h2>

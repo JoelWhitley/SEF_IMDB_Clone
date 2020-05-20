@@ -51,7 +51,7 @@ public class Main {
             post(Web.REQUEST_REVIEW, AccountRequestReviewController.handleAdminAction);
             
             get(Web.SHOW, ShowController.serveShowPage);
-            post(Web.SHOW, ShowController.handleUserReview);
+            post(Web.SHOW, ShowController.handleShowPage);
             
             get(Web.ADMIN, AdminController.serveAdminPage);
             post(Web.ADMIN, AdminController.handleAdminAction);
