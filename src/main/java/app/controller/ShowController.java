@@ -2,6 +2,7 @@ package app.controller;
 
 import static app.controller.utils.RequestUtil.getParamShowId;
 import static app.controller.utils.RequestUtil.getSessionCurrentUser;
+import static app.controller.utils.RequestUtil.getSessionShowSearch;
 
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import java.util.Map;
 import app.controller.paths.Template;
 import app.controller.paths.Web;
 import app.controller.utils.ViewUtil;
+import app.dao.SearchIndexDAO;
 import app.dao.ShowDAO;
 import app.dao.UserReviewDAO;
 import app.model.Show;

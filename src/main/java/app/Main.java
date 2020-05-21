@@ -52,6 +52,7 @@ public class Main {
             post(Web.REQUEST_REVIEW, AccountRequestReviewController.handleAdminAction);
             
             get(Web.EDITSHOW,ShowProcoController.serveEditShowPage);
+            post(Web.EDITSHOW,ShowProcoController.handleEditShowPage);
             
             get(Web.SHOW, ShowController.serveShowPage);
             post(Web.SHOW, ShowController.handleShowPage);

@@ -12,12 +12,13 @@
 	
 </div>
 <div id = "procoOptions">
-#if($admin)
+#if(!$admin)
 		<h4><label>Production Company: Edit Options</label></h4>
         	<form id="procoEditShowInfo" method="post">
 		    		
-		    		<input name="editShow" type="hidden" value="$show.showTitle"></input>
-		    		<input type="submit" value="Edit Show Info">
+		    		<a input name="editShow" type="hidden" href="/shows/$show.showid/showEdit" value="$show.showTitle" ></input>
+		    		<input type="button" class="shows" href="/shows/$show.showid/showEdit" value="Edit Show Info">
+		    		</a>
 				</form>
 				
 				<form id="procoDeleteShow" method="post">
@@ -39,8 +40,8 @@
 		#if($admin)
 		<form id="procoEditCast" method="post">
 		    		
-		    		<input name="editCast" type="hidden" value="$castMember.realName"></input>
-		    		<input type="submit" value="Edit Cast Name">
+		    		<input name="editCharacter" type="hidden" value="$castMember.realName"></input>
+		    		<input type="submit" value="Edit Character Name">
 				</form>
 		#end
 	#end

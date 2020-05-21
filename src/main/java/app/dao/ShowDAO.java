@@ -457,6 +457,25 @@ public class ShowDAO {
         //if there are none, there is no duplicate
         return false;
 	}
+	
+	public static void editShow(int index, String showTitle, double length, String genre) {
+		
+		String sql = "UPDATE `show` SET show_title = '" + showTitle +
+				"', genre = '" + genre + "', length = " + length + 
+				"WHERE showid = " + index + ";";
+		
+		try {
+        	Connection connection = DatabaseUtils.connectToDatabase();
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sql);
+            DatabaseUtils.closeConnection(connection);
+            //if there are any results, we know we have a duplicate title
+	       
+		}
+	    catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
 }
 
 	
