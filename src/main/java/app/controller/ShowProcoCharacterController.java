@@ -1,6 +1,7 @@
 package app.controller;
 
 import static app.controller.utils.RequestUtil.getParamShowId;
+import static app.controller.utils.RequestUtil.getParamPersonId;
 
 import java.util.Map;
 
@@ -13,16 +14,20 @@ import app.model.Show;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
-public class ShowProcoController {
+public class ShowProcoCharacterController {
 	
-	public static Handler serveEditShowPage = ctx -> {
+	public static Handler serveEditCharacterPage = ctx -> {
 		
 		ShowDAO.updateProCoShowStatus();
 		Map<String, Object> model = ViewUtil.baseModel(ctx);
 		Show pageShow = ShowDAO.getShowById(getParamShowId(ctx));
 		if (pageShow.getStatus().toString().equals("VISABLE")) {
+			model.put("charCast", ShowDAO.getCastName(getParamShowId(ctx),getParamPersonId(ctx)));
 			
+			model.put("cast", ShowDAO.getCast(getParamShowId(ctx)));
 	        model.put("show", ShowDAO.getShowById(getParamShowId(ctx)));
+	        model.put("cast", ShowDAO.getCast(getParamShowId(ctx),"NOT "));
+	        model.put("crew",ShowDAO.getCast(getParamShowId(ctx),""));
 
 		}
 		else {
@@ -30,25 +35,19 @@ public class ShowProcoController {
 					+ "approved for our database yet. Please wait for an admin to review it.");
 		}
 		
-		ctx.render(Template.EDITSHOW, model);
+		ctx.render(Template.EDITCHARACTER, model);
 		
 	};
 	
-	public static Handler handleEditShowPage = ctx ->{
-		
-		ShowDAO.editShow(RequestUtil.getParamShowId(ctx), getShowTitle(ctx), getShowLength(ctx), getShowGenre(ctx));
+	public static Handler handleEditCharacterPage = ctx ->{
+		ShowDAO.editCharName(getParamShowId(ctx), getParamPersonId(ctx), getCharacterName(ctx));
 		ctx.redirect(Web.INDEX);
 	};
 	
-	public static String getShowTitle(Context ctx) {
-        return ctx.formParam("showTitle");
+	public static String getCharacterName(Context ctx) {
+        return ctx.formParam("charName");
     }
 	
-	public static String getShowGenre(Context ctx) {
-        return ctx.formParam("showGenre");
-    }
+    
 	
-	public static double getShowLength(Context ctx) {
-        return Double.parseDouble(ctx.formParam("showLength"));
-    }
 }

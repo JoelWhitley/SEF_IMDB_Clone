@@ -476,6 +476,67 @@ public class ShowDAO {
 	        e.printStackTrace();
 	    }
 	}
+	
+	/*
+    * Method to get a single member of a show's cast using the show ID and the personID
+    *
+    * @param id the ID of a show in the database
+    * @param id of the person in the show
+    * @return a person with all their details, who played that role
+    * @thr
+    */
+	public static List<CreditsRoll> getCastName(int showId, int personId) {
+		// Fish out the results
+		List<CreditsRoll> cast = new ArrayList<>();
+		String sql = "SELECT * FROM credits_roll WHERE show_id ='" + showId 
+				+ "' AND person_id = " + personId + ";";
+		try {
+        	Connection connection = DatabaseUtils.connectToDatabase();
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            // If you have multiple results, you do a while
+	        while(result.next()) {
+	        	Person p = PersonDAO.getPersonById(result.getInt("person_id"));
+	            cast.add(  	
+	              new CreditsRoll(p.getPersonId(),result.getString("role"), p.getFullName(),result.getString("character_name")) 
+	              );
+	        }
+	
+	        // Close it
+	        DatabaseUtils.closeConnection(connection);
+		    }
+	    catch (Exception e) {
+	        e.printStackTrace();
+	    }
+     // If there is a result
+	    if(!cast.isEmpty()) return cast;
+	    // If we are here, something bad happened
+	    return null;
+	}
+	
+	
+	//update character name in credits roll from showid, personid
+	public static void editCharName(int showId, int personId, String charName) {
+		
+		String sql = "UPDATE credits_roll SET character_name = '" + charName +
+				
+				"' WHERE show_id = " + showId + 
+				" AND person_id = " + personId + ";";
+		
+		
+		
+		try {
+        	Connection connection = DatabaseUtils.connectToDatabase();
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sql);
+            DatabaseUtils.closeConnection(connection);
+            //if there are any results, we know we have a duplicate title
+	       
+		}
+	    catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
 }
 
 	

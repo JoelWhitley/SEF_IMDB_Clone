@@ -1,0 +1,26 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<div id = "content">
+
+#if($cast)
+	#foreach($castMember in $cast) 
+	#if($castMember.personID == $charCast[0].personID)
+	<h2>Edit Character Name Portal</h2>
+	<form id="editShow" method="post">
+	<label>Cast Name: $castMember.realName</label><br><br>
+	<label>Character Name: </label><input type="text" name="charName" value="$castMember.character"></input><br><br>
+	<input type="button" value="Return to Show Page" onclick="location.href='/shows/$show.showid/'">
+	<input type="submit" value="Submit Change">
+	</form>
+	#end
+	#end
+	#else
+	<h1>not found</h1>
+	#end
+		
+</div>
+
+
+
+
+	#end

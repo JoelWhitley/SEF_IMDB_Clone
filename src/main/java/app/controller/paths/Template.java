@@ -16,6 +16,7 @@ public class Template {
     public static final String SHOW = "/velocity/show/show.vm";
 
     public static final String EDITSHOW = "/velocity/show/editShow.vm";
+    public static final String EDITCHARACTER = "/velocity/show/editCharacter.vm";
     public static final String INDEXSEARCH = "/velocity/index/indexSearch.vm";
 
     public static final String SUGGESTION = "/velocity/suggestion/suggestion.vm";

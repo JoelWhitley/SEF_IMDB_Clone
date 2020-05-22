@@ -37,11 +37,12 @@
 			$castMember.realName 
 		</a>
 		playing $castMember.character</p>
-		#if($admin)
+		#if(!$admin)
 		<form id="procoEditCast" method="post">
 		    		
-		    		<input name="editCharacter" type="hidden" value="$castMember.realName"></input>
-		    		<input type="submit" value="Edit Character Name">
+		    		<a input name="editCharacter" type="hidden" href="/shows/$show.showid/characterEdit/$castMember.personID" value="$castMember.realName"></input>
+		    		<input type="button" class="shows" href="/shows/$show.showid/characterEdit/$castMember.personID"value="Edit $castMember.realName's Character Name">
+		    		</a>
 				</form>
 		#end
 	#end
