@@ -159,6 +159,9 @@ public class AccountDAO {
      */
     public static void updateUserType(String username, AccountRole type) {
     	boolean isNotBanned = true;
+    	
+    	if(username != null && type != null) {
+    	
     	//check if they are banned and trying to get approved for a better account
     	//otherwise this will block admins from updating their status manually
     	if (type.getString().equals("PENDING_PROCO") || type.getString().equals("PENDING_CRITIC")) {
@@ -181,7 +184,8 @@ public class AccountDAO {
     		} catch (Exception e) {
     			System.out.println("Error connecting to database");
     		}
-    	}   
+    	}
+    	}
     }
 
     
@@ -245,7 +249,11 @@ public class AccountDAO {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
         Calendar cal = Calendar.getInstance();
         
-		if (timeMeasure.equals("hours")) {
+		//seconds good for testing (CvR)
+        if (timeMeasure.equals("seconds")) {
+			cal.add(Calendar.SECOND, timeAmount);
+		}
+		else if (timeMeasure.equals("hours")) {
 			cal.add(Calendar.HOUR_OF_DAY, timeAmount);
 		}
 		else if (timeMeasure.equals("days")) {

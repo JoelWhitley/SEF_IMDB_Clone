@@ -10,8 +10,11 @@ import app.model.enumeration.AccountRole;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -35,16 +38,84 @@ public class RequestNewAccountTest {
 		}
 	}
 	
+	//Proco Request tests:
+	
 	@Test
-	public void testUpdateUserType_true() {
+	public void testUpdateProcoRequestType_true() {
 		AccountDAO.updateUserType(testUser.getUsername(), AccountRole.PENDING_PROCO);
 		assertEquals(AccountDAO.getUserDetails(testUser.getUsername()).getType(), AccountRole.PENDING_PROCO);
 	}
 	
 	@Test
-	public void testUpdateProcoType_true() {
+	public void testRevertProcoRequest_true() {
+		AccountDAO.updateUserType(testUser.getUsername(), AccountRole.PENDING_PROCO);
 		AccountDAO.updateUserType(testUser.getUsername(), AccountRole.USER);
 		assertEquals(AccountDAO.getUserDetails(testUser.getUsername()).getType(), AccountRole.USER);
 	}
-
+	
+	@Test
+	public void testProcoPreventBannedRequests_false() {
+		AccountDAO.banUserForTime(testUser.getUsername(), 1, "days");
+		AccountDAO.updateUserType(testUser.getUsername(), AccountRole.PENDING_PROCO);
+		assertNotEquals(AccountDAO.getUserDetails(testUser.getUsername()).getType(), AccountRole.PENDING_PROCO);
+	}
+	
+	@Test
+	public void testProcoBanTimeoutRequests_true() {
+		AccountDAO.banUserForTime(testUser.getUsername(), 2, "seconds");
+		
+		try {
+			Thread.sleep(3000);
+			}
+			catch(InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
+		
+		AccountDAO.updateUserType(testUser.getUsername(), AccountRole.PENDING_PROCO);
+		assertEquals(AccountDAO.getUserDetails(testUser.getUsername()).getType(), AccountRole.PENDING_PROCO);
+	}
+	
+	//Critic Request tests:
+	
+	@Test
+	public void testUpdateCriticRequestType_true() {
+		AccountDAO.updateUserType(testUser.getUsername(), AccountRole.PENDING_CRITIC);
+		assertEquals(AccountDAO.getUserDetails(testUser.getUsername()).getType(), AccountRole.PENDING_CRITIC);
+	}
+	
+	@Test
+	public void testRevertCriticRequestType_true() {
+		AccountDAO.updateUserType(testUser.getUsername(), AccountRole.PENDING_CRITIC);
+		AccountDAO.updateUserType(testUser.getUsername(), AccountRole.USER);
+		assertEquals(AccountDAO.getUserDetails(testUser.getUsername()).getType(), AccountRole.USER);
+	}
+	
+	@Test
+	public void testCriticPreventBannedRequests_false() {
+		AccountDAO.banUserForTime(testUser.getUsername(), 1, "days");
+		AccountDAO.updateUserType(testUser.getUsername(), AccountRole.PENDING_CRITIC);
+		assertNotEquals(AccountDAO.getUserDetails(testUser.getUsername()).getType(), AccountRole.PENDING_CRITIC);
+	}
+	
+	@Test
+	public void testCriticBanTimeoutRequests_true() {
+		AccountDAO.banUserForTime(testUser.getUsername(), 2, "seconds");
+		
+		try {
+			Thread.sleep(3000);
+			}
+			catch(InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
+		
+		AccountDAO.updateUserType(testUser.getUsername(), AccountRole.PENDING_CRITIC);
+		assertEquals(AccountDAO.getUserDetails(testUser.getUsername()).getType(), AccountRole.PENDING_CRITIC);
+	}
+	
+	//Test null values
+	@Test
+	public void giveNullUserName_noCrash() {
+		String nullUsername = null; 
+		AccountDAO.updateUserType(nullUsername, AccountRole.PENDING_PROCO);
+	}
 }
