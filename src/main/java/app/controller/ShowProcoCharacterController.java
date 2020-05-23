@@ -41,7 +41,10 @@ public class ShowProcoCharacterController {
 	
 	public static Handler handleEditCharacterPage = ctx ->{
 		ShowDAO.editCharName(getParamShowId(ctx), getParamPersonId(ctx), getCharacterName(ctx));
-		ctx.redirect(Web.INDEX);
+		
+		String varShow = Web.SHOW.replace(":showid", ctx.pathParam("showid", Integer.class).get().toString());
+
+		ctx.redirect(varShow);
 	};
 	
 	public static String getCharacterName(Context ctx) {

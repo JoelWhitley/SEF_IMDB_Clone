@@ -37,7 +37,9 @@ public class ShowProcoController {
 	public static Handler handleEditShowPage = ctx ->{
 		
 		ShowDAO.editShow(RequestUtil.getParamShowId(ctx), getShowTitle(ctx), getShowLength(ctx), getShowGenre(ctx));
-		ctx.redirect(Web.INDEX);
+		String varShow = Web.SHOW.replace(":showid", ctx.pathParam("showid", Integer.class).get().toString());
+
+		ctx.redirect(varShow);
 	};
 	
 	public static String getShowTitle(Context ctx) {
