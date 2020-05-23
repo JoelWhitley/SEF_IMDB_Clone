@@ -1,7 +1,7 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
 <div id = "content">
-
+#if($procoLogin)
 #if($cast)
 	#foreach($castMember in $cast) 
 	#if($castMember.personID == $charCast[0].personID)
@@ -12,6 +12,7 @@
 	<input type="button" value="Return to Show Page" onclick="location.href='/shows/$show.showid/'">
 	<input type="submit" value="Submit Change">
 	</form>
+	#end
 	#end
 	#end
 	#else
