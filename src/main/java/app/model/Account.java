@@ -98,6 +98,10 @@ public class Account {
     public void setRole(AccountRole ar) {
     	this.type = ar;
     }
+    
+    public String getBanTime() {
+    	return banTime;
+    }
 
 
 	public boolean getBanned() {
