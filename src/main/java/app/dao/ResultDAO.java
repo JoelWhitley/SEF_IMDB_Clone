@@ -10,18 +10,19 @@ import app.dao.utils.DatabaseUtils;
 import app.model.Person;
 
 public class ResultDAO {
-	public static final String SALT = "$2a$10$h.dl5J86rGH7I8bD9bZeZe";
-
-
-
 	
+	//TODO this is a duplicate of the method in SearchIndexDAO???
+	//does it need to be here for some reason?
+	/**
+	 * Method to get shows that match the search
+	 * @param search item to search of
+	 * @return list of shows 
+	 */
     public static Person getResultsByString(String search) {
         // Fish out the results
         List<Person> person = new ArrayList<>();
 
         try {
-       
-
             //sql script. Show show title by searching first name of actor
         	
         	String sql = "SELECT `person`.person_id, `person`.fullname, `person`.`role`, `person`.birthdate, `person`.bio " +
@@ -39,15 +40,11 @@ public class ResultDAO {
                     
             //sql script. Show Writer/Based-On & Search-By
 
-
             // Execute the query
             Connection connection = DatabaseUtils.connectToDatabase();
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(sql);
 
-            
-            
-            
             // If you have multiple results, you do a while
             while(result.next()) {
                 person.add(   
@@ -70,6 +67,8 @@ public class ResultDAO {
         return null;
     }
     
+    
+    //TODO rico?????????
     /*
 
 	public static Person getPersonByName(String fullname) {

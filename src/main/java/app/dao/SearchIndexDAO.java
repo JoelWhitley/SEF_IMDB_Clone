@@ -10,12 +10,20 @@ import app.dao.utils.DatabaseUtils;
 import app.model.Show;
 import app.model.enumeration.ShowStatus;
 
-public class SearchIndexDAO {
-	public static final String SALT = "$2a$10$h.dl5J86rGH7I8bD9bZeZe";
-
-    public static List<Show> getShowsByTitle(String search) {
+public class SearchIndexDAO {	
+	
+	//TODO cleanup? Rico
+	/**
+     * Method to get shows using their title, genre, any character's names 
+     * or actor's names, given that the show is visable
+     *
+     * @param search term to search for
+     * @return list of shows that match in any way
+     * @throws SQLexception Tried to execute a statement that was not valid
+     */
+    public static List<Show> searchAllShows(String search) {
     	
-    	ShowDAO.updateStatus();
+    	ShowDAO.updateProCoShowStatus();
     	
         // Fish out the results
         List<Show> shows = new ArrayList<>();

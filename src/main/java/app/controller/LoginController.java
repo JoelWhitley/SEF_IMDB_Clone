@@ -74,7 +74,8 @@ public class LoginController {
 
 
     public static String getQueryUsername(Context ctx) {
-        return ctx.formParam("username");
+    	ctx.path();
+    	return ctx.formParam("username");
     }
 
     public static String getQueryPassword(Context ctx) {

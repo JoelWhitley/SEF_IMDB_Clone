@@ -40,6 +40,7 @@ CREATE TABLE `account` (
   `gender` varchar(10) NOT NULL,
   `first_name` varchar(45) NOT NULL,
   `last_name` varchar(45) NOT NULL,
+  `ban_timeout` datetime NOT NULL,
   PRIMARY KEY (`username`),
   UNIQUE KEY `username_UNIQUE` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -53,7 +54,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES ('caramel6','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','caramelwilson@gmail.com','123 Fake Street, Fakesville','Australia','ADMIN','Female','Cara','Wilson'),('chocolate7','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','garychoco@gmail.com','123 Fake Street, Fakesville','Australia','PROCO','Male','Gary','Chocobo'),('vanilla8','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','vanillaice@gmail.com','123 Fake Street, Fakesville','Australia','USER','Male','Vanilla','Ice'),('strawberry9','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','samanthastrawberry@gmail.com','123 Fake Street, Fakesville','Australia','USER','Female','Samantha','Strawberry'),('banana10','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','bartnanny@gmail.com','123 Fake Street, Fakesville','Australia','USER','Female','Bart','Nanny');
+INSERT INTO `account` VALUES ('caramel6','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','caramelwilson@gmail.com','123 Fake Street, Fakesville','Australia','ADMIN','Female','Cara','Wilson','2000-01-01 00:00:00.000'),('chocolate7','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','garychoco@gmail.com','123 Fake Street, Fakesville','Australia','PROCO','Male','Gary','Chocobo','2000-01-01 00:00:00.000'),('vanilla8','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','vanillaice@gmail.com','123 Fake Street, Fakesville','Australia','USER','Male','Vanilla','Ice','2000-01-01 00:00:00.000'),('strawberry9','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','samanthastrawberry@gmail.com','123 Fake Street, Fakesville','Australia','USER','Female','Samantha','Strawberry','2000-01-01 00:00:00.000'),('banana10','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','bartnanny@gmail.com','123 Fake Street, Fakesville','Australia','USER','Female','Bart','Nanny','2000-01-01 00:00:00.000');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,7 +186,7 @@ CREATE TABLE `show` (
 
 LOCK TABLES `show` WRITE;
 /*!40000 ALTER TABLE `show` DISABLE KEYS */;
-INSERT INTO `show` VALUES (1,'Star Wars: Episode IX - The Rise of Skywalker','Action',2.22,1,0,9,2019,'VISABLE','2000-01-01 00:00:00.000'),(2,'The Wire','Drama',1.00,0,1,3,2002,'PROCOSUBMISSION','2000-01-01 00:00:00.000'),(3,'How to Train Your Dragon','Comedy/Family',1.63,1,0,5,2010,'SUSPENDED','2000-01-01 00:00:00.000'),(4,'Blade Runner','Sci-fi/Thriller',1.90,1,0,4,1982,'PENDING','2000-01-01 00:00:00.000'),(5,'Stranger Things','Horror',1.05,0,1,7,2016,'USERSUBMISSION','2000-01-01 00:00:00.000');
+INSERT INTO `show` VALUES (1,'Star Wars: Episode IX - The Rise of Skywalker','Action',2.22,1,0,9,2019,'VISABLE','2000-01-01 00:00:00.000'),(2,'The Wire','Drama',1.00,0,1,3,2002,'PROCOSUBMISSION','2020-01-01 00:00:00.000'),(3,'How to Train Your Dragon','Comedy/Family',1.63,1,0,5,2010,'SUSPENDED','2000-01-01 00:00:00.000'),(4,'Blade Runner','Sci-fi/Thriller',1.90,1,0,4,1982,'PENDING','2000-01-01 00:00:00.000'),(5,'Stranger Things','Horror',1.05,0,1,7,2016,'USERSUBMISSION','2000-01-01 00:00:00.000');
 /*!40000 ALTER TABLE `show` ENABLE KEYS */;
 UNLOCK TABLES;
 

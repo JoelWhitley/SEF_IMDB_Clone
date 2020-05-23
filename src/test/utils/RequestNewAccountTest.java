@@ -21,7 +21,7 @@ public class RequestNewAccountTest {
 	@BeforeAll
 	public void setup() {
 		testUser = new Account("testUser", "$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO", 
-				"Testy", "Testington", "123 Test Road", "Testoria", "Female", "test1@call.com", AccountRole.USER);
+				"Testy", "Testington", "123 Test Road", "Testoria", "Female", "test1@call.com", AccountRole.USER, "21/04/1994");
 		
 	}
 	
@@ -39,7 +39,7 @@ public class RequestNewAccountTest {
 	@Test
 	public void testUpdateProcoType_true() {
 		testUser = new Account("testUser", "$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO", 
-				"Testy", "Testington", "123 Test Road", "Testoria", "Female", "test1@call.com", AccountRole.PENDING_PROCO);
+				"Testy", "Testington", "123 Test Road", "Testoria", "Female", "test1@call.com", AccountRole.PENDING_PROCO, "21/04/1994");
 		AccountDAO.updateUserType(testUser.getUsername(), AccountRole.USER);
 		assertEquals(AccountDAO.getUserDetails(testUser.getUsername()).getType(), AccountRole.USER);
 	}

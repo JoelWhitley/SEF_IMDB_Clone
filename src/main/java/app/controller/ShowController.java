@@ -86,6 +86,7 @@ public class ShowController {
          model.put("twoPercent", ShowDAO.getStarPercent(getParamShowId(ctx), 2));
          model.put("onePercent", ShowDAO.getStarPercent(getParamShowId(ctx), 1));
          
+         
          ctx.render(Template.SHOW, model);
     };
 

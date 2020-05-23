@@ -12,7 +12,13 @@ import app.model.UserReview;
 
 public class UserReviewDAO {
 	
-	//Used when constructing a Review to display.
+	/**
+     * Method to grab a review from the database
+     *
+     * @return the review with that ID
+     * @param id ID that matches a review in the database
+     * @throws SQLexception Tried to execute a statement that was not valid
+     */
 	public static UserReview getReviewById(int id) {
 		List<UserReview> reviews =  new ArrayList<>();
 		String sql = "SELECT * FROM `user_review` WHERE reviewId ='" + id + "';";
@@ -43,7 +49,13 @@ public class UserReviewDAO {
 	    return null;
 	}
 	
-	//Used when grabbing all of a show's reviews.
+	/**
+     * Method to grab all reviews for one show from the database
+     *
+     * @return the reviews with that show ID
+     * @param showID ID that matches a show in the database
+     * @throws SQLexception Tried to execute a statement that was not valid
+     */
 	public static List<UserReview> searchReviewByShowID(int showID) {
 		List<UserReview> reviews =  new ArrayList<>();
 		String sql = "SELECT * FROM `user_review` WHERE show_id ='" + showID + "';";
@@ -74,7 +86,13 @@ public class UserReviewDAO {
 	    return null;
 	}
 	
-	//Used when displaying a user's review-list.
+	/**
+     * Method to grab all reviews for one user from the database
+     *
+     * @return the reviews with that username attached
+     * @param username username that matches a user in the database
+     * @throws SQLexception Tried to execute a statement that was not valid
+     */
 	public static List<UserReview> searchReviewByUsername(String username) {
 		List<UserReview> reviews =  new ArrayList<>();
 		String sql = "SELECT * FROM `user_review` WHERE user_id ='" + username + "';";
@@ -105,6 +123,14 @@ public class UserReviewDAO {
 	    return null;
 	}
 	
+	/**
+     * Method to insert a new review into the DB
+     *
+     * @param review a constructed review object to be inserted
+     * @throws SQLexception Tried to execute a statement that was not valid
+     */
+	
+	//TODO
 	//Need to fix review-id check. Because deleted reviews will subsequently cause duplicate id numbers.
 	public static void insertReviewIntoDataBase(UserReview review) {
 		
@@ -121,7 +147,7 @@ public class UserReviewDAO {
             String insertQuery = String.format("INSERT INTO `user_review` VALUES ('%s', '%s', '%s', '%s', '%s', '%s')",
             		result.getInt(1) +1, review.getShowID(), review.getUsername(),
             		review.getRating(), review.getReview().replace("'", "''").replace("\\", "\\\\"),review.getDate());
-            		
+            
             try {
             	PreparedStatement insertStatement = connection.prepareStatement(insertQuery);
             	insertStatement.execute();
@@ -138,21 +164,31 @@ public class UserReviewDAO {
 
 	}
 	
+	
+	/**
+     * Method to grab all reviews for one user from the database
+     *
+     * @param username username that matches a user in the database
+     * @param showId a showID for a show in the database that the user has commented on
+     * @throws SQLexception Tried to execute a statement that was not valid
+     */
 	public static void deleteReviewInDataBase(String username, int showId) {
 		
-			String deleteQuery = "DELETE FROM user_review WHERE user_id = '" + username 
-			+ "' AND show_id = " + showId + ";";
-			
-			try {
-	        	Connection connection = DatabaseUtils.connectToDatabase();
-	            PreparedStatement insertStatement = connection.prepareStatement(deleteQuery);
-	         	insertStatement.execute();
-	                       
-	            DatabaseUtils.closeConnection(connection);
-			}
-			catch (Exception e) {
-		        e.printStackTrace();
-		    }
+		//check for the review that the user has made on this show (can only be one)
+		//delete it
+		String deleteQuery = "DELETE FROM user_review WHERE user_id = '" + username 
+		+ "' AND show_id = " + showId + ";";
+		
+		try {
+        	Connection connection = DatabaseUtils.connectToDatabase();
+            PreparedStatement insertStatement = connection.prepareStatement(deleteQuery);
+         	insertStatement.execute();
+                       
+            DatabaseUtils.closeConnection(connection);
+		}
+		catch (Exception e) {
+	        e.printStackTrace();
+	    }
 	}
 }
 

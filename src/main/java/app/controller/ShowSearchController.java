@@ -14,7 +14,7 @@ public class ShowSearchController {
 	    	
 	    	public static Handler serveShowResults = ctx -> {
 	    		Map<String, Object> model = ViewUtil.baseModel(ctx);
-	    		model.put("shows", SearchIndexDAO.getShowsByTitle(getSessionShowSearch(ctx)));
+	    		model.put("shows", SearchIndexDAO.searchAllShows(getSessionShowSearch(ctx)));
 	        	ctx.render(Template.INDEXSEARCH,model);
 	    	};
 	  
