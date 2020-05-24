@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -75,6 +76,14 @@ public class RequestNewAccountTest {
 		assertEquals(AccountDAO.getUserDetails(testUser.getUsername()).getType(), AccountRole.PENDING_PROCO);
 	}
 	
+	@Test
+	public void testUpdateProcoNotInDB_null() {
+		Account testUser2 = new Account("testUser2", "$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO", 
+			"Testing", "Maipatients", "123 Test Road", "Testoria", "Female", "test1@call.com", AccountRole.USER, "2000-01-01 00:00:00.000");
+		AccountDAO.updateUserType(testUser2.getUsername(), AccountRole.PENDING_PROCO);
+		assertNull(AccountDAO.getUserDetails(testUser2.getUsername()));
+	}
+	
 	//Critic Request tests:
 	
 	@Test
@@ -110,6 +119,14 @@ public class RequestNewAccountTest {
 		
 		AccountDAO.updateUserType(testUser.getUsername(), AccountRole.PENDING_CRITIC);
 		assertEquals(AccountDAO.getUserDetails(testUser.getUsername()).getType(), AccountRole.PENDING_CRITIC);
+	}
+	
+	@Test
+	public void testUpdateCriticNotInDB_null() {
+		Account testUser2 = new Account("testUser2", "$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO", 
+			"Testing", "Maipatients", "123 Test Road", "Testoria", "Female", "test1@call.com", AccountRole.USER, "2000-01-01 00:00:00.000");
+		AccountDAO.updateUserType(testUser2.getUsername(), AccountRole.PENDING_CRITIC);
+		assertNull(AccountDAO.getUserDetails(testUser2.getUsername()));
 	}
 	
 	//Test null values

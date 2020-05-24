@@ -161,18 +161,21 @@ public class AccountDAO {
     	boolean isNotBanned = true;
     	
     	if(username != null && type != null) {
+    		Account currentUser = AccountDAO.getUserByUsername(username);
     	
     	//check if they are banned and trying to get approved for a better account
     	//otherwise this will block admins from updating their status manually
     	if (type.getString().equals("PENDING_PROCO") || type.getString().equals("PENDING_CRITIC")) {
-    		if (AccountDAO.getUserByUsername(username).getBanned() == true) {
+    		if(currentUser != null) {
+    		if (currentUser.getBanned() == true) {
     			
     			isNotBanned = false;
+    		}
     		}
     	}
     	
     	//otherwise, update the status field of that user to be the given type.
-    	if (isNotBanned) {
+    	if (isNotBanned && currentUser != null) {
     		Connection connection;
     		try {
     			connection = DatabaseUtils.connectToDatabase();
