@@ -2,6 +2,7 @@ package app.dao;
 
 import app.dao.utils.DatabaseUtils;
 import app.model.Account;
+import app.model.UserReview;
 import app.model.enumeration.AccountRole;
 
 import java.sql.Connection;
@@ -158,17 +159,23 @@ public class AccountDAO {
      */
     public static void updateUserType(String username, AccountRole type) {
     	boolean isNotBanned = true;
+    	
+    	if(username != null && type != null) {
+    		Account currentUser = AccountDAO.getUserByUsername(username);
+    	
     	//check if they are banned and trying to get approved for a better account
     	//otherwise this will block admins from updating their status manually
     	if (type.getString().equals("PENDING_PROCO") || type.getString().equals("PENDING_CRITIC")) {
-    		if (AccountDAO.getUserByUsername(username).getBanned() == true) {
+    		if(currentUser != null) {
+    		if (currentUser.getBanned() == true) {
     			
     			isNotBanned = false;
+    		}
     		}
     	}
     	
     	//otherwise, update the status field of that user to be the given type.
-    	if (isNotBanned) {
+    	if (isNotBanned && currentUser != null) {
     		Connection connection;
     		try {
     			connection = DatabaseUtils.connectToDatabase();
@@ -180,7 +187,8 @@ public class AccountDAO {
     		} catch (Exception e) {
     			System.out.println("Error connecting to database");
     		}
-    	}   
+    	}
+    	}
     }
 
     
@@ -244,7 +252,11 @@ public class AccountDAO {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
         Calendar cal = Calendar.getInstance();
         
-		if (timeMeasure.equals("hours")) {
+		//seconds good for testing (CvR)
+        if (timeMeasure.equals("seconds")) {
+			cal.add(Calendar.SECOND, timeAmount);
+		}
+		else if (timeMeasure.equals("hours")) {
 			cal.add(Calendar.HOUR_OF_DAY, timeAmount);
 		}
 		else if (timeMeasure.equals("days")) {
@@ -277,4 +289,81 @@ public class AccountDAO {
 		//applying again too quickly or making too many shows of the same
 		//type
 	}
+	
+	
+	public static void insertAccountIntoDataBase(Account user) throws Exception{
+		
+		if(checkUniqueUserName(user.getUsername())==false) {
+			throw new Exception("Username Already In Use");
+		}
+		String insertQuery = String.format("INSERT INTO `account` VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+        		user.getUsername().replace("'", "''").replace("\\", "\\\\"), user.getPassword(), user.getEmail(),
+        		user.getAddress(), user.getCountry(), user.getType().getString(), user.getGender(), user.getFirstName(), user.getLastName(), user.getBanTime());
+		
+		try {
+			Connection connection = DatabaseUtils.connectToDatabase();
+			PreparedStatement insertStatement = connection.prepareStatement(insertQuery);
+            //Insert query.
+            
+        	insertStatement.execute();
+        	
+        	DatabaseUtils.closeConnection(connection);
+            }
+            catch (Exception e) {
+    	        e.printStackTrace();
+    	    }
+
+	}
+	
+	public static boolean checkUniqueUserName(String username) {
+		boolean unique = true;
+		
+		String sql = "SELECT * FROM `account` WHERE username ='" + username + "';";
+		
+        try {
+        	Connection connection = DatabaseUtils.connectToDatabase();
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            // If you have multiple results, you do a while
+	        while(result.next()) {
+	            if(result.getString("username") != null) {
+	            	unique = false;
+	            }
+	        }
+	
+	        // Close it
+	        DatabaseUtils.closeConnection(connection);
+		    }
+	    catch (Exception e) {
+	        e.printStackTrace();
+	    }	
+		
+		return unique;
+	}
+	
+	public static void deleteUserInDataBase(String username) {
+		
+		List<UserReview> userReviews = UserReviewDAO.searchReviewByUsername(username);
+		if(userReviews != null) {
+			for(UserReview review : userReviews) {
+				UserReviewDAO.deleteReviewInDataBase(username, review.getShowID());
+			}
+		}
+		//check for the review that the user has made on this show (can only be one)
+		//delete it
+		String deleteQuery = "DELETE FROM account WHERE username = '" + username 
+		+ "';";
+		
+		try {
+        	Connection connection = DatabaseUtils.connectToDatabase();
+            PreparedStatement deleteStatement = connection.prepareStatement(deleteQuery);
+         	deleteStatement.execute();
+                       
+            DatabaseUtils.closeConnection(connection);
+		}
+		catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+	
 }
