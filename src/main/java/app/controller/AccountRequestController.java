@@ -3,16 +3,10 @@ package app.controller;
 import app.controller.paths.Template;
 import app.controller.utils.ViewUtil;
 import app.dao.AccountDAO;
-import app.dao.ProCoDAO;
-import app.dao.ShowDAO;
-import app.dao.SuggestionDAO;
-import app.model.Show;
 import app.model.enumeration.AccountRole;
-import app.model.enumeration.ShowStatus;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
-import java.util.Calendar;
 import java.util.Map;
 
 public class AccountRequestController {

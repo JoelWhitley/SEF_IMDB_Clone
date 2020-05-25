@@ -6,6 +6,7 @@ import app.dao.AccountDAO;
 import app.dao.ProCoDAO;
 import app.dao.ShowDAO;
 import app.dao.SuggestionDAO;
+import app.model.Account;
 import app.model.Show;
 import app.model.enumeration.ShowStatus;
 import io.javalin.http.Context;
@@ -34,10 +35,7 @@ public class SuggestionController {
     
     public static Handler handleNewSuggestion = ctx -> {
     	Show suggestion = null;
-    	String currentUser = "";
-    	
-    	
-    	
+    	Account currentUser = AccountDAO.getUserByUsername(getFormUser(ctx));
     	//form a suggestion show
     	int showID = ShowDAO.getLowestUnusedID();
 		if (getFormTitle(ctx) != null) {
@@ -46,15 +44,11 @@ public class SuggestionController {
 									getFormLength(ctx), getFormIsMovie(ctx),
 									getFormIsSeries(ctx), getFormGenre(ctx),
 									getFormYear(ctx), ShowStatus.VISABLE, getFormProCo(ctx));
-			
-			
-			currentUser = AccountDAO.getUserType(getFormUser(ctx));
 		}
 		//if there is another show of this name, bring up an error, else just redirect
 		//to a preview of the page.
 		if (ShowDAO.checkDuplicateName(suggestion.getShowTitle()) == false) {
 			SuggestionDAO.insertSuggestionShow(suggestion,currentUser);
-
 	    	Map<String, Object> model = ViewUtil.baseModel(ctx);
 	        model.put("show", ShowDAO.getShowById(showID));
 	        ctx.render(Template.SHOW, model);

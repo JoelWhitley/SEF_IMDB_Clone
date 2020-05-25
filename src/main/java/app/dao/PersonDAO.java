@@ -17,7 +17,13 @@ public class PersonDAO {
 	public static final String SALT = "$2a$10$h.dl5J86rGH7I8bD9bZeZe";
 
 	
-	//returns a list of persons despite the name
+	/**
+     * Method to fetch people from the database.
+     *
+     * @param personSearch Name or term typed by the user to search for
+     * @throws SQLexception Tried to execute a statement that was not valid
+     * @return people that match the search term
+     */
     public static List<Person> getPersonByString(String personSearch) {
         // Fish out the results
         List<Person> person = new ArrayList<>();
@@ -74,14 +80,11 @@ public class PersonDAO {
     }
 
     /**
-     * Method to fetch users from the database.
-     * You should use this as an example for future queries, though the sql statement
-     * will change -and you are supposed to write them.
+     * Method to fetch people by their ID
      *
-     * Current user: caramel 6, password (the password is "password" without quotes)
-     * @param username what the user typed in the log in form.
-     * @return Some of the user data to check on the password. Null if there
-     *         no matching user.
+     * @param id the person's database ID
+     * @return the person's full details
+     * @throws SQLexception Tried to execute a statement that was not valid
      */
 	public static Person getPersonById(int id) {
 
@@ -120,6 +123,14 @@ public class PersonDAO {
 		return null;
 	}
 
+	
+	/**
+     * Method to get a random actor's details
+     * Used mainly on the index page to get a "featured person"
+     *
+     * @return the person's full details
+     * @throws SQLexception Tried to execute a statement that was not valid
+     */
     public static Person getRandomActorInfo() {
         // Fish out the results
         List<Person> people = new ArrayList<>();
@@ -159,6 +170,13 @@ public class PersonDAO {
         return null;
     }
 
+    
+    /**
+     * Method to fetch people's filmography given their ID
+     *
+     * @param personId the person's database ID
+     * @return a list (show) that the person has stared in
+     */
 	public static List<Show> getFilmography(int personId) {
 		// Fish out the results
         List<Show> filmography = new ArrayList<>();
@@ -184,9 +202,6 @@ public class PersonDAO {
                 // 2) Add it to the list we have prepared
             	           	
             	filmography.add(
-//            			public Show(int showid,String showTitle,double length,boolean isMovie,
-//            		    		boolean isSeries,String genre,int year,showStatus status,
-//            		    		String proCo)
             			 new Show(result.getInt("showid"),
             					 result.getString("show_title"),
             					 result.getDouble("length"),

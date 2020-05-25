@@ -13,15 +13,11 @@ import java.util.List;
 public class ProCoDAO {
 
 
-    /**
-     * Method to fetch users from the database.
-     * You should use this as an example for future queries, though the sql statement
-     * will change -and you are supposed to write them.
+	/**
+     * Method to fetch procos from the database.
      *
-     * Current user: caramel 6, password (the password is "password" without quotes)
-     * @param username what the user typed in the log in form.
-     * @return Some of the user data to check on the password. Null if there
-     *         no matching user.
+     * @return all proCos
+     * @throws SQLexception Tried to execute a statement that was not valid
      */
     public static List<ProductionCompany> getAllProCo() {
         // Fish out the results
@@ -60,6 +56,13 @@ public class ProCoDAO {
         return null;
     }
     
+    /**
+     * Method to fetch procos from the database by id.
+     *
+     * @return the proco with that ID
+     * @param name Name that matches a proco in the database
+     * @throws SQLexception Tried to execute a statement that was not valid
+     */
     public static String findProCoID(String name) {
     	
     	String proCoID = "";

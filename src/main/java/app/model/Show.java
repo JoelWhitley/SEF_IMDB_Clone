@@ -21,7 +21,7 @@ public class Show {
     private List<UserReview> userReviewList;
     private List<CreditsRoll> creditsRolls;
     
-   
+    
 
     public Show(int showid,String showTitle,double length,boolean isMovie,
     		boolean isSeries,String genre,int year,ShowStatus status,

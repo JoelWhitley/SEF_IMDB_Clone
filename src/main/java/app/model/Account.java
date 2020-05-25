@@ -1,5 +1,9 @@
 package app.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import app.model.enumeration.AccountRole;
 
 public class Account {
@@ -17,16 +21,17 @@ public class Account {
     private String gender;
     private String email;
     private AccountRole type;
+    private String banTime;
 
 
 
-	public Account(String un, String p) {
-        username = un;
-        password = p;
-    }
+//	public Account(String un, String p) {
+//        username = un;
+//        password = p;
+//    }
 
 
-    public Account(String username, String password, String fn, String ln, String a, String c, String g, String email,AccountRole type) {
+    public Account(String username, String password, String fn, String ln, String a, String c, String g, String email,AccountRole type, String bt) {
         // TODO fill in here
         /* You should use this constructor when you are showing the account page,
         hence, the user is already logged in. Therefore, the username Should be used
@@ -35,7 +40,8 @@ public class Account {
         You should NEVER show the current password in the form. NEVER!
         And if you want to change the password, you need to ask for current password as well.
          */
-    	this(username, password);
+    	this.username = username;
+    	this.password = password;
     	this.firstName = fn;
     	this.lastName = ln;
     	this.address = a;
@@ -43,6 +49,7 @@ public class Account {
     	this.gender = g;
     	this.email= email;
     	this.type = type;
+    	this.banTime = bt;
     }
 
 
@@ -91,4 +98,27 @@ public class Account {
     public void setRole(AccountRole ar) {
     	this.type = ar;
     }
+
+
+	public boolean getBanned() {
+		try {
+			//check the recorded ban timeout date against the curreent date
+			Date banDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(banTime);
+			Date currentDate = new Date();
+			//if we are passed the end of the ban, allow the user to do stuff
+			if (currentDate.after(banDate)) {
+				return false;
+			}
+			//otherwise.... don't?
+			else {
+				return true;
+			}
+			
+		} catch (ParseException e) {
+			//catch db errors
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 }
