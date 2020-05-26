@@ -2,13 +2,16 @@ package app.controller;
 
 import static app.controller.utils.RequestUtil.getParamShowId;
 import static app.controller.utils.RequestUtil.getSessionCurrentUser;
+import static app.controller.utils.RequestUtil.getSessionShowSearch;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import app.controller.paths.Template;
+import app.controller.paths.Web;
 import app.controller.utils.ViewUtil;
+import app.dao.SearchIndexDAO;
 import app.dao.ShowDAO;
 import app.dao.UserReviewDAO;
 import app.model.UserReview;
@@ -44,8 +47,27 @@ public class ShowController {
         model.put("onePercent", ShowDAO.getStarPercent(getParamShowId(ctx), 1));
         ctx.render(Template.SHOW, model);
     };
-    public static Handler handleUserReview = ctx -> {
+    public static Handler handleShowPage = ctx -> {
 
+    	
+    	//if proco press delete button, deletes show and returns to index
+    	if(getProcoDeleteShow(ctx)!=null) {
+	    	deleteShow(getParamShowId(ctx));
+
+	    	ctx.redirect(Web.INDEX);
+	    }
+    	
+    	//if proco press edit show button, redirects to edit show page
+    	if(getProcoEditShow(ctx)!=null) {
+	    	ctx.redirect(Web.EDITSHOW);
+	    }
+    	
+    	//if proco press edit cast, redirects to edit show page
+    	if(getProcoEditCast(ctx)!=null) {
+
+	    	ctx.redirect(Web.INDEX);
+	    }
+    	
     	UserReview review = null;
     	if(getReviewPost(ctx) != null || getRatingPost(ctx) != -1) {
     		//Check User has not
@@ -65,30 +87,14 @@ public class ShowController {
     	if(getReviewDeleteUsername(ctx)!=null) {
     		deleteUserReview(getReviewDeleteUsername(ctx), getParamShowId(ctx));
     	}
-    	 
-    	 Map<String, Object> model = ViewUtil.baseModel(ctx);
-         model.put("show", ShowDAO.getShowById(getParamShowId(ctx)));
-         model.put("cast", ShowDAO.getCast(getParamShowId(ctx)));
-         model.put("proco", ShowDAO.getProco(getParamShowId(ctx)));
-         model.put("reviews", UserReviewDAO.searchReviewByShowID(getParamShowId(ctx)));
-         
-         model.put("alreadyReviewed", checkAlreadyReviewed(ctx));
-         
-         model.put("fiveRating", ShowDAO.getStarRating(getParamShowId(ctx), 5));
-         model.put("fourRating", ShowDAO.getStarRating(getParamShowId(ctx), 4));
-         model.put("threeRating", ShowDAO.getStarRating(getParamShowId(ctx), 3));
-         model.put("twoRating", ShowDAO.getStarRating(getParamShowId(ctx), 2));
-         model.put("oneRating", ShowDAO.getStarRating(getParamShowId(ctx), 1));
-         
-         model.put("fivePercent", ShowDAO.getStarPercent(getParamShowId(ctx), 5));
-         model.put("fourPercent", ShowDAO.getStarPercent(getParamShowId(ctx), 4));
-         model.put("threePercent", ShowDAO.getStarPercent(getParamShowId(ctx), 3));
-         model.put("twoPercent", ShowDAO.getStarPercent(getParamShowId(ctx), 2));
-         model.put("onePercent", ShowDAO.getStarPercent(getParamShowId(ctx), 1));
          
          
-         ctx.render(Template.SHOW, model);
+         String varShow = Web.SHOW.replace(":showid", ctx.pathParam("showid", Integer.class).get().toString());
+
+ 			ctx.redirect(varShow);
     };
+    
+  
 
     public static String getReviewPost(Context ctx) {
         return ctx.formParam("review");
@@ -123,8 +129,23 @@ public class ShowController {
     public static void deleteUserReview(String username, int showID) {
     	UserReviewDAO.deleteReviewInDataBase(username, showID);
     }
-
+    
+    public static String getProcoDeleteShow(Context ctx) {
+    	return ctx.formParam("deleteShow");
     }
+    
+    public static void deleteShow(int showID) {
+    	ShowDAO.deleteShow(showID);
+    }
+    
+    public static String getProcoEditShow(Context ctx) {
+    	return ctx.formParam("editShow");
+    }
+    
+    public static String getProcoEditCast(Context ctx) {
+    	return ctx.formParam("editCast");
+    }
+}
 
 
 	

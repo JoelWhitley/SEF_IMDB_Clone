@@ -10,6 +10,8 @@ import app.controller.UserPreviewController;
 import app.controller.LoginController;
 import app.controller.PersonSearchController;
 import app.controller.ShowController;
+import app.controller.ShowProcoCharacterController;
+import app.controller.ShowProcoController;
 import app.controller.PersonController;
 import app.controller.SuggestionController;
 import app.controller.paths.Web;
@@ -50,8 +52,14 @@ public class Main {
             get(Web.REQUEST_REVIEW, AccountRequestReviewController.serveRequestReviewPage);
             post(Web.REQUEST_REVIEW, AccountRequestReviewController.handleAdminAction);
             
+            get(Web.EDITSHOW,ShowProcoController.serveEditShowPage);
+            post(Web.EDITSHOW,ShowProcoController.handleEditShowPage);
+            
             get(Web.SHOW, ShowController.serveShowPage);
-            post(Web.SHOW, ShowController.handleUserReview);
+            post(Web.SHOW, ShowController.handleShowPage);
+            
+            get(Web.EDITCHARACTER,ShowProcoCharacterController.serveEditCharacterPage);
+            post(Web.EDITCHARACTER,ShowProcoCharacterController.handleEditCharacterPage);
             
             get(Web.ADMIN, AdminController.serveAdminPage);
             post(Web.ADMIN, AdminController.handleAdminAction);

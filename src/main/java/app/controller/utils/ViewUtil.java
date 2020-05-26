@@ -18,6 +18,7 @@ public class ViewUtil {
         Map<String, Object> model = new HashMap<>();
         model.put("currentUser", RequestUtil.getSessionCurrentUser(ctx));
         model.put("admin", RequestUtil.getSessionIsAdmin(ctx));
+        model.put("procoLogin", RequestUtil.getSessionIsProco(ctx));
         return model;
     }
 

@@ -11,7 +11,23 @@
 		
 	
 </div>
-
+<div id = "procoOptions">
+#if($procoLogin)
+		<h4><label>Production Company: Edit Options</label></h4>
+        	<form id="procoEditShowInfo" method="post">
+		    		
+		    		<a input name="editShow" type="hidden" href="/shows/$show.showid/showEdit" value="$show.showTitle" ></input>
+		    		<input type="button" class="shows" href="/shows/$show.showid/showEdit" value="Edit Show Info">
+		    		</a>
+				</form>
+				
+				<form id="procoDeleteShow" method="post">
+		    		
+		    		<input name="deleteShow" type="hidden" value="$show.showTitle"></input>
+		    		<input type="submit" value="Delete Entire Show">
+				</form>
+	#end
+</div>	
 
 	#if($cast)
 	<h2>Cast:</h2>
@@ -21,7 +37,14 @@
 			$castMember.realName 
 		</a>
 		playing $castMember.character</p>
-		
+		#if($procoLogin)
+		<form id="procoEditCast" method="post">
+		    		
+		    		<a input name="editCharacter" type="hidden" href="/shows/$show.showid/characterEdit/$castMember.personID" value="$castMember.realName"></input>
+		    		<input type="button" class="shows" href="/shows/$show.showid/characterEdit/$castMember.personID"value="Edit $castMember.realName's Character Name">
+		    		</a>
+				</form>
+		#end
 	#end
 	#else
 		<h2>There is no cast yet for this show</h2>

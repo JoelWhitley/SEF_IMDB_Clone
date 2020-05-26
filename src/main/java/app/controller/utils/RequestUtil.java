@@ -43,6 +43,10 @@ public class RequestUtil {
 	public static Boolean getSessionIsAdmin(Context ctx) {
 		return ctx.sessionAttribute("admin");
 	}
+	
+	public static Boolean getSessionIsProco(Context ctx) {
+		return ctx.sessionAttribute("procoLogin");
+	}
 
 
     //new suggestion set
