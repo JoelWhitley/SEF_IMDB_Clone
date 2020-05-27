@@ -39,6 +39,10 @@ public class LoginController {
             	 ctx.sessionAttribute("admin", true);
             	 model.put("admin", RequestUtil.getSessionIsAdmin(ctx));
             }
+            if(UserController.isProco(getQueryUsername(ctx))) {
+            	ctx.sessionAttribute("procoLogin", true);
+            	model.put("procoLogin", RequestUtil.getSessionIsProco(ctx));
+            }
             ctx.render(Template.LOGIN, model);
             
         }
@@ -53,6 +57,7 @@ public class LoginController {
         ctx.sessionAttribute("currentUser", null);
         ctx.sessionAttribute("loggedOut", "true");
         ctx.sessionAttribute("admin", false);
+        ctx.sessionAttribute("procoLogin", false);
         ctx.redirect(Web.LOGIN);
     };
 

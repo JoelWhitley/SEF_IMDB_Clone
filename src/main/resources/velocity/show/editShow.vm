@@ -1,0 +1,25 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<div id = "content">	
+#if($procoLogin)
+	#if($show) 
+	<h2>Edit Show Portal</h2>
+	<form id="editShow" method="post">
+	<label>Show Title: </label><input type="text" name="showTitle" value="$show.showTitle"></input><br><br>
+	<label>Length: </label><input type="text" name="showLength" value=$show.length></input><label> hrs</label><br><br>
+	<label>Genre: </label><input type="text" name="showGenre" value=$show.genre></input><br><br>
+	<input type="button" value="Return to Show Page" onclick="location.href='/shows/$show.showid/'">
+	<input type="submit" value="Submit Changes">
+	</form>
+	#end
+	#else
+	<h1>not found</h1>
+	#end
+		
+	
+</div>
+
+
+
+
+	#end

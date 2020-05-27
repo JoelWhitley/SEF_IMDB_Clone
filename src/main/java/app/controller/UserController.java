@@ -66,5 +66,13 @@ public class UserController {
         }
         return user.getType().equals(AccountRole.ADMIN);
     }
+    
+    public static boolean isProco(String username) {
+    	Account user = AccountDAO.getUserDetails(username);
+    	if(user == null) {
+    		return false;
+    	}
+    	return user.getType().equals(AccountRole.PROCO);
+    }
 
 }
