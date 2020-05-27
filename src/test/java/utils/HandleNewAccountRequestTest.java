@@ -1,10 +1,8 @@
 package utils;
 
-import static org.junit.Assert.assertTrue;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -64,4 +62,11 @@ public class HandleNewAccountRequestTest {
 		AccountDAO.updateUserType(testCritic.getUsername(), AccountRole.USER);
 		assertEquals(AccountDAO.getUserDetails(testCritic.getUsername()).getType(), AccountRole.USER);
 	}
+	@Test
+	public void updateUserType_noCrash_nullAccountRoleIsUsed() {
+		AccountRole ar = testCritic.getType();
+		AccountDAO.updateUserType(testCritic.getUsername(), null);
+		assertEquals(AccountDAO.getUserDetails(testCritic.getUsername()).getType(),ar);
+	}
+	
 }
