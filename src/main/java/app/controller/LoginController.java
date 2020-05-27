@@ -39,6 +39,10 @@ public class LoginController {
             	 ctx.sessionAttribute("admin", true);
             	 model.put("admin", RequestUtil.getSessionIsAdmin(ctx));
             }
+            if(!(UserController.isAdmin(getQueryUsername(ctx)))) {
+           	 ctx.sessionAttribute("admin", false);
+           	 model.put("admin", RequestUtil.getSessionIsAdmin(ctx));
+           }
             if(UserController.isProco(getQueryUsername(ctx))) {
             	ctx.sessionAttribute("procoLogin", true);
             	model.put("procoLogin", RequestUtil.getSessionIsProco(ctx));
